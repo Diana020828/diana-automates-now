@@ -1,13 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { motion } from "framer-motion";
+import { Navbar } from "@/components/navbar";
+import { HeroSection } from "@/components/sections/hero-section";
+import { ServicesSection } from "@/components/sections/services-section";
+import { ProjectsSection } from "@/components/sections/projects-section";
+import { ProcessSection } from "@/components/sections/process-section";
+import { ToolsSection } from "@/components/sections/tools-section";
+import { ContactSection } from "@/components/sections/contact-section";
+import { Footer } from "@/components/footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-background text-foreground"
+    >
+      <Navbar />
+      
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <ProcessSection />
+        <ToolsSection />
+        <ContactSection />
+      </main>
+      
+      <Footer />
+    </motion.div>
   );
 };
 
