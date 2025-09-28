@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+# Diana Pinzon - Automation Specialist Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing Diana's expertise in AI solutions and process automation.
 
-**URL**: https://lovable.dev/projects/a9822d53-aec9-4d3c-a941-c04f1b2713fa
+## 🚀 About
 
-## How can I edit this code?
+This portfolio demonstrates Diana's skills in implementing AI solutions and process automation for companies using N8n and Zapier. The site features intelligent workflows that integrate CRM systems, lead generation tools, and administrative platforms to eliminate manual processes and drive operational efficiency.
 
-There are several ways of editing your application.
+## 🛠️ Technologies Used
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS with custom earth-tone color palette
+- **Animations**: Framer Motion
+- **UI Components**: Radix UI primitives with shadcn/ui
+- **Icons**: Lucide React
+- **Theme**: Next Themes for dark/light mode
+- **Routing**: React Router DOM
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a9822d53-aec9-4d3c-a941-c04f1b2713fa) and start prompting.
+## 🎨 Design Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Warm Earth Tone Palette**: Terracotta, warm browns, sage greens, cream, and muted oranges
+- **Responsive Design**: Mobile-first approach with perfect scaling across all devices
+- **Dark/Light Mode**: Smooth theme transitions with consistent color variables
+- **Modern UI**: Glass effects, subtle shadows, and smooth animations
+- **Accessibility**: Proper focus states, ARIA labels, and contrast ratios
 
-**Use your preferred IDE**
+## 📱 Sections
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Hero**: Professional introduction with key stats
+- **Services**: AI solutions and automation services offered
+- **Projects**: Showcase of completed automation projects
+- **Tools**: Tech stack and platforms mastered
+- **Contact**: Professional contact information and social links
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Node.js (v18 or higher)
+- npm or yarn
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd diana-automation-portfolio
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The built files will be in the `dist` directory.
 
-## What technologies are used for this project?
+## 📁 Project Structure
 
-This project is built with:
+```
+src/
+├── components/          # Reusable UI components
+│   ├── sections/       # Page sections (hero, services, etc.)
+│   ├── ui/            # shadcn/ui components
+│   └── ...
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions
+├── pages/             # Main page components
+└── assets/            # Images and static assets
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🎯 Key Features
 
-## How can I deploy this project?
+- **Performance Optimized**: Fast loading with Vite and optimized assets
+- **SEO Ready**: Proper meta tags and semantic HTML
+- **Cross-browser Compatible**: Works on all modern browsers
+- **Mobile Responsive**: Perfect experience on all device sizes
+- **Accessible**: WCAG compliant with proper focus management
 
-Simply open [Lovable](https://lovable.dev/projects/a9822d53-aec9-4d3c-a941-c04f1b2713fa) and click on Share -> Publish.
+## 📞 Contact
 
-## Can I connect a custom domain to my Lovable project?
+- **Email**: dianapinzon577@gmail.com
+- **Phone**: +57 321 229 2995
+- **LinkedIn**: [@dianapinzonreyes](https://linkedin.com/in/dianapinzonreyes)
+- **GitHub**: [@Diana020828](https://github.com/Diana020828)
 
-Yes, you can!
+## 📄 License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project is private and proprietary to Diana Pinzon.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+*Built with ❤️ in Colombia 🇨🇴*
