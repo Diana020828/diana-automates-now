@@ -99,7 +99,3 @@ src/
 ## 📄 License
 
 This project is private and proprietary to Diana Pinzon.
-
----
-
-*Built with ❤️ in Colombia 🇨🇴*
