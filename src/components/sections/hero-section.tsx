@@ -12,9 +12,9 @@ export function HeroSection() {
   };
 
   return (
-    <section id="inicio" className="hero-section min-h-screen flex items-center pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" className="hero-section min-h-screen flex items-center pt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -26,23 +26,22 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-4"
+              className="space-y-4 sm:space-y-6"
             >
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"
+                className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/15 text-primary rounded-full text-xs sm:text-sm font-medium border border-primary/30 shadow-soft"
               >
-                ✨ Especialista en Automatización
+                🤖 AI Solutions & Process Automation
               </motion.span>
               
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="block">Automatizo</span>
-                <span className="block text-gradient">procesos</span>
-                <span className="block">para hacer tu</span>
-                <span className="block">negocio más</span>
-                <span className="block text-gradient">eficiente</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                <span className="block">Implementing</span>
+                <span className="block text-gradient">AI Solutions</span>
+                <span className="block">for Business</span>
+                <span className="block text-gradient">Automation</span>
               </h1>
             </motion.div>
 
@@ -50,35 +49,35 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-xl text-muted-foreground leading-relaxed max-w-2xl"
+              className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl"
             >
-              Ayudo a empresas a optimizar sus workflows mediante herramientas 
-              low-code y no-code, eliminando tareas repetitivas y aumentando 
-              la productividad hasta un 40%.
+              I implement AI solutions and process automation for companies using N8n and Zapier. 
+              I create intelligent workflows that integrate CRM systems, lead generation tools, 
+              and administrative platforms to eliminate manual processes and drive operational efficiency.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Button
-                onClick={() => scrollToSection("#proyectos")}
-                className="btn-primary group text-lg px-8 py-4 h-auto"
+                onClick={() => scrollToSection("#projects")}
+                className="btn-primary group text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto"
               >
-                <Eye className="w-5 h-5 mr-2" />
-                Ver mis proyectos
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Eye className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                View Projects
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
               
               <Button
-                onClick={() => scrollToSection("#contacto")}
+                onClick={() => scrollToSection("#contact")}
                 variant="outline"
-                className="text-lg px-8 py-4 h-auto border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
               >
-                <Calendar className="w-5 h-5 mr-2" />
-                Agendar consulta gratuita
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Get In Touch
               </Button>
             </motion.div>
 
@@ -87,19 +86,19 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="grid grid-cols-3 gap-8 pt-8 border-t border-border/50"
+              className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 sm:pt-8 border-t border-border/50"
             >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">40%</div>
-                <div className="text-sm text-muted-foreground">Aumento productividad</div>
+              <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
+                <div className="text-2xl sm:text-3xl font-bold text-primary">N8n</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Workflow Automation</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">50+</div>
-                <div className="text-sm text-muted-foreground">Procesos automatizados</div>
+              <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
+                <div className="text-2xl sm:text-3xl font-bold text-accent">Zapier</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Integration Expert</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">99%</div>
-                <div className="text-sm text-muted-foreground">Clientes satisfechos</div>
+              <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
+                <div className="text-2xl sm:text-3xl font-bold text-primary">AI</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Solutions Focus</div>
               </div>
             </motion.div>
           </motion.div>
@@ -109,7 +108,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative mt-8 lg:mt-0"
           >
             <motion.div
               animate={{ 
@@ -123,12 +122,12 @@ export function HeroSection() {
               }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-primary rounded-3xl blur-2xl opacity-20 animate-glow-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-primary rounded-2xl sm:rounded-3xl blur-2xl opacity-20 animate-glow-pulse"></div>
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 src={dianaProfile}
                 alt="Diana - Especialista en Automatización"
-                className="relative w-full max-w-lg mx-auto rounded-3xl shadow-large border-4 border-primary/20"
+                className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto rounded-2xl sm:rounded-3xl shadow-large border-4 border-primary/20"
               />
             </motion.div>
 
@@ -136,17 +135,17 @@ export function HeroSection() {
             <motion.div
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-              className="absolute -top-4 -right-4 bg-card glass-effect p-4 rounded-2xl border border-primary/20"
+              className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-card glass-effect p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-primary/20"
             >
-              <div className="text-2xl">⚡</div>
+              <div className="text-lg sm:text-2xl">⚡</div>
             </motion.div>
             
             <motion.div
               animate={{ y: [0, 15, 0] }}
               transition={{ duration: 5, repeat: Infinity, delay: 2 }}
-              className="absolute -bottom-4 -left-4 bg-card glass-effect p-4 rounded-2xl border border-accent/20"
+              className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 bg-card glass-effect p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-accent/20"
             >
-              <div className="text-2xl">🚀</div>
+              <div className="text-lg sm:text-2xl">🚀</div>
             </motion.div>
           </motion.div>
         </div>
