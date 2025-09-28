@@ -46,7 +46,6 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center text-sm text-muted-foreground">
               <span>© 2024 Diana Pinzon. All rights reserved.</span>
-              <span className="ml-2">Built in Colombia 🇨🇴</span>
             </div>
 
             {/* Back to top */}
