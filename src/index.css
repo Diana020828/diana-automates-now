@@ -6,47 +6,47 @@
 
 @layer base {
   :root {
-    /* Light theme - Clean & Professional */
-    --background: 0 0% 100%;
-    --foreground: 224 17% 8%;
+    /* Light Mode - Warm Earth Tones */
+    --background: 45 20% 95%; /* Warm cream */
+    --foreground: 25 15% 20%; /* Warm dark brown */
     
-    --card: 0 0% 100%;
-    --card-foreground: 224 17% 8%;
-    --card-border: 220 13% 91%;
+    --card: 40 25% 98%; /* Soft cream */
+    --card-foreground: 25 15% 20%; /* Warm dark brown */
+    --card-border: 30 20% 85%; /* Warm light brown */
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 17% 8%;
+    --popover: 40 25% 98%; /* Soft cream */
+    --popover-foreground: 25 15% 20%; /* Warm dark brown */
     
-    --primary: 229 84% 55%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 229 84% 65%;
+    --primary: 20 60% 50%; /* Terracotta */
+    --primary-foreground: 45 20% 95%; /* Warm cream */
+    --primary-glow: 20 60% 60%; /* Brighter terracotta */
     
-    --secondary: 220 13% 96%;
-    --secondary-foreground: 224 17% 8%;
+    --secondary: 35 30% 90%; /* Warm light brown */
+    --secondary-foreground: 25 15% 20%; /* Warm dark brown */
     
-    --muted: 220 13% 96%;
-    --muted-foreground: 220 13% 45%;
+    --muted: 35 30% 90%; /* Warm light brown */
+    --muted-foreground: 25 15% 40%; /* Muted warm brown */
     
-    --accent: 199 89% 48%;
-    --accent-foreground: 0 0% 100%;
-    --accent-glow: 199 89% 58%;
+    --accent: 120 25% 60%; /* Sage green */
+    --accent-foreground: 45 20% 95%; /* Warm cream */
+    --accent-glow: 120 25% 70%; /* Brighter sage green */
     
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 10 70% 50%; /* Warm red */
+    --destructive-foreground: 45 20% 95%; /* Warm cream */
     
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 229 84% 55%;
+    --border: 30 20% 85%; /* Warm light brown */
+    --input: 30 20% 85%; /* Warm light brown */
+    --ring: 20 60% 50%; /* Terracotta */
     
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    --success: 120 40% 50%; /* Forest green */
+    --success-foreground: 45 20% 95%; /* Warm cream */
     
     /* Portfolio-specific colors */
-    --portfolio-accent: 199 89% 48%;
-    --portfolio-accent-foreground: 0 0% 100%;
-    --portfolio-gradient-from: 229 84% 55%;
-    --portfolio-gradient-to: 199 89% 48%;
-    --portfolio-hero-bg: 220 13% 98%;
+    --portfolio-accent: 20 60% 50%; /* Terracotta */
+    --portfolio-accent-foreground: 45 20% 95%; /* Warm cream */
+    --portfolio-gradient-from: 20 60% 50%; /* Terracotta */
+    --portfolio-gradient-to: 30 50% 45%; /* Muted orange */
+    --portfolio-hero-bg: 45 20% 95%; /* Warm cream */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
@@ -54,66 +54,66 @@
     --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
     
     /* Shadows */
-    --shadow-soft: 0 2px 8px -2px hsl(var(--primary) / 0.1);
-    --shadow-medium: 0 8px 24px -4px hsl(var(--primary) / 0.12);
-    --shadow-large: 0 20px 40px -8px hsl(var(--primary) / 0.15);
+    --shadow-soft: 0 2px 8px -2px hsl(20 15% 20% / 0.08);
+    --shadow-medium: 0 8px 24px -4px hsl(20 15% 20% / 0.12);
+    --shadow-large: 0 20px 40px -8px hsl(20 15% 20% / 0.18);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
     
     --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark theme - Elegant & Modern */
-    --background: 224 17% 5%;
-    --foreground: 220 13% 95%;
+    /* Dark Mode - Deep Warm Browns and Charcoal */
+    --background: 25 15% 8%; /* Deep warm brown */
+    --foreground: 45 20% 90%; /* Warm light cream */
     
-    --card: 224 17% 7%;
-    --card-foreground: 220 13% 95%;
-    --card-border: 224 17% 12%;
+    --card: 25 15% 12%; /* Dark warm brown */
+    --card-foreground: 45 20% 90%; /* Warm light cream */
+    --card-border: 25 15% 20%; /* Warm charcoal */
     
-    --popover: 224 17% 7%;
-    --popover-foreground: 220 13% 95%;
+    --popover: 25 15% 12%; /* Dark warm brown */
+    --popover-foreground: 45 20% 90%; /* Warm light cream */
     
-    --primary: 229 84% 65%;
-    --primary-foreground: 224 17% 8%;
-    --primary-glow: 229 84% 75%;
+    --primary: 25 50% 60%; /* Warm terracotta */
+    --primary-foreground: 25 15% 8%; /* Deep warm brown */
+    --primary-glow: 25 50% 70%; /* Brighter warm terracotta */
     
-    --secondary: 224 17% 12%;
-    --secondary-foreground: 220 13% 95%;
+    --secondary: 25 15% 18%; /* Warm charcoal */
+    --secondary-foreground: 45 20% 90%; /* Warm light cream */
     
-    --muted: 224 17% 12%;
-    --muted-foreground: 220 13% 65%;
+    --muted: 25 15% 18%; /* Warm charcoal */
+    --muted-foreground: 45 20% 60%; /* Muted warm cream */
     
-    --accent: 199 89% 58%;
-    --accent-foreground: 224 17% 8%;
-    --accent-glow: 199 89% 68%;
+    --accent: 120 30% 50%; /* Muted sage green */
+    --accent-foreground: 45 20% 90%; /* Warm light cream */
+    --accent-glow: 120 30% 60%; /* Brighter muted sage green */
     
-    --destructive: 0 76% 65%;
-    --destructive-foreground: 224 17% 8%;
+    --destructive: 10 60% 55%; /* Warm red */
+    --destructive-foreground: 45 20% 90%; /* Warm light cream */
     
-    --border: 224 17% 12%;
-    --input: 224 17% 12%;
-    --ring: 229 84% 65%;
+    --border: 25 15% 20%; /* Warm charcoal */
+    --input: 25 15% 20%; /* Warm charcoal */
+    --ring: 25 50% 60%; /* Warm terracotta */
     
-    --success: 142 76% 46%;
-    --success-foreground: 224 17% 8%;
+    --success: 120 40% 45%; /* Forest green */
+    --success-foreground: 45 20% 90%; /* Warm light cream */
     
     /* Portfolio-specific colors - Dark */
-    --portfolio-accent: 199 89% 58%;
-    --portfolio-accent-foreground: 224 17% 8%;
-    --portfolio-gradient-from: 229 84% 65%;
-    --portfolio-gradient-to: 199 89% 58%;
-    --portfolio-hero-bg: 224 17% 6%;
+    --portfolio-accent: 25 50% 60%; /* Warm terracotta */
+    --portfolio-accent-foreground: 25 15% 8%; /* Deep warm brown */
+    --portfolio-gradient-from: 25 50% 60%; /* Warm terracotta */
+    --portfolio-gradient-to: 30 45% 50%; /* Muted orange */
+    --portfolio-hero-bg: 25 15% 8%; /* Deep warm brown */
     
     /* Dark gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--portfolio-hero-bg)), hsl(var(--background)));
     --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
     
-    /* Dark shadows with glow */
-    --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
-    --shadow-medium: 0 8px 24px -4px hsl(0 0% 0% / 0.4);
-    --shadow-large: 0 20px 40px -8px hsl(0 0% 0% / 0.5);
+    /* Dark shadows with warm glow */
+    --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.4);
+    --shadow-medium: 0 8px 24px -4px hsl(0 0% 0% / 0.5);
+    --shadow-large: 0 20px 40px -8px hsl(0 0% 0% / 0.6);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
   }
 
@@ -191,6 +191,36 @@
     box-shadow: var(--shadow-glow);
     transform: translateY(-1px);
   }
+
+  /* Enhanced responsive utilities */
+  .container-responsive {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1400px;
+  }
+
+  /* Improved mobile navigation */
+  .mobile-nav-item {
+    @apply block w-full text-left px-3 py-2 text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 rounded-md transition-colors;
+  }
+
+  /* Better form styling */
+  .form-input {
+    @apply w-full px-3 py-2 text-sm sm:text-base bg-background border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors;
+  }
+
+  /* Enhanced card styles */
+  .card-responsive {
+    @apply glass-effect rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-card-border;
+  }
+
+  /* Improved spacing utilities */
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20 xl:py-24;
+  }
+
+  .section-padding-sm {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
 }
 
 @layer base {
@@ -200,5 +230,56 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Enhanced responsive typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply scroll-m-20;
+  }
+
+  /* Improved focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Better button focus states */
+  button:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Enhanced form input focus */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Earth tone specific accessibility enhancements */
+  .text-primary {
+    color: hsl(var(--primary));
+  }
+  
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+  
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+  
+  /* Ensure sufficient contrast for interactive elements */
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  
+  .btn-primary:hover {
+    background-color: hsl(var(--primary-glow));
+  }
+  
+  /* Enhanced focus states for earth tones */
+  .focus-earth:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
   }
 }
