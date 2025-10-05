@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Eye } from "lucide-react";
+import { ArrowRight, Download, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import dianaProfile from "@/assets/diana-profile.jpg";
 
@@ -9,6 +9,15 @@ export function HeroSection() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Pinzon-Diana-EA.pdf';
+    link.download = 'Pinzon-Diana-EA.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -38,10 +47,7 @@ export function HeroSection() {
               </motion.span>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                <span className="block">Implementing</span>
-                <span className="block text-gradient">AI Solutions</span>
-                <span className="block">for Business</span>
-                <span className="block text-gradient">Automation</span>
+                <span className="block">Who I am?</span>
               </h1>
             </motion.div>
 
@@ -51,9 +57,10 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl"
             >
-              I implement AI solutions and process automation for companies using N8n and Zapier. 
-              I create intelligent workflows that integrate CRM systems, lead generation tools, 
-              and administrative platforms to eliminate manual processes and drive operational efficiency.
+              I'm Diana Pinzon, an AI & Automation Specialist passionate about transforming 
+              business processes. With expertise in N8n, Zapier, and AI technologies, I create 
+              intelligent workflows that eliminate manual tasks and drive operational efficiency 
+              for companies worldwide.
             </motion.p>
 
             <motion.div
@@ -72,12 +79,12 @@ export function HeroSection() {
               </Button>
               
               <Button
-                onClick={() => scrollToSection("#contact")}
+                onClick={downloadCV}
                 variant="outline"
                 className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
               >
-                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                Get In Touch
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Download CV
               </Button>
             </motion.div>
 

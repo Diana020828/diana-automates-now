@@ -65,13 +65,13 @@ export function ContactSection() {
           </motion.span>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            <span className="block">Ready to transform</span>
-            <span className="block text-gradient">your business?</span>
+            <span className="block">Contact me and let's see</span>
+            <span className="block text-gradient">how we can work together</span>
           </h2>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Let's start with a free consultation. Let's analyze together how automation 
-            can revolutionize your processes and increase your productivity.
+            I'm ready to help you transform your business with intelligent automation. 
+            Let's discuss your specific needs and create a solution that works for you.
           </p>
         </motion.div>
 

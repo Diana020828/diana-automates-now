@@ -22,13 +22,6 @@ const tools = [
     color: "from-orange-500 to-yellow-500"
   },
   {
-    name: "Creatio",
-    category: "CRM/BPM",
-    description: "No-code platform for CRM, marketing automation and enterprise process management.",
-    logo: "https://www.creatio.com/favicon.ico",
-    color: "from-blue-600 to-indigo-600"
-  },
-  {
     name: "Cursor",
     category: "Development",
     description: "Code editor with integrated AI for more efficient and intelligent development.",
@@ -43,11 +36,11 @@ const tools = [
     color: "from-green-500 to-teal-600"
   },
   {
-    name: "Notion",
-    category: "Productivity",
-    description: "All-in-one workspace for notes, databases, wikis and project management.",
-    logo: "https://notion.so/favicon.ico",
-    color: "from-gray-700 to-black"
+    name: "Lovable",
+    category: "Development",
+    description: "AI-powered platform for building web applications with natural language.",
+    logo: "https://lovable.dev/favicon.ico",
+    color: "from-purple-500 to-pink-500"
   },
   {
     name: "Google Apps Script",
@@ -199,12 +192,11 @@ export function ToolsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {[
             { label: "Tools Mastered", value: "7+", desc: "Specialized platforms" },
-            { label: "Years Experience", value: "2+", desc: "In automation" },
-            { label: "Integrations Created", value: "50+", desc: "Successful connections" }
+            { label: "Years Experience", value: "1+", desc: "In automation" }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
