@@ -6,6 +6,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const tools = [
   {
@@ -52,16 +53,19 @@ const tools = [
   }
 ];
 
-const categories = [
-  { name: "All", count: tools.length },
-  { name: "Automation", count: tools.filter(t => t.category === "Automation").length },
-  { name: "Development", count: tools.filter(t => t.category === "Development").length },
-  { name: "Integration", count: tools.filter(t => t.category === "Integration").length },
-  { name: "Productivity", count: tools.filter(t => t.category === "Productivity").length }
+// Las categorías se traducen
+const getCategories = (t) => [
+  { name: t.toolsSection.categories.all, count: tools.length },
+  { name: t.toolsSection.categories.automation, count: tools.filter(tl => tl.category === "Automation").length },
+  { name: t.toolsSection.categories.development, count: tools.filter(tl => tl.category === "Development").length },
+  { name: t.toolsSection.categories.integration, count: tools.filter(tl => tl.category === "Integration").length },
+  { name: t.toolsSection.categories.productivity, count: tools.filter(tl => tl.category === "Productivity").length }
 ];
 
 export function ToolsSection() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+  const categories = getCategories(t);
 
   return (
     <section id="tools" className="py-24">
@@ -81,17 +85,16 @@ export function ToolsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="inline-block px-4 py-2 bg-accent/15 text-accent rounded-full text-sm font-medium border border-accent/30 shadow-soft"
           >
-            🔧 Tech Stack
+            {t.toolsSection.badge}
           </motion.span>
           
           <h2 className="text-4xl md:text-5xl font-bold">
-            <span className="block">Tools I</span>
-            <span className="block text-gradient">Master Perfectly</span>
+            <span className="block">{t.toolsSection.title}</span>
+            <span className="block text-gradient">{t.toolsSection.titleGradient}</span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            I work with the best low-code and no-code platforms in the market to 
-            create robust, scalable and easy-to-maintain solutions.
+            {t.toolsSection.description}
           </p>
         </motion.div>
 
@@ -197,10 +200,7 @@ export function ToolsSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {[
-            { label: "Tools Mastered", value: "7+", desc: "Specialized platforms" },
-            { label: "Years Experience", value: "1+", desc: "Professional expertise" }
-          ].map((stat, index) => (
+          {t.toolsSection.stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -233,8 +233,7 @@ export function ToolsSection() {
           className="text-center mt-16"
         >
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Don't see the tool you need? Don't worry, I'm always 
-            learning new technologies to offer the best solutions.
+            {t.toolsSection.cta.text}
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -242,7 +241,7 @@ export function ToolsSection() {
             className="btn-primary px-8 py-4 text-lg sm:text-xl font-semibold tracking-tight"
             onClick={() => navigate("/contact")}
           >
-            Let's talk about your tech stack
+            {t.toolsSection.cta.button}
           </motion.button>
         </motion.div>
       </div>

@@ -7,12 +7,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export function HeroSection() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const downloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/Pinzon-Diana-EA.pdf';
-    link.download = 'Pinzon-Diana-EA.pdf';
+    if (language === 'es') {
+      link.href = '/cv-update-esp.pdf';
+      link.download = 'hoja de vida Diana Pinzon.pdf';
+    } else {
+      link.href = '/cv-update-eng.pdf';
+      link.download = 'Resume Diana Pinzon.pdf';
+    }
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -43,7 +48,7 @@ export function HeroSection() {
               >
                 {t.hero.badge}
               </motion.span>
-              
+
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 <span className="block">{t.hero.title}</span>
               </h1>
@@ -72,7 +77,7 @@ export function HeroSection() {
                 {t.hero.viewProjects}
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              
+
               <Button
                 onClick={downloadCV}
                 variant="outline"
@@ -113,11 +118,11 @@ export function HeroSection() {
             className="relative mt-8 lg:mt-0"
           >
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, -10, 0],
                 rotate: [0, 1, -1, 0]
               }}
-              transition={{ 
+              transition={{
                 duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut"
@@ -141,7 +146,7 @@ export function HeroSection() {
             >
               <div className="text-lg sm:text-2xl">⚡</div>
             </motion.div>
-            
+
             <motion.div
               animate={{ y: [0, 15, 0] }}
               transition={{ duration: 5, repeat: Infinity, delay: 2 }}

@@ -55,16 +55,7 @@ export function Footer() {
               <span>dianapinzon577@gmail.com</span>
             </motion.a>
 
-            {/* Phone */}
-            <motion.a
-              href="tel:+573212292995"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
-            >
-              <Phone className="w-4 h-4 text-primary" />
-              <span>+57 321 229 2995</span>
-            </motion.a>
+            {/* Teléfono eliminado por privacidad */}
           </div>
 
           <div className="text-sm text-muted-foreground">

@@ -150,6 +150,28 @@ export const translations = {
       description: "I build modern web applications with React and TypeScript, create intelligent automation workflows with N8n and Zapier, and develop content strategies for LinkedIn, newsletters, and cold email campaigns.",
       copyright: "© 2024 Diana Pinzon. All rights reserved."
     },
+    // Tools Section
+    toolsSection: {
+      badge: "🔧 Tech Stack",
+      title: "Tools I",
+      titleGradient: "Master Perfectly",
+      description: "I work with the best low-code and no-code platforms in the market to create robust, scalable and easy-to-maintain solutions.",
+      categories: {
+        all: "All",
+        automation: "Automation",
+        development: "Development",
+        integration: "Integration",
+        productivity: "Productivity"
+      },
+      stats: [
+        { label: "Tools Mastered", value: "7+", desc: "Specialized platforms" },
+        { label: "Years Experience", value: "1+", desc: "Professional expertise" }
+      ],
+      cta: {
+        text: "Don't see the tool you need? Don't worry, I'm always learning new technologies to offer the best solutions.",
+        button: "Let's talk about your tech stack"
+      }
+    },
     // Navigation
     nav: {
       home: "Home",
@@ -307,6 +329,28 @@ export const translations = {
       subtitle: "Desarrolladora Frontend • Especialista en Automatización • Estratega de Contenido",
       description: "Construyo aplicaciones web modernas con React y TypeScript, creo flujos de automatización inteligentes con N8n y Zapier, y desarrollo estrategias de contenido para LinkedIn, newsletters y campañas de cold email.",
       copyright: "© 2024 Diana Pinzon. Todos los derechos reservados."
+    },
+    // Tools Section
+    toolsSection: {
+      badge: "🔧 Stack Tecnológico",
+      title: "Herramientas que",
+      titleGradient: "domino a la perfección",
+      description: "Trabajo con las mejores plataformas low-code y no-code del mercado para crear soluciones robustas, escalables y fáciles de mantener.",
+      categories: {
+        all: "Todas",
+        automation: "Automatización",
+        development: "Desarrollo",
+        integration: "Integración",
+        productivity: "Productividad"
+      },
+      stats: [
+        { label: "Herramientas dominadas", value: "7+", desc: "Plataformas especializadas" },
+        { label: "Años de experiencia", value: "1+", desc: "Experiencia profesional" }
+      ],
+      cta: {
+        text: "¿No ves la herramienta que necesitas? No te preocupes, siempre estoy aprendiendo nuevas tecnologías para ofrecer las mejores soluciones.",
+        button: "Hablemos de tu stack tecnológico"
+      }
     },
     // Navigation
     nav: {
