@@ -283,3 +283,13 @@
     outline-offset: 2px;
   }
 }
+
+/* Hide Calendly badge widget */
+.calendly-badge-widget,
+[data-calendly-badge],
+.calendly-inline-widget[style*="position: fixed"],
+.calendly-badge-widget[style*="position: fixed"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}

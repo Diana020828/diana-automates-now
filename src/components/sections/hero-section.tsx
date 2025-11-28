@@ -1,15 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Eye } from "lucide-react";
+import { ArrowRight, Download, Eye, Code, Zap, PenTool } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import dianaProfile from "@/assets/diana-profile.jpg";
+import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function HeroSection() {
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const downloadCV = () => {
     const link = document.createElement('a');
@@ -43,11 +41,11 @@ export function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.6 }}
                 className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/15 text-primary rounded-full text-xs sm:text-sm font-medium border border-primary/30 shadow-soft"
               >
-                🤖 AI Solutions & Process Automation
+                {t.hero.badge}
               </motion.span>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                <span className="block">Who I am?</span>
+                <span className="block">{t.hero.title}</span>
               </h1>
             </motion.div>
 
@@ -57,10 +55,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl"
             >
-              I'm Diana Pinzon, an AI & Automation Specialist passionate about transforming 
-              business processes. With expertise in N8n, Zapier, and AI technologies, I create 
-              intelligent workflows that eliminate manual tasks and drive operational efficiency 
-              for companies worldwide.
+              {t.hero.description}
             </motion.p>
 
             <motion.div
@@ -70,11 +65,11 @@ export function HeroSection() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Button
-                onClick={() => scrollToSection("#projects")}
+                onClick={() => navigate("/projects")}
                 className="btn-primary group text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto"
               >
                 <Eye className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                View Projects
+                {t.hero.viewProjects}
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
               
@@ -84,7 +79,7 @@ export function HeroSection() {
                 className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
               >
                 <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                Download CV
+                {t.hero.downloadCV}
               </Button>
             </motion.div>
 
@@ -96,16 +91,16 @@ export function HeroSection() {
               className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 sm:pt-8 border-t border-border/50"
             >
               <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">N8n</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Workflow Automation</div>
+                <Code className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-primary" />
+                <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.frontend}</div>
               </div>
               <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-accent">Zapier</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Integration Expert</div>
+                <Zap className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-accent" />
+                <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.automation}</div>
               </div>
               <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">AI</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Solutions Focus</div>
+                <PenTool className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-primary" />
+                <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.content}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -133,7 +128,7 @@ export function HeroSection() {
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 src={dianaProfile}
-                alt="Diana - Especialista en Automatización"
+                alt="Diana - Frontend Developer & Automation Specialist"
                 className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto rounded-2xl sm:rounded-3xl shadow-large border-4 border-primary/20"
               />
             </motion.div>

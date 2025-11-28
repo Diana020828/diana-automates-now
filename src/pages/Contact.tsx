@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
-import { HeroSection } from "@/components/sections/hero-section";
 import { Footer } from "@/components/footer";
+import { ContactSection } from "@/components/sections/contact-section";
 
-const Index = () => {
+export function ContactPage() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -13,13 +13,13 @@ const Index = () => {
     >
       <Navbar />
 
-      <main>
-        <HeroSection />
+      <main className="pt-20 pb-12">
+        <ContactSection />
       </main>
 
       <Footer />
     </motion.div>
   );
-};
+}
 
-export default Index;
+

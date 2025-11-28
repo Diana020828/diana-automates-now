@@ -6,21 +6,20 @@ import {
   Linkedin, 
   Github
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const contactMethods = [
   {
     icon: Mail,
-    title: "Email",
+    titleKey: "email" as const,
     value: "dianapinzon577@gmail.com",
     href: "mailto:dianapinzon577@gmail.com",
-    description: "Response within 24 hours"
   },
   {
     icon: Phone,
-    title: "Phone",
+    titleKey: "phone" as const,
     value: "+57 321 229 2995",
     href: "tel:+573212292995",
-    description: "WhatsApp available"
   }
 ];
 
@@ -42,6 +41,7 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
+  const { t } = useLanguage();
 
   return (
     <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-muted/30">
@@ -61,17 +61,16 @@ export function ContactSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-accent/15 text-accent rounded-full text-xs sm:text-sm font-medium border border-accent/30 shadow-soft"
           >
-            💬 Let's Talk
+            {t.contact.badge}
           </motion.span>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            <span className="block">Contact me and let's see</span>
-            <span className="block text-gradient">how we can work together</span>
+            <span className="block">{t.contact.title}</span>
+            <span className="block text-gradient">{t.contact.titleGradient}</span>
           </h2>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            I'm ready to help you transform your business with intelligent automation. 
-            Let's discuss your specific needs and create a solution that works for you.
+            {t.contact.description}
           </p>
         </motion.div>
 
@@ -91,7 +90,7 @@ export function ContactSection() {
               <div className="space-y-4 sm:space-y-6">
                 {contactMethods.map((method, index) => (
                   <motion.a
-                    key={method.title}
+                    key={method.titleKey}
                     href={method.href}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -105,9 +104,9 @@ export function ContactSection() {
                         <method.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-foreground text-base sm:text-lg">{method.title}</h4>
+                        <h4 className="font-semibold text-foreground text-base sm:text-lg">{t.contact[method.titleKey].title}</h4>
                         <p className="text-primary hover:text-primary-glow font-medium text-sm sm:text-base">{method.value}</p>
-                        <p className="text-muted-foreground text-xs sm:text-sm">{method.description}</p>
+                        <p className="text-muted-foreground text-xs sm:text-sm">{t.contact[method.titleKey].description}</p>
                       </div>
                     </div>
                   </motion.a>
@@ -130,16 +129,16 @@ export function ContactSection() {
                   <h4 className="font-semibold text-foreground text-base sm:text-lg">Location</h4>
                 </div>
                 <p className="text-muted-foreground text-sm sm:text-base mb-2">
-                  Colombia 🇨🇴 | Remote work globally
+                  {t.contact.location}
                 </p>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Available in EST/COT timezone
+                  {t.contact.timezone}
                 </p>
               </motion.div>
 
               {/* Social Links */}
               <div className="space-y-4 sm:space-y-6">
-                <h4 className="font-semibold text-foreground text-base sm:text-lg text-center md:text-left">Follow me on social media</h4>
+                <h4 className="font-semibold text-foreground text-base sm:text-lg text-center md:text-left">{t.contact.social}</h4>
                 <div className="grid grid-cols-1 gap-4 sm:gap-6">
                   {socialLinks.map((social, index) => (
                     <motion.a

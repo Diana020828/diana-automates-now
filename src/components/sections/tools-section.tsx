@@ -5,6 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useNavigate } from "react-router-dom";
 
 const tools = [
   {
@@ -60,6 +61,8 @@ const categories = [
 ];
 
 export function ToolsSection() {
+  const navigate = useNavigate();
+
   return (
     <section id="tools" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,7 +199,7 @@ export function ToolsSection() {
         >
           {[
             { label: "Tools Mastered", value: "7+", desc: "Specialized platforms" },
-            { label: "Years Experience", value: "1+", desc: "In automation" }
+            { label: "Years Experience", value: "1+", desc: "Professional expertise" }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -236,7 +239,8 @@ export function ToolsSection() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="btn-primary px-8 py-4 text-lg"
+            className="btn-primary px-8 py-4 text-lg sm:text-xl font-semibold tracking-tight"
+            onClick={() => navigate("/contact")}
           >
             Let's talk about your tech stack
           </motion.button>
