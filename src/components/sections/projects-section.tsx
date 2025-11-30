@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, useMotionValue, useTransform, animate, PanInfo } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -10,6 +10,7 @@ import workflowN8n from "@/assets/workflow-n8n.jpeg";
 import cvWithIA from "@/assets/cv-wit-ia.jpeg";
 import adesuProject from "@/assets/adesu-website.png";
 import awardsCfoproProject from "@/assets/Awards-CFOPro.png";
+import flujoPostgresVideo from "@/assets/Flujo-posgress.mp4";
 
 export function ProjectsSection() {
   const { t, language } = useLanguage();
@@ -109,6 +110,34 @@ export function ProjectsSection() {
           : "Local recognition & positioning"
       ],
       link: "https://centralflorida.netlify.app/"
+    },
+    // Proyecto Flujo PostgreSQL - Video
+    {
+      title: language === "es" ? "Automatización de Flujo PostgreSQL" : "PostgreSQL Flow Automation",
+      subtitle: language === "es" ? "Integración de base de datos con N8N" : "Database Integration with N8N",
+      description:
+        language === "es"
+          ? "Flujo de automatización que conecta PostgreSQL con diferentes servicios para sincronización de datos en tiempo real. Incluye triggers automáticos, transformación de datos y notificaciones."
+          : "Automation workflow connecting PostgreSQL with different services for real-time data synchronization. Includes automatic triggers, data transformation, and notifications.",
+      video: flujoPostgresVideo,
+      tools: [
+        "N8N",
+        "PostgreSQL",
+        "Docker",
+        "API REST",
+        "Webhooks"
+      ],
+      results: [
+        language === "es"
+          ? "Sincronización de datos en tiempo real"
+          : "Real-time data synchronization",
+        language === "es"
+          ? "Automatización de triggers de base de datos"
+          : "Database trigger automation",
+        language === "es"
+          ? "Integración sin código"
+          : "No-code integration"
+      ]
     }
   ];
 
@@ -300,7 +329,7 @@ export function ProjectsSection() {
               >
                 <div className="glass-effect rounded-2xl border border-card-border/80 shadow-large bg-background/90 backdrop-blur-xl overflow-hidden p-6 lg:p-8 h-full flex flex-col justify-center">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full items-center">
-                    {/* Image Container - Ajustado */}
+                    {/* Image/Video Container - Ajustado */}
                     <motion.div
                       className="relative flex items-center justify-center overflow-hidden rounded-xl border border-border/60 shadow-soft bg-card min-h-[260px] lg:min-h-[320px] aspect-[16/10]"
                       initial={{ opacity: 0, y: 10 }}
@@ -308,12 +337,33 @@ export function ProjectsSection() {
                       transition={{ delay: 0.15, duration: 0.4 }}
                     >
                       <div className="absolute inset-0 bg-gradient-primary opacity-10 blur-3xl rounded-xl" />
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="max-w-full max-h-full object-contain object-center select-none pointer-events-none"
-                        draggable={false}
-                      />
+                      {project.video ? (
+                        <video
+                          src={index === currentIndex ? project.video : undefined}
+                          data-src={project.video}
+                          controls
+                          preload="none"
+                          playsInline
+                          muted
+                          loop
+                          className="max-w-full max-h-full object-contain object-center select-none rounded-lg"
+                          poster=""
+                          onLoadStart={(e) => {
+                            // Solo cargar si está visible
+                            if (index !== currentIndex) {
+                              e.currentTarget.pause();
+                            }
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="max-w-full max-h-full object-contain object-center select-none pointer-events-none"
+                          draggable={false}
+                          loading="lazy"
+                        />
+                      )}
                       {project.link && (
                         <button
                           type="button"

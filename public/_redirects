@@ -1,2 +1,2 @@
-# Redirects para SPA (Single Page Application)
+# SPA fallback - redirige todas las rutas al index.html
 /*    /index.html   200
