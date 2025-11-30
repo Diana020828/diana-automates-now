@@ -18,14 +18,7 @@ export function ProjectsSection() {
   const x = useMotionValue(0);
 
   const projects = [
-    {
-      title: t.projects.linkedin.title,
-      subtitle: t.projects.linkedin.subtitle,
-      description: t.projects.linkedin.description,
-      image: contentLinkedin,
-      tools: t.projects.linkedin.tools,
-      results: t.projects.linkedin.results,
-    },
+    // 1. Portfolio CFOPro
     {
       title: t.projects.portfolio.title,
       subtitle: t.projects.portfolio.subtitle,
@@ -35,24 +28,7 @@ export function ProjectsSection() {
       results: t.projects.portfolio.results,
       link: t.projects.portfolio.link,
     },
-    {
-      title: t.projects.whatsapp.title,
-      subtitle: t.projects.whatsapp.subtitle,
-      description: t.projects.whatsapp.description,
-      image: workflowN8n,
-      tools: t.projects.whatsapp.tools,
-      results: t.projects.whatsapp.results,
-    },
-    {
-      title: t.projects.cv.title,
-      subtitle: t.projects.cv.subtitle,
-      description: t.projects.cv.description,
-      image: cvWithIA,
-      tools: t.projects.cv.tools,
-      results: t.projects.cv.results,
-      link: t.projects.cv.link,
-    },
-    // Proyecto ADESU
+    // 2. ADESU
     {
       title: language === "es" ? "ADESU: Ventaja Competitiva Contable" : "ADESU: Competitive Accounting Advantage",
       subtitle: language === "es" ? "Desarrollado con Lovable" : "Built with Lovable",
@@ -81,7 +57,7 @@ export function ProjectsSection() {
       ],
       link: "https://adesu.netlify.app/"
     },
-    // Proyecto Awards-CFOPro
+    // 3. Awards CFOPro
     {
       title: language === "es" ? "Awards CFOPro: Reconocimiento Empresarial" : "Awards CFOPro: Business Recognition",
       subtitle: language === "es" ? "Premios empresariales Central Florida" : "Central Florida Business Awards",
@@ -108,14 +84,42 @@ export function ProjectsSection() {
           : "Local recognition & positioning"
       ],
       link: "https://centralflorida.netlify.app/"
-    }
+    },
+    // 4. WhatsApp Bot
+    {
+      title: t.projects.whatsapp.title,
+      subtitle: t.projects.whatsapp.subtitle,
+      description: t.projects.whatsapp.description,
+      image: workflowN8n,
+      tools: t.projects.whatsapp.tools,
+      results: t.projects.whatsapp.results,
+    },
+    // 5. LinkedIn Content
+    {
+      title: t.projects.linkedin.title,
+      subtitle: t.projects.linkedin.subtitle,
+      description: t.projects.linkedin.description,
+      image: contentLinkedin,
+      tools: t.projects.linkedin.tools,
+      results: t.projects.linkedin.results,
+    },
+    // 6. CV con IA
+    {
+      title: t.projects.cv.title,
+      subtitle: t.projects.cv.subtitle,
+      description: t.projects.cv.description,
+      image: cvWithIA,
+      tools: t.projects.cv.tools,
+      results: t.projects.cv.results,
+      link: t.projects.cv.link,
+    },
   ];
 
   // Calcular dimensiones del contenedor - Más amplio y tarjetas más grandes
   const [containerWidth, setContainerWidth] = useState(0);
   // Caja principal más grande y tarjetas internas más amplias
-  const cardWidth = containerWidth > 0 ? Math.min(containerWidth - 64, 1200) : 1200;
-  const cardGap = 80;
+  const cardWidth = containerWidth > 0 ? Math.min(containerWidth - 48, 1400) : 1400;
+  const cardGap = 60;
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -241,9 +245,9 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-16 sm:py-28 lg:py-36 min-h-screen flex flex-col items-center justify-center"
+      className="py-12 sm:py-20 lg:py-28 min-h-screen flex flex-col items-center justify-center"
     >
-      <div className="w-full max-w-[1700px] mx-auto px-2 sm:px-16 lg:px-32 flex flex-col items-center">
+      <div className="w-full max-w-[1900px] mx-auto px-2 sm:px-8 lg:px-16 flex flex-col items-center">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -297,11 +301,11 @@ export function ProjectsSection() {
                   opacity: cardOpacities[index],
                 }}
               >
-                <div className="glass-effect rounded-2xl border border-card-border/80 shadow-large bg-background/90 backdrop-blur-xl overflow-hidden p-6 lg:p-8 h-full flex flex-col justify-center">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full items-center">
+                <div className="glass-effect rounded-2xl border border-card-border/80 shadow-large bg-background/90 backdrop-blur-xl overflow-hidden p-6 lg:p-10 h-full flex flex-col justify-center">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full items-center">
                     {/* Image Container */}
                     <motion.div
-                      className="relative flex items-center justify-center overflow-hidden rounded-xl border border-border/60 shadow-soft bg-card min-h-[260px] lg:min-h-[320px] aspect-[16/10]"
+                      className="relative flex items-center justify-center overflow-hidden rounded-xl border border-border/60 shadow-soft bg-card min-h-[300px] lg:min-h-[400px] aspect-[16/10]"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15, duration: 0.4 }}
