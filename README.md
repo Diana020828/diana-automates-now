@@ -1,4 +1,4 @@
-# Diana Pinzon - Automation Specialist Portfolio update
+# Diana Pinzon - Portfolio Automation Specialist update
 
 A modern, responsive portfolio website showcasing Diana's expertise in AI solutions and process automation.
 
