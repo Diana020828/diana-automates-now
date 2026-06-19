@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Eye, Code, Zap, PenTool } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import dianaProfile from "@/assets/diana-profile.jpg";
+import dianaProfile from "@/assets/diana-profile.webp";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -70,6 +70,7 @@ export function HeroSection() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Button
+                type="button"
                 onClick={() => navigate("/projects")}
                 className="btn-primary group text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto"
               >
@@ -79,6 +80,7 @@ export function HeroSection() {
               </Button>
 
               <Button
+                type="button"
                 onClick={downloadCV}
                 variant="outline"
                 className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
@@ -133,7 +135,9 @@ export function HeroSection() {
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 src={dianaProfile}
-                alt="Diana - Frontend Developer & Automation Specialist"
+                alt="Diana Pinzon — Especialista en Automatización de Marketing"
+                fetchPriority="high"
+                decoding="async"
                 className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto rounded-2xl sm:rounded-3xl shadow-large border-4 border-primary/20"
               />
             </motion.div>
@@ -143,6 +147,7 @@ export function HeroSection() {
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 4, repeat: Infinity, delay: 1 }}
               className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-card glass-effect p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-primary/20"
+              aria-hidden="true"
             >
               <div className="text-lg sm:text-2xl">⚡</div>
             </motion.div>
@@ -151,6 +156,7 @@ export function HeroSection() {
               animate={{ y: [0, 15, 0] }}
               transition={{ duration: 5, repeat: Infinity, delay: 2 }}
               className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 bg-card glass-effect p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-accent/20"
+              aria-hidden="true"
             >
               <div className="text-lg sm:text-2xl">🚀</div>
             </motion.div>

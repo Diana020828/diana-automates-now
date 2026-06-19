@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Workflow, Brain, Link2, Gauge, Sparkles } from "lucide-react";
+import { ArrowRight, Workflow, Target, Globe, PenTool, Sparkles } from "lucide-react";
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 declare global {
   interface Window {
@@ -16,6 +17,7 @@ declare global {
 
 export function ServicesPage() {
   const { t } = useLanguage();
+  usePageTitle(t.pageTitles.services);
 
   useEffect(() => {
     // Cargar CSS de Calendly
@@ -49,13 +51,11 @@ export function ServicesPage() {
     };
 
     hideCalendlyBadge();
-    const interval = setInterval(hideCalendlyBadge, 500);
 
     const observer = new MutationObserver(hideCalendlyBadge);
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      clearInterval(interval);
       observer.disconnect();
       if (document.head.contains(link)) {
         document.head.removeChild(link);
@@ -67,10 +67,12 @@ export function ServicesPage() {
   }, []);
 
   const handleBookConsultation = () => {
+    const url = "https://calendly.com/dianapinzon/30min";
+    // Fallback: si el script de Calendly no cargó, abrimos en pestaña nueva
     if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: "https://calendly.com/dianapinzon/30min",
-      });
+      window.Calendly.initPopupWidget({ url });
+    } else {
+      window.open(url, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -82,17 +84,17 @@ export function ServicesPage() {
     },
     {
       key: 'ai' as const,
-      icon: Brain,
+      icon: Target,
       gradient: "from-purple-500/20 to-pink-500/20"
     },
     {
       key: 'integration' as const,
-      icon: Link2,
+      icon: Globe,
       gradient: "from-blue-500/20 to-cyan-500/20"
     },
     {
       key: 'strategy' as const,
-      icon: Gauge,
+      icon: PenTool,
       gradient: "from-green-500/20 to-emerald-500/20"
     }
   ];

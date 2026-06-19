@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Language, translations } from '@/lib/translations';
 
 type LanguageContextType = {
@@ -11,6 +11,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
+
+  // Mantiene el atributo lang del documento sincronizado con el idioma (a11y + SEO)
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   return (
     <LanguageContext.Provider

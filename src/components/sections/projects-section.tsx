@@ -1,14 +1,178 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform, animate, PanInfo } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, useMotionValue, useTransform, animate, PanInfo, MotionValue } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import contentLinkedin from "@/assets/Content-linkedin-I.png";
-import websiteProject from "@/assets/Web-site.png";
-import workflowN8n from "@/assets/workflow-n8n.jpeg";
-import cvWithIA from "@/assets/cv-wit-ia.jpeg";
-import adesuProject from "@/assets/adesu-website.png";
-import awardsCfoproProject from "@/assets/Awards-CFOPro.png";
+import contentLinkedin from "@/assets/Content-linkedin-I.webp";
+import websiteProject from "@/assets/Web-site.webp";
+import workflowN8n from "@/assets/workflow-n8n.webp";
+import cvWithIA from "@/assets/cv-wit-ia.webp";
+import adesuProject from "@/assets/adesu-website.webp";
+import awardsCfoproProject from "@/assets/Awards-CFOPro.webp";
+import omwDashboard from "@/assets/omw-dashboard.webp";
+
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  tools: string[];
+  results: string[];
+  link?: string;
+}
+
+type Translations = ReturnType<typeof useLanguage>["t"];
+
+// Tarjeta individual: calcula su escala/opacidad con useTransform en el nivel
+// superior del componente (un hook por tarjeta, sin bucles que rompan el orden).
+function ProjectCard({
+  project,
+  index,
+  projectsLength,
+  cardWidth,
+  cardGap,
+  containerWidth,
+  x,
+  t,
+}: {
+  project: Project;
+  index: number;
+  projectsLength: number;
+  cardWidth: number;
+  cardGap: number;
+  containerWidth: number;
+  x: MotionValue<number>;
+  t: Translations;
+}) {
+  const cardCenterX = index * (cardWidth + cardGap) + cardWidth / 2;
+  const scale = useTransform(x, (value) => {
+    if (containerWidth === 0) return 1;
+    const distance = Math.abs(cardCenterX + value - containerWidth / 2);
+    return Math.max(0.92, 1 - (distance / (cardWidth + cardGap)) * 0.08);
+  });
+  const opacity = useTransform(x, (value) => {
+    if (containerWidth === 0) return 1;
+    const distance = Math.abs(cardCenterX + value - containerWidth / 2);
+    return Math.max(0.7, 1 - (distance / (cardWidth + cardGap)) * 0.3);
+  });
+
+  return (
+    <motion.div
+      className="flex-shrink-0"
+      style={{
+        width: `${cardWidth}px`,
+        marginRight: index < projectsLength - 1 ? `${cardGap}px` : "0",
+        scale,
+        opacity,
+      }}
+    >
+      <div className="glass-effect rounded-2xl border border-card-border/80 shadow-large bg-background/90 backdrop-blur-xl overflow-hidden p-6 lg:p-10 h-full flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full items-center">
+          {/* Image Container */}
+          <motion.div
+            className="relative flex items-center justify-center overflow-hidden rounded-xl border border-border/60 shadow-soft bg-card min-h-[300px] lg:min-h-[400px] aspect-[16/10]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.4 }}
+          >
+            <div className="absolute inset-0 bg-gradient-primary opacity-10 blur-3xl rounded-xl" />
+            <img
+              src={project.image}
+              alt={project.title}
+              className="max-w-full max-h-full object-contain object-center select-none pointer-events-none"
+              draggable={false}
+              loading="lazy"
+            />
+            {project.link && (
+              <button
+                type="button"
+                className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-background/95 backdrop-blur-sm px-3 py-1.5 text-xs font-medium border border-border/80 shadow-lg z-10 hover:bg-primary hover:text-primary-foreground transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(project.link, "_blank", "noopener,noreferrer");
+                }}
+              >
+                <span>{
+                  project.title.includes("ADESU") || project.title.includes("Awards CFOPro")
+                    ? t.projects.viewWebsite
+                    : index === 1
+                      ? t.projects.viewWebsite
+                      : t.projects.viewCode
+                }</span>
+                <ExternalLink className="w-3 h-3" />
+              </button>
+            )}
+          </motion.div>
+
+          {/* Content Container */}
+          <div className="flex flex-col justify-between gap-5 h-full overflow-hidden">
+            {/* Header Section */}
+            <div className="space-y-2">
+              <h3 className="text-2xl sm:text-3xl font-bold leading-snug tracking-normal line-clamp-2">
+                {project.title}
+              </h3>
+              <p className="text-base font-semibold text-primary truncate">
+                {project.subtitle}
+              </p>
+            </div>
+
+            {/* Description Section */}
+            <div className="flex-1 min-h-0 overflow-auto">
+              <p className="text-base text-muted-foreground leading-normal line-clamp-5">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Tools Section */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-foreground/70 uppercase tracking-wide">
+                {t.projects.toolsLabel}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tools.slice(0, 5).map((tool) => (
+                  <Badge
+                    key={tool}
+                    variant="secondary"
+                    className="px-3 py-1 text-xs rounded-full font-medium"
+                  >
+                    {tool}
+                  </Badge>
+                ))}
+                {project.tools.length > 5 && (
+                  <Badge variant="secondary" className="px-3 py-1 text-xs rounded-full font-medium">
+                    +{project.tools.length - 5}
+                  </Badge>
+                )}
+              </div>
+            </div>
+
+            {/* Results Section */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-foreground/70 uppercase tracking-wide">
+                {t.projects.resultsLabel}
+              </p>
+              <div className="space-y-1.5">
+                {project.results.slice(0, 3).map((result) => (
+                  <div key={result} className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-xs text-muted-foreground leading-normal line-clamp-2">
+                      {result}
+                    </span>
+                  </div>
+                ))}
+                {project.results.length > 3 && (
+                  <p className="text-xs text-muted-foreground/70 italic pl-3">
+                    +{project.results.length - 3} {t.projects.more}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function ProjectsSection() {
   const { t, language } = useLanguage();
@@ -17,8 +181,17 @@ export function ProjectsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
 
-  const projects = [
-    // 1. Portfolio CFOPro
+  const projects: Project[] = [
+    // 1. Dashboard OMW (visibilidad de costes/clientes desde GHL vía n8n)
+    {
+      title: t.projects.dashboard.title,
+      subtitle: t.projects.dashboard.subtitle,
+      description: t.projects.dashboard.description,
+      image: omwDashboard,
+      tools: t.projects.dashboard.tools,
+      results: t.projects.dashboard.results,
+    },
+    // 2. Portfolio CFOPro
     {
       title: t.projects.portfolio.title,
       subtitle: t.projects.portfolio.subtitle,
@@ -134,32 +307,38 @@ export function ProjectsSection() {
   }, []);
 
   // Calcular posición objetivo para centrar el proyecto activo
-  const getTargetX = (index: number) => {
-    if (containerWidth === 0) return 0;
-    const centerOffset = (containerWidth - cardWidth) / 2;
-    return -(index * (cardWidth + cardGap)) + centerOffset;
-  };
+  const getTargetX = useCallback(
+    (index: number) => {
+      if (containerWidth === 0) return 0;
+      const centerOffset = (containerWidth - cardWidth) / 2;
+      return -(index * (cardWidth + cardGap)) + centerOffset;
+    },
+    [containerWidth, cardWidth, cardGap]
+  );
 
-  // Inicializar posición
+  // Índice actual vía ref: permite inicializar la posición sin re-disparar el
+  // efecto en cada cambio de índice (de eso se encarga la animación de abajo).
+  const currentIndexRef = useRef(currentIndex);
+  currentIndexRef.current = currentIndex;
+
+  // Inicializar posición al conocer el ancho del contenedor (sin animación)
   useEffect(() => {
     if (containerWidth > 0) {
-      const target = getTargetX(currentIndex);
-      x.set(target);
+      x.set(getTargetX(currentIndexRef.current));
     }
-  }, [containerWidth]);
+  }, [containerWidth, getTargetX, x]);
 
-  // Animar cuando cambia el índice (solo si no está arrastrando) - Animación más refinada
+  // Animar cuando cambia el índice (solo si no está arrastrando)
   useEffect(() => {
     if (containerWidth > 0 && !isDragging) {
-      const target = getTargetX(currentIndex);
-      animate(x, target, {
+      animate(x, getTargetX(currentIndex), {
         type: "spring",
         stiffness: 280,
         damping: 35,
         mass: 0.9,
       });
     }
-  }, [currentIndex, containerWidth, isDragging, x]);
+  }, [currentIndex, containerWidth, isDragging, x, getTargetX]);
 
   // Navegación con teclado
   useEffect(() => {
@@ -175,7 +354,7 @@ export function ProjectsSection() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [projects.length]);
 
   // Manejar inicio del drag
   const handleDragStart = () => {
@@ -209,34 +388,6 @@ export function ProjectsSection() {
       });
     }
   };
-
-  // Hooks deben ser llamados siempre en el mismo orden y cantidad
-  // Usamos un número máximo fijo de proyectos (por ejemplo, 10)
-  const MAX_PROJECTS = 10;
-  const cardScales: any[] = [];
-  const cardOpacities: any[] = [];
-  for (let index = 0; index < MAX_PROJECTS; index++) {
-    cardScales[index] = useTransform(x, (value) => {
-      if (containerWidth === 0) return 1;
-      const cardCenterX = index * (cardWidth + cardGap) + cardWidth / 2;
-      const cardPosition = cardCenterX + value;
-      const containerCenter = containerWidth / 2;
-      const distance = Math.abs(cardPosition - containerCenter);
-      const maxDistance = cardWidth + cardGap;
-      const scaleFactor = Math.max(0.92, 1 - (distance / maxDistance) * 0.08);
-      return scaleFactor;
-    });
-    cardOpacities[index] = useTransform(x, (value) => {
-      if (containerWidth === 0) return 1;
-      const cardCenterX = index * (cardWidth + cardGap) + cardWidth / 2;
-      const cardPosition = cardCenterX + value;
-      const containerCenter = containerWidth / 2;
-      const distance = Math.abs(cardPosition - containerCenter);
-      const maxDistance = cardWidth + cardGap;
-      const opacityFactor = Math.max(0.7, 1 - (distance / maxDistance) * 0.3);
-      return opacityFactor;
-    });
-  }
 
   const totalWidth = projects.length * (cardWidth + cardGap) - cardGap;
   const minX = getTargetX(projects.length - 1);
@@ -291,120 +442,17 @@ export function ProjectsSection() {
             whileDrag={{ cursor: "grabbing" }}
           >
             {projects.map((project, index) => (
-              <motion.div
+              <ProjectCard
                 key={project.title}
-                className="flex-shrink-0"
-                style={{
-                  width: `${cardWidth}px`,
-                  marginRight: index < projects.length - 1 ? `${cardGap}px` : "0",
-                  scale: cardScales[index],
-                  opacity: cardOpacities[index],
-                }}
-              >
-                <div className="glass-effect rounded-2xl border border-card-border/80 shadow-large bg-background/90 backdrop-blur-xl overflow-hidden p-6 lg:p-10 h-full flex flex-col justify-center">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full items-center">
-                    {/* Image Container */}
-                    <motion.div
-                      className="relative flex items-center justify-center overflow-hidden rounded-xl border border-border/60 shadow-soft bg-card min-h-[300px] lg:min-h-[400px] aspect-[16/10]"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15, duration: 0.4 }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-primary opacity-10 blur-3xl rounded-xl" />
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="max-w-full max-h-full object-contain object-center select-none pointer-events-none"
-                        draggable={false}
-                        loading="lazy"
-                      />
-                      {project.link && (
-                        <button
-                          type="button"
-                          className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-background/95 backdrop-blur-sm px-3 py-1.5 text-xs font-medium border border-border/80 shadow-lg z-10 hover:bg-primary hover:text-primary-foreground transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.link, "_blank");
-                          }}
-                        >
-                          <span>{
-                            // Si es ADESU o Awards CFOPro, mostrar 'View website'/'Ver sitio web'
-                            (project.title.includes('ADESU') || project.title.includes('Awards CFOPro'))
-                              ? t.projects.viewWebsite
-                              : (index === 1 ? t.projects.viewWebsite : t.projects.viewCode)
-                          }</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </button>
-                      )}
-                    </motion.div>
-
-                    {/* Content Container - Ajustado */}
-                    <div className="flex flex-col justify-between gap-5 h-full overflow-hidden">
-                      {/* Header Section */}
-                      <div className="space-y-2">
-                        <h3 className="text-2xl sm:text-3xl font-bold leading-snug tracking-normal line-clamp-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-base font-semibold text-primary truncate">
-                          {project.subtitle}
-                        </p>
-                      </div>
-
-                      {/* Description Section */}
-                      <div className="flex-1 min-h-0 overflow-auto">
-                        <p className="text-base text-muted-foreground leading-normal line-clamp-5">
-                          {project.description}
-                        </p>
-                      </div>
-
-                      {/* Tools Section */}
-                      <div className="space-y-2">
-                        <p className="text-xs font-semibold text-foreground/70 uppercase tracking-wide">
-                          {t.projects.toolsLabel}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tools.slice(0, 5).map((tool) => (
-                            <Badge
-                              key={tool}
-                              variant="secondary"
-                              className="px-3 py-1 text-xs rounded-full font-medium"
-                            >
-                              {tool}
-                            </Badge>
-                          ))}
-                          {project.tools.length > 5 && (
-                            <Badge variant="secondary" className="px-3 py-1 text-xs rounded-full font-medium">
-                              +{project.tools.length - 5}
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Results Section */}
-                      <div className="space-y-2">
-                        <p className="text-xs font-semibold text-foreground/70 uppercase tracking-wide">
-                          {t.projects.resultsLabel}
-                        </p>
-                        <div className="space-y-1.5">
-                          {project.results.slice(0, 3).map((result) => (
-                            <div key={result} className="flex items-start gap-2">
-                              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground leading-normal line-clamp-2">
-                                {result}
-                              </span>
-                            </div>
-                          ))}
-                          {project.results.length > 3 && (
-                            <p className="text-xs text-muted-foreground/70 italic pl-3">
-                              +{project.results.length - 3} {t.projects.more}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                project={project}
+                index={index}
+                projectsLength={projects.length}
+                cardWidth={cardWidth}
+                cardGap={cardGap}
+                containerWidth={containerWidth}
+                x={x}
+                t={t}
+              />
             ))}
           </motion.div>
         </div>

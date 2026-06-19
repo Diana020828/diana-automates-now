@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Footer() {
@@ -19,16 +19,18 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-border/50"
         >
-          <motion.div
+          <motion.button
+            type="button"
             whileHover={{ scale: 1.02 }}
             className="cursor-pointer text-center sm:text-left"
             onClick={scrollToTop}
+            aria-label={t.footer.title}
           >
-            <h3 className="text-xl font-bold text-gradient mb-1">{t.footer.title}</h3>
-            <p className="text-sm text-muted-foreground">
+            <span className="block text-xl font-bold text-gradient mb-1">{t.footer.title}</span>
+            <span className="block text-sm text-muted-foreground">
               {t.footer.subtitle}
-            </p>
-          </motion.div>
+            </span>
+          </motion.button>
 
           <p className="text-sm text-muted-foreground text-center sm:text-right max-w-md">
             {t.footer.description}

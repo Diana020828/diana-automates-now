@@ -3,8 +3,13 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FeaturedProjectHero } from "@/components/sections/featured-project-hero";
 import { ProjectsSection } from "@/components/sections/projects-section";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export function ProjectsPage() {
+  const { t } = useLanguage();
+  usePageTitle(t.pageTitles.projects);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

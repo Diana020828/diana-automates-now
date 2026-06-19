@@ -2,8 +2,13 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ContactSection } from "@/components/sections/contact-section";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export function ContactPage() {
+  const { t } = useLanguage();
+  usePageTitle(t.pageTitles.contact);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

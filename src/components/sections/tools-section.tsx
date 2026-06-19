@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -8,7 +9,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const tools = [
+// category usa una clave estable en inglés; la etiqueta visible se traduce
+type ToolCategory = "Automation" | "Development" | "Integration" | "Productivity";
+
+const tools: {
+  name: string;
+  category: ToolCategory;
+  description: string;
+  logo: string;
+  color: string;
+}[] = [
   {
     name: "n8n",
     category: "Automation",
@@ -18,54 +28,112 @@ const tools = [
   },
   {
     name: "Zapier",
-    category: "Integration",
+    category: "Automation",
     description: "Connects thousands of applications to automate workflows without programming.",
     logo: "https://zapier.com/favicon.ico",
     color: "from-orange-500 to-yellow-500"
   },
   {
-    name: "Cursor",
+    name: "GoHighLevel",
+    category: "Automation",
+    description: "All-in-one CRM and marketing platform for pipelines, follow-ups and automated touchpoints.",
+    logo: "https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=64",
+    color: "from-blue-600 to-indigo-700"
+  },
+  {
+    name: "HubSpot",
+    category: "Automation",
+    description: "CRM and marketing automation for nurturing workflows, email campaigns and behavior-based sequences.",
+    logo: "https://www.hubspot.com/favicon.ico",
+    color: "from-orange-500 to-red-500"
+  },
+  {
+    name: "Webflow",
     category: "Development",
-    description: "Code editor with integrated AI for more efficient and intelligent development.",
-    logo: "https://cursor.sh/favicon.ico",
-    color: "from-gray-600 to-gray-800"
+    description: "Visual platform to build and ship marketing pages and funnels with forms and tracking.",
+    logo: "https://webflow.com/favicon.ico",
+    color: "from-blue-500 to-purple-600"
+  },
+  {
+    name: "React",
+    category: "Development",
+    description: "Library for building fast, component-based web interfaces and internal apps.",
+    logo: "https://react.dev/favicon.ico",
+    color: "from-cyan-400 to-blue-500"
+  },
+  {
+    name: "Astro",
+    category: "Development",
+    description: "Web framework for content-driven sites with excellent performance out of the box.",
+    logo: "https://astro.build/favicon.svg",
+    color: "from-orange-500 to-purple-600"
+  },
+  {
+    name: "Python",
+    category: "Development",
+    description: "Language for data analysis and automation, used with Pandas for large datasets.",
+    logo: "https://www.python.org/static/favicon.ico",
+    color: "from-yellow-400 to-blue-600"
+  },
+  {
+    name: "Power BI",
+    category: "Development",
+    description: "Business intelligence tool for dashboards and data visualization with SQL.",
+    logo: "https://powerbi.microsoft.com/favicon.ico",
+    color: "from-yellow-400 to-orange-500"
   },
   {
     name: "Supabase",
-    category: "Backend",
+    category: "Integration",
     description: "Backend as a service with database, authentication and real-time APIs.",
     logo: "https://supabase.com/favicon.ico",
     color: "from-green-500 to-teal-600"
   },
   {
-    name: "Lovable",
-    category: "Development",
-    description: "AI-powered platform for building web applications with natural language.",
-    logo: "https://lovable.dev/favicon.ico",
-    color: "from-purple-500 to-pink-500"
+    name: "Apollo",
+    category: "Integration",
+    description: "Sales intelligence and prospecting platform for building qualified lead lists.",
+    logo: "https://www.apollo.io/favicon.ico",
+    color: "from-purple-500 to-fuchsia-600"
   },
   {
-    name: "Google Apps Script",
-    category: "Automation",
-    description: "Cloud development platform for automating and extending Google Workspace.",
-    logo: "https://www.google.com/favicon.ico",
-    color: "from-blue-500 to-green-500"
+    name: "LinkedIn Sales Navigator",
+    category: "Integration",
+    description: "Advanced prospecting and lead targeting across LinkedIn for B2B outreach.",
+    logo: "https://www.linkedin.com/favicon.ico",
+    color: "from-blue-500 to-blue-700"
+  },
+  {
+    name: "ClickUp",
+    category: "Productivity",
+    description: "Project management and CRM hub to keep operations organized and reproducible.",
+    logo: "https://clickup.com/favicon.ico",
+    color: "from-pink-500 to-purple-600"
+  },
+  {
+    name: "GitHub",
+    category: "Productivity",
+    description: "Version control and collaboration platform for shipping and maintaining code.",
+    logo: "https://www.google.com/s2/favicons?domain=github.com&sz=64",
+    color: "from-gray-600 to-gray-900"
   }
 ];
 
-// Las categorías se traducen
+// Las categorías se traducen; key se usa para filtrar (null = todas)
 const getCategories = (t) => [
-  { name: t.toolsSection.categories.all, count: tools.length },
-  { name: t.toolsSection.categories.automation, count: tools.filter(tl => tl.category === "Automation").length },
-  { name: t.toolsSection.categories.development, count: tools.filter(tl => tl.category === "Development").length },
-  { name: t.toolsSection.categories.integration, count: tools.filter(tl => tl.category === "Integration").length },
-  { name: t.toolsSection.categories.productivity, count: tools.filter(tl => tl.category === "Productivity").length }
+  { key: null as ToolCategory | null, name: t.toolsSection.categories.all, count: tools.length },
+  { key: "Automation" as const, name: t.toolsSection.categories.automation, count: tools.filter(tl => tl.category === "Automation").length },
+  { key: "Development" as const, name: t.toolsSection.categories.development, count: tools.filter(tl => tl.category === "Development").length },
+  { key: "Integration" as const, name: t.toolsSection.categories.integration, count: tools.filter(tl => tl.category === "Integration").length },
+  { key: "Productivity" as const, name: t.toolsSection.categories.productivity, count: tools.filter(tl => tl.category === "Productivity").length }
 ];
 
 export function ToolsSection() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const categories = getCategories(t);
+  const [activeCategory, setActiveCategory] = useState<ToolCategory | null>(null);
+  const visibleTools = activeCategory ? tools.filter(tl => tl.category === activeCategory) : tools;
 
   return (
     <section id="tools" className="py-24">
@@ -88,10 +156,10 @@ export function ToolsSection() {
             {t.toolsSection.badge}
           </motion.span>
           
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h1 className="text-4xl md:text-5xl font-bold">
             <span className="block">{t.toolsSection.title}</span>
             <span className="block text-gradient">{t.toolsSection.titleGradient}</span>
-          </h2>
+          </h1>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             {t.toolsSection.description}
@@ -106,36 +174,45 @@ export function ToolsSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((category, index) => (
-            <motion.button
-              key={category.name}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="glass-effect px-6 py-3 rounded-full border border-card-border hover:border-primary/50 transition-colors group"
-            >
-              <span className="text-foreground group-hover:text-primary font-medium">
-                {category.name}
-              </span>
-              <span className="ml-2 text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-full">
-                {category.count}
-              </span>
-            </motion.button>
-          ))}
+          {categories.map((category) => {
+            const isActive = activeCategory === category.key;
+            return (
+              <motion.button
+                key={category.name}
+                type="button"
+                onClick={() => setActiveCategory(category.key)}
+                aria-pressed={isActive}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`glass-effect px-6 py-3 rounded-full border transition-colors group ${
+                  isActive ? "border-primary bg-primary/10" : "border-card-border hover:border-primary/50"
+                }`}
+              >
+                <span className={`font-medium ${isActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
+                  {category.name}
+                </span>
+                <span className="ml-2 text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-full">
+                  {category.count}
+                </span>
+              </motion.button>
+            );
+          })}
         </motion.div>
 
         {/* Tools Grid */}
         <TooltipProvider>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
-            {tools.map((tool, index) => (
+            {visibleTools.map((tool, index) => (
               <Tooltip key={tool.name}>
                 <TooltipTrigger asChild>
                   <motion.div
+                    layout
                     initial={{ opacity: 0, y: 20, scale: 0.8 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.3) }}
                     whileHover={{ y: -8, scale: 1.05 }}
-                    className="group cursor-pointer"
+                    className="group"
                   >
                     <div className="glass-effect rounded-2xl p-6 border border-card-border group-hover:border-primary/50 transition-all duration-300 text-center h-full shadow-soft hover:shadow-medium">
                       {/* Logo */}

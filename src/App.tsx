@@ -1,4 +1,5 @@
 import { Suspense, lazy } from "react";
+import { MotionConfig } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -29,6 +30,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="dark" storageKey="diana-portfolio-theme">
       <LanguageProvider>
+        <MotionConfig reducedMotion="user">
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -47,6 +49,7 @@ const App = () => (
             </Suspense>
           </BrowserRouter>
         </TooltipProvider>
+        </MotionConfig>
       </LanguageProvider>
     </ThemeProvider>
   </QueryClientProvider>

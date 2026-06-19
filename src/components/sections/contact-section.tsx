@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import {
   Mail,
-  Phone,
   MapPin,
   Linkedin,
   Github
@@ -59,10 +58,10 @@ export function ContactSection() {
             {t.contact.badge}
           </motion.span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             <span className="block">{t.contact.title}</span>
             <span className="block text-gradient">{t.contact.titleGradient}</span>
-          </h2>
+          </h1>
 
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
             {t.contact.description}
@@ -83,6 +82,7 @@ export function ContactSection() {
               <motion.a
                 key={method.titleKey}
                 href={method.href}
+                aria-label={`${t.contact[method.titleKey].title}: ${method.value}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -117,7 +117,7 @@ export function ContactSection() {
                 </div>
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center">
-                <h4 className="font-semibold text-foreground text-lg mb-1">Location</h4>
+                <h4 className="font-semibold text-foreground text-lg mb-1">{t.contact.locationTitle}</h4>
                 <p className="text-muted-foreground text-base mb-1">{t.contact.location}</p>
                 <p className="text-sm text-muted-foreground">{t.contact.timezone}</p>
               </div>
@@ -133,6 +133,7 @@ export function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`${social.name} ${social.username} (${t.contact.social})`}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}

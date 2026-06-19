@@ -11,7 +11,6 @@ export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +31,11 @@ export function Navbar() {
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'es' : 'en');
-    setIsLanguageMenuOpen(false);
   };
 
   return (
     <motion.nav
+      aria-label={language === 'es' ? 'Navegación principal' : 'Main navigation'}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -63,6 +62,7 @@ export function Navbar() {
                 <NavLink
                   key={item.to}
                   to={item.to}
+                  end={item.to === "/"}
                   className={({ isActive }) =>
                     `px-3 py-2 text-sm font-medium transition-all duration-200 relative group ${
                       isActive ? "text-foreground" : "text-foreground/80 hover:text-foreground"
@@ -108,8 +108,10 @@ export function Navbar() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 hover:bg-secondary/50 transition-colors"
-                aria-label="Toggle mobile menu"
+                className="p-2 min-w-[44px] min-h-[44px] hover:bg-secondary/50 transition-colors"
+                aria-label={language === 'es' ? 'Abrir menú' : 'Toggle menu'}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
               >
                 {isMobileMenuOpen ? (
                   <X className="h-5 w-5" />
@@ -130,12 +132,14 @@ export function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
               className="md:hidden"
+              id="mobile-menu"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur-md rounded-lg mt-2 border border-border/50 shadow-medium">
                 {navigation.map((item) => (
                   <NavLink
                     key={item.to}
                     to={item.to}
+                    end={item.to === "/"}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={({ isActive }) =>
                       `block w-full text-left px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import flujoPostgresVideo from "@/assets/Flujo-posgress.mp4";
+import flujoPoster from "@/assets/Flujo-posgress-poster.webp";
 
 export function FeaturedProjectHero() {
   const { language, t } = useLanguage();
@@ -80,6 +81,7 @@ export function FeaturedProjectHero() {
               <video
                 ref={videoRef}
                 src={project.video}
+                poster={flujoPoster}
                 autoPlay
                 muted
                 loop
@@ -96,9 +98,9 @@ export function FeaturedProjectHero() {
             <div className="flex flex-col justify-center gap-6 p-6 sm:p-8 lg:p-10">
               {/* Header */}
               <div className="space-y-3">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
                   {project.title}
-                </h2>
+                </h1>
                 <p className="text-lg font-semibold text-primary">
                   {project.subtitle}
                 </p>

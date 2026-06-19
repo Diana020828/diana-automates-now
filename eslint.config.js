@@ -23,4 +23,16 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    // Estos archivos exportan helpers/hook junto al componente (patrón shadcn / context).
+    // No afecta a Fast Refresh en la práctica; silenciamos la advertencia.
+    files: [
+      "src/components/ui/**/*.{ts,tsx}",
+      "src/contexts/**/*.{ts,tsx}",
+      "src/components/theme-provider.tsx",
+    ],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );
