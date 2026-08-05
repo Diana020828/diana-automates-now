@@ -31,19 +31,29 @@ export function FeaturedProjectHero() {
     ],
   };
 
-  // Auto-play video when component mounts
+  // Reproducir solo cuando el vídeo entra en pantalla. Con `autoPlay` el
+  // navegador ignoraba `preload` y descargaba los 524 KB del MP4 en la carga
+  // inicial, compitiendo por ancho de banda con el LCP de la página.
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      // Intentar reproducir el video
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Si falla el autoplay, es porque el navegador lo bloquea
-          // El usuario puede hacer click para reproducir
-        });
-      }
-    }
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // El navegador puede bloquear la reproducción automática:
+            // los controles nativos siguen disponibles para el usuario.
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -52,26 +62,24 @@ export function FeaturedProjectHero() {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-6 sm:mb-8"
-        >
+        {/* Sin fade en el contenedor: está above-the-fold y retrasaba el LCP */}
+        <div className="text-center mb-6 sm:mb-8">
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/30 mb-4"
           >
             ⭐ {language === "es" ? "Proyecto Destacado" : "Featured Project"}
           </motion.span>
-        </motion.div>
+        </div>
 
+        {/* Solo transform, sin opacity: esta tarjeta contiene el h1 de la
+            página y animarla desde opacity:0 impedía que contara como LCP. */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          initial={{ y: 30 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.7 }}
           className="glass-effect rounded-3xl border border-card-border/80 shadow-large bg-background/90 backdrop-blur-xl overflow-hidden"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
@@ -82,12 +90,11 @@ export function FeaturedProjectHero() {
                 ref={videoRef}
                 src={project.video}
                 poster={flujoPoster}
-                autoPlay
                 muted
                 loop
                 playsInline
                 controls
-                preload="metadata"
+                preload="none"
                 className="w-full h-full object-cover"
               />
               {/* Overlay gradient for better text contrast on mobile */}

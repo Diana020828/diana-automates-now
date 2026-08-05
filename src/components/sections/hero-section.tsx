@@ -28,22 +28,15 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-4 sm:space-y-6"
-            >
+          {/* Sin animación de opacidad: este bloque contiene el h1 y el
+              párrafo que son candidatos a LCP; animarlos desde opacity:0
+              retrasaba el pintado ~1,5 s. */}
+          <div className="space-y-8">
+            <div className="space-y-4 sm:space-y-6">
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/15 text-primary rounded-full text-xs sm:text-sm font-medium border border-primary/30 shadow-soft"
               >
                 {t.hero.badge}
@@ -52,16 +45,11 @@ export function HeroSection() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 <span className="block">{t.hero.title}</span>
               </h1>
-            </motion.div>
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl"
-            >
+            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
               {t.hero.description}
-            </motion.p>
+            </p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,7 +98,7 @@ export function HeroSection() {
                 <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.content}</div>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Profile Image */}
           <motion.div
