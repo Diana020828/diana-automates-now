@@ -73,6 +73,46 @@
       "url": "https://portfoliodiana.netlify.app",
       "email": "dianapinzon577@gmail.com",
       "knowsLanguage": ["es", "en"],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "dianapinzon577@gmail.com",
+          "url": "https://portfoliodiana.netlify.app/contact",
+          "availableLanguage": ["Spanish", "English"],
+          "areaServed": "Worldwide (remote)"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "CommunicateAction",
+          "name": "Contact Diana Pinzon",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://portfoliodiana.netlify.app/contact",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          }
+        },
+        {
+          "@type": "ReserveAction",
+          "name": "Book a free 30-minute consultation",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://calendly.com/dianapinzon/30min",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "30-minute consultation call"
+          }
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Tunja",

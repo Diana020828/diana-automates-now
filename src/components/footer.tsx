@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { CalendarDays, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Footer() {
@@ -57,7 +57,19 @@ export function Footer() {
               <span>dianapinzon577@gmail.com</span>
             </motion.a>
 
-            {/* Teléfono eliminado por privacidad */}
+            {/* Enlace directo, sin widget: presente en todas las páginas
+                sin cargar scripts de terceros. */}
+            <motion.a
+              href="https://calendly.com/dianapinzon/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <CalendarDays className="w-4 h-4 text-primary" />
+              <span>{t.contact.bookCall}</span>
+            </motion.a>
           </div>
 
           <div className="text-sm text-muted-foreground">

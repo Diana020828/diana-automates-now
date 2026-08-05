@@ -171,6 +171,9 @@ export const translations = {
     // Contact
     contact: {
       badge: "💬 Let's Talk",
+      bookCall: "Book a free 30-min call",
+      bookCallHint: "Pick a time that suits you — no commitment.",
+
       title: "Contact me and let's see",
       titleGradient: "how we can work together",
       description: "Ready to scale your marketing and sales? Whether it's an automation workflow, a lead-generation system, a website or a content strategy, let's discuss how I can help transform your operations.",
@@ -395,6 +398,9 @@ export const translations = {
     // Contact
     contact: {
       badge: "💬 Hablemos",
+      bookCall: "Agenda una llamada de 30 min",
+      bookCallHint: "Elige el horario que te sirva, sin compromiso.",
+
       title: "Contáctame y veamos",
       titleGradient: "cómo podemos trabajar juntos",
       description: "¿Listo para escalar tu marketing y tus ventas? Ya sea un flujo de automatización, un sistema de generación de leads, un sitio web o una estrategia de contenido, hablemos de cómo puedo ayudar a transformar tus operaciones.",

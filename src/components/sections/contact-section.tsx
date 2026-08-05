@@ -3,7 +3,8 @@ import {
   Mail,
   MapPin,
   Linkedin,
-  Github
+  Github,
+  CalendarDays
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -66,6 +67,23 @@ export function ContactSection() {
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
             {t.contact.description}
           </p>
+
+          {/* Agendamiento como enlace normal: no carga el widget de Calendly ni
+              su script de terceros, así que no interfiere con la página. */}
+          <div className="flex flex-col items-center gap-2 pt-2">
+            <a
+              href="https://calendly.com/dianapinzon/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium"
+            >
+              <CalendarDays className="w-5 h-5" />
+              {t.contact.bookCall}
+            </a>
+            <span className="text-sm text-muted-foreground">
+              {t.contact.bookCallHint}
+            </span>
+          </div>
         </motion.div>
 
         {/* Contact Information */}

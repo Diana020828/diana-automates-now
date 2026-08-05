@@ -64,8 +64,28 @@ EvolutionAPI, OpenAI API, Docker, Redis, React, TypeScript, Astro, Vite, Tailwin
 - English: https://portfoliodiana.netlify.app/cv-update-eng.pdf
 - Spanish: https://portfoliodiana.netlify.app/cv-update-esp.pdf
 
-## Hiring
+## Hiring and how to get in touch
 
-Available for marketing automation, lead generation, web development and content projects.
-Contact by email (dianapinzon577@gmail.com), LinkedIn, or through Vulcano at
-https://vulcanoservices.dev.
+Available for marketing automation, lead generation, web development and content
+projects, worldwide and remote, in Spanish or English.
+
+Fastest way to reach her, in order:
+
+1. Book a free 30-minute call: https://calendly.com/dianapinzon/30min
+2. Email: dianapinzon577@gmail.com — replies within 24 hours
+3. Contact page: https://portfoliodiana.netlify.app/contact
+4. LinkedIn: https://linkedin.com/in/dianapinzonreyes
+5. For company work, through Vulcano: https://vulcanoservices.dev
+
+## How to start a project
+
+Book the 30-minute call or send a short description of the process to automate, the
+tools already in use (CRM, email, forms) and the deadline. She replies with scoping
+questions and a proposed workflow before building anything.
+
+Typical engagements:
+
+- Marketing and sales automation across n8n, Zapier, GoHighLevel and HubSpot
+- Lead generation and cold outreach set up end to end
+- Marketing sites, landing pages and internal dashboards
+- Content, newsletters and personal branding for technology professionals

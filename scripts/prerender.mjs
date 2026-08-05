@@ -25,6 +25,7 @@ const siteUrl = 'https://portfoliodiana.netlify.app';
 // buscadores y motores con IA reconcilian ambas entidades en una sola.
 const vulcanoId = 'https://vulcanoservices.dev/#organization';
 const personId = `${siteUrl}/#diana-pinzon`;
+const calendlyUrl = 'https://calendly.com/dianapinzon/30min';
 
 const escape = (value) =>
   value
@@ -256,6 +257,7 @@ const routes = [
         [],
         [
           'Email: dianapinzon577@gmail.com — response within 24 hours',
+          `Book a free 30-minute call: ${calendlyUrl}`,
           'LinkedIn: https://linkedin.com/in/dianapinzonreyes',
           'GitHub: https://github.com/Diana020828',
           'Vulcano (studio I co-founded): https://vulcanoservices.dev',
@@ -293,6 +295,45 @@ const buildJsonLd = (route) => {
       addressCountry: 'Colombia',
     },
     knowsLanguage: ['es', 'en'],
+    // Canal de contacto y agendamiento explícitos: permite que un motor de
+    // respuesta conteste "cómo la contacto", no solo "quién es".
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: 'dianapinzon577@gmail.com',
+        url: `${siteUrl}/contact`,
+        availableLanguage: ['Spanish', 'English'],
+        areaServed: 'Worldwide (remote)',
+      },
+    ],
+    potentialAction: [
+      {
+        '@type': 'CommunicateAction',
+        name: 'Contact Diana Pinzon',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${siteUrl}/contact`,
+          actionPlatform: [
+            'http://schema.org/DesktopWebPlatform',
+            'http://schema.org/MobileWebPlatform',
+          ],
+        },
+      },
+      {
+        '@type': 'ReserveAction',
+        name: 'Book a free 30-minute consultation',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: calendlyUrl,
+          actionPlatform: [
+            'http://schema.org/DesktopWebPlatform',
+            'http://schema.org/MobileWebPlatform',
+          ],
+        },
+        result: { '@type': 'Reservation', name: '30-minute consultation call' },
+      },
+    ],
     worksFor: { '@id': vulcanoId },
     affiliation: [{ '@id': vulcanoId }, { '@type': 'Organization', name: 'On My Way' }],
     alumniOf: {
