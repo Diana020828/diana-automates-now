@@ -1,0 +1,66 @@
+# Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano
+
+> Marketing automation specialist based in Tunja, Boyacá, Colombia (EST/COT), and
+> co-founder of Vulcano, a software, data and process-automation engineering studio.
+> Builds marketing and sales automations with n8n, Zapier, GoHighLevel and HubSpot that
+> connect CRM, prospecting and email, plus web development (React, Astro, Vite, Webflow),
+> automated campaigns and conversion-focused copywriting. Background in psychology and
+> quantitative data analysis. Works in Spanish and English, remote worldwide.
+
+## Identity
+
+- Full name: Diana Pinzon (Diana Pinzón Reyes)
+- Role: Marketing Automation Specialist
+- Second role: Co-founder & Automation and Growth Lead at Vulcano (https://vulcanoservices.dev)
+- Location: Tunja, Boyacá, Colombia — remote worldwide, EST/COT
+- Portfolio: https://portfoliodiana.netlify.app
+- LinkedIn: https://linkedin.com/in/dianapinzonreyes
+- GitHub: https://github.com/Diana020828
+- Email: dianapinzon577@gmail.com
+
+## Services
+
+- Marketing and sales automation: end-to-end workflows with n8n, Zapier, GoHighLevel and
+  HubSpot — CRM pipelines, follow-ups, WhatsApp conversation flows, behavior-based nurturing
+- Lead generation and cold outreach: prospecting with Apollo and LinkedIn Sales Navigator,
+  cold email with SalesHandy and Instantly, smart segmentation, personalized sequences
+- Web development and landing pages: React, Astro, Vite and Webflow — marketing funnels,
+  internal apps and dashboards, forms, lead capture and event tracking
+- Content, copywriting and personal branding: thought-leadership positioning, automated
+  newsletters, consumer-psychology-driven messaging
+
+## Tools
+
+n8n, Zapier, GoHighLevel, HubSpot, Apollo, LinkedIn Sales Navigator, SalesHandy, Instantly,
+EvolutionAPI, OpenAI API, Docker, Redis, React, TypeScript, Astro, Vite, Tailwind CSS, Webflow
+
+## Selected projects
+
+- OMW Operations Dashboard — cost, client, appointment and pipeline visibility for On My Way,
+  with n8n consolidating GoHighLevel CRM data. Stack: n8n, GoHighLevel, React, REST API.
+- WhatsApp Customer Service Bot — 24/7 automated support with EvolutionAPI, self-hosted n8n,
+  Redis and OpenAI, including voice-note transcription and human handoff.
+- LinkedIn Content Creation System — AI-assisted post, carousel and calendar automation;
+  reported a 300% increase in engagement and 15+ hours saved per week.
+- AI-Powered CV Builder — ATS-compatible résumé generator with AI copy optimization:
+  https://github.com/Diana020828/word-craft-pro
+- Modern Portfolio Website — responsive React + TypeScript + Tailwind site with automated CI/CD.
+
+## Vulcano (company she co-founded)
+
+- Name: Vulcano — software, data and automation engineering studio
+- Website: https://vulcanoservices.dev
+- LinkedIn: https://www.linkedin.com/company/vulcanoia
+- Co-founders: Diana Pinzon (automation and growth) and Gabriel Castillo
+  (backend engineering, https://gabo8191.github.io/portfolio/)
+- Services: custom software development, data engineering and business intelligence,
+  process automation (RPA), systems integration, technology consulting
+- Serves: Colombia, Mexico, Argentina, Chile, Spain, United States, United Kingdom
+- Languages: Spanish and English
+- Note: unrelated to the blockchain/tokenization company of a similar name
+
+## Hiring
+
+Available for marketing automation, lead generation, web development and content projects.
+Contact by email (dianapinzon577@gmail.com), LinkedIn, or through Vulcano at
+https://vulcanoservices.dev.

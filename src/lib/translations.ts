@@ -4,11 +4,28 @@ export const translations = {
   en: {
     // Document titles per route
     pageTitles: {
-      home: "Diana Pinzon — Marketing Automation Specialist",
+      home: "Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano",
       services: "Services — Marketing Automation & Growth | Diana Pinzon",
       projects: "Projects — Automation & Web | Diana Pinzon",
       tools: "Tools & Tech Stack | Diana Pinzon",
       contact: "Contact | Diana Pinzon"
+    },
+    // Meta description por ruta (canonical y OG se derivan de la ruta actual)
+    pageDescriptions: {
+      home: "Diana Pinzon is a marketing automation specialist from Colombia and co-founder of Vulcano. She builds automations with n8n, Zapier, GoHighLevel and HubSpot that connect CRM, prospecting and email, plus web development, automated campaigns and conversion-focused copywriting.",
+      services: "Marketing and sales automation with n8n, Zapier, GoHighLevel and HubSpot; lead generation and cold outreach; web development and landing pages; content, copywriting and personal branding.",
+      projects: "Featured projects: an operations dashboard fed from GoHighLevel with n8n, a WhatsApp customer-service bot, a LinkedIn content system, an AI-powered CV builder and a modern portfolio website.",
+      tools: "Automation, marketing and development platforms I work with: n8n, Zapier, GoHighLevel, HubSpot, Apollo, SalesHandy, Instantly, React, Astro, Vite, Webflow, Docker, Redis and the OpenAI API.",
+      contact: "Get in touch with Diana Pinzon for marketing automation, lead generation, web development or content strategy. Based in Colombia, working remotely worldwide in the EST/COT timezone."
+    },
+    // Bloque de cofundadora de Vulcano
+    vulcano: {
+      label: "Co-founder at",
+      title: "Co-founder & Automation and Growth Lead at Vulcano",
+      description: "Vulcano is a software, data and process-automation engineering studio I co-founded with Gabriel Castillo. We deliver custom software, data engineering and BI, process automation (RPA) and systems integration for companies across LATAM, Spain, the US and the UK — remote-first and bilingual.",
+      role: "I lead automation and growth: workflow design, lead generation, CRM operations and content strategy.",
+      cta: "Visit vulcanoservices.dev",
+      logoAlt: "Vulcano — software, data and automation engineering studio"
     },
     // Hero Section
     hero: {
@@ -80,6 +97,10 @@ export const translations = {
       subtitle: "Use arrow keys or drag to navigate. Each project showcases real solutions.",
       description: "Explore some of my featured projects, where I combine automation, technology and real results to solve problems and deliver value.",
       more: "more results",
+      previous: "Previous project",
+      next: "Next project",
+      goToProject: "Go to project",
+      carouselLabel: "Featured projects carousel",
       toolsLabel: "Tools used",
       resultsLabel: "Results achieved",
       viewWebsite: "View website",
@@ -207,11 +228,28 @@ export const translations = {
   es: {
     // Títulos del documento por ruta
     pageTitles: {
-      home: "Diana Pinzon — Especialista en Automatización de Marketing",
+      home: "Diana Pinzon — Especialista en Automatización de Marketing y Cofundadora de Vulcano",
       services: "Servicios — Automatización de Marketing y Crecimiento | Diana Pinzon",
       projects: "Proyectos — Automatización y Web | Diana Pinzon",
       tools: "Herramientas y Stack Tecnológico | Diana Pinzon",
       contact: "Contacto | Diana Pinzon"
+    },
+    // Meta description por ruta (canonical y OG se derivan de la ruta actual)
+    pageDescriptions: {
+      home: "Diana Pinzon es especialista en automatización de marketing y cofundadora de Vulcano. Construye automatizaciones con n8n, Zapier, GoHighLevel y HubSpot que conectan CRM, prospección y correo, además de desarrollo web, campañas automatizadas y copywriting orientado a conversión.",
+      services: "Automatización de marketing y ventas con n8n, Zapier, GoHighLevel y HubSpot; generación de leads y prospección en frío; desarrollo web y landing pages; contenido, copywriting y marca personal.",
+      projects: "Proyectos destacados: dashboard de operaciones alimentado desde GoHighLevel con n8n, bot de atención por WhatsApp, sistema de contenido para LinkedIn, generador de CV con IA y sitio de portafolio moderno.",
+      tools: "Plataformas de automatización, marketing y desarrollo con las que trabajo: n8n, Zapier, GoHighLevel, HubSpot, Apollo, SalesHandy, Instantly, React, Astro, Vite, Webflow, Docker, Redis y la API de OpenAI.",
+      contact: "Contacta a Diana Pinzon para automatización de marketing, generación de leads, desarrollo web o estrategia de contenido. Desde Colombia, con trabajo remoto global en zona horaria EST/COT."
+    },
+    // Bloque de cofundadora de Vulcano
+    vulcano: {
+      label: "Cofundadora de",
+      title: "Cofundadora y líder de Automatización y Crecimiento en Vulcano",
+      description: "Vulcano es un estudio de ingeniería de software, datos y automatización de procesos que cofundé con Gabriel Castillo. Entregamos software a medida, ingeniería de datos y BI, automatización de procesos (RPA) e integración de sistemas para empresas de LATAM, España, Estados Unidos y Reino Unido — remoto y bilingüe.",
+      role: "Lidero automatización y crecimiento: diseño de flujos, generación de leads, operación del CRM y estrategia de contenido.",
+      cta: "Visitar vulcanoservices.dev",
+      logoAlt: "Vulcano — estudio de ingeniería de software, datos y automatización"
     },
     // Hero Section
     hero: {
@@ -283,6 +321,10 @@ export const translations = {
       subtitle: "Usa las flechas del teclado o arrastra para navegar. Cada proyecto muestra soluciones reales.",
       description: "Explora algunos de mis proyectos destacados, donde combino automatización, tecnología y resultados reales para resolver problemas y aportar valor.",
       more: "resultados más",
+      previous: "Proyecto anterior",
+      next: "Proyecto siguiente",
+      goToProject: "Ir al proyecto",
+      carouselLabel: "Carrusel de proyectos destacados",
       toolsLabel: "Herramientas utilizadas",
       resultsLabel: "Resultados alcanzados",
       viewWebsite: "Ver sitio web",

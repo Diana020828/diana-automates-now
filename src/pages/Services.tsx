@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Workflow, Target, Globe, PenTool, Sparkles } from "lucide-react";
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 
 declare global {
   interface Window {
@@ -17,7 +17,7 @@ declare global {
 
 export function ServicesPage() {
   const { t } = useLanguage();
-  usePageTitle(t.pageTitles.services);
+  useSeo({ title: t.pageTitles.services, description: t.pageDescriptions.services });
 
   useEffect(() => {
     // Cargar CSS de Calendly
@@ -100,28 +100,19 @@ export function ServicesPage() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-background text-foreground"
-    >
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       <main className="pt-20 pb-16">
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center space-y-6 mb-16"
-            >
+            {/* Sin fade: contiene el h1 y el párrafo candidatos a LCP */}
+            <div className="text-center space-y-6 mb-16">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.5 }}
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/30">
                   <Sparkles className="w-4 h-4" />
@@ -136,7 +127,7 @@ export function ServicesPage() {
               <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {t.services.subtitle}
               </p>
-            </motion.div>
+            </div>
 
             {/* Services Grid */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
@@ -220,6 +211,6 @@ export function ServicesPage() {
       </main>
 
       <Footer />
-    </motion.div>
+    </div>
   );
 }

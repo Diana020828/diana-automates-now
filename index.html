@@ -4,14 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Tema aplicado antes del primer pintado. El ThemeProvider lo hace en un
+         useEffect, es decir después de pintar: sin esto se ve un parpadeo entre el
+         HTML servido y el tema real guardado por el usuario. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('diana-portfolio-theme') || 'dark';
+          var theme =
+            stored === 'system'
+              ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+              : stored;
+          document.documentElement.classList.add(theme);
+        } catch (error) {
+          // localStorage bloqueado (modo privado, cookies deshabilitadas):
+          // se cae al tema por defecto del provider.
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.ico" />
     
     <!-- Primary Meta Tags -->
-    <title>Diana Pinzon — Marketing Automation Specialist</title>
-    <meta name="title" content="Diana Pinzon — Marketing Automation Specialist" />
-    <meta name="description" content="Marketing automation specialist. I build automations with n8n, Zapier and GoHighLevel that connect CRM, prospecting and email, plus web development (React, Astro, Webflow), automated campaigns and conversion-focused copywriting." />
+    <title>Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano</title>
+    <meta name="title" content="Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano" />
+    <meta name="description" content="Diana Pinzon is a marketing automation specialist from Colombia and co-founder of Vulcano. She builds automations with n8n, Zapier, GoHighLevel and HubSpot that connect CRM, prospecting and email, plus web development (React, Astro, Webflow), automated campaigns and conversion-focused copywriting." />
     <meta name="author" content="Diana Pinzon" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
@@ -20,7 +42,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://portfoliodiana.netlify.app/" />
-    <meta property="og:title" content="Diana Pinzon — Marketing Automation Specialist" />
+    <meta property="og:title" content="Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano" />
     <meta property="og:description" content="Marketing automation specialist. I build automations with n8n, Zapier and GoHighLevel that connect CRM, prospecting and email, plus web development, automated campaigns and conversion-focused copywriting." />
     <meta property="og:image" content="https://portfoliodiana.netlify.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -33,7 +55,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://portfoliodiana.netlify.app/" />
-    <meta name="twitter:title" content="Diana Pinzon — Marketing Automation Specialist" />
+    <meta name="twitter:title" content="Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano" />
     <meta name="twitter:description" content="Marketing automation specialist building automations with n8n, Zapier and GoHighLevel, web development and conversion-focused content." />
     <meta name="twitter:image" content="https://portfoliodiana.netlify.app/og-image.png" />
     <meta name="twitter:image:alt" content="Diana Pinzon — Marketing Automation Specialist" />
@@ -43,11 +65,14 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://portfoliodiana.netlify.app/#diana-pinzon",
       "name": "Diana Pinzon",
-      "jobTitle": "Marketing Automation Specialist",
-      "description": "Marketing automation specialist building automations with n8n, Zapier and GoHighLevel that connect CRM, prospecting and email, plus web development, automated campaigns and conversion-focused copywriting.",
+      "alternateName": "Diana Pinzón Reyes",
+      "jobTitle": ["Marketing Automation Specialist", "Co-founder at Vulcano"],
+      "description": "Marketing automation specialist and co-founder of Vulcano. Builds automations with n8n, Zapier, GoHighLevel and HubSpot that connect CRM, prospecting and email, plus web development, automated campaigns and conversion-focused copywriting.",
       "url": "https://portfoliodiana.netlify.app",
       "email": "dianapinzon577@gmail.com",
+      "knowsLanguage": ["es", "en"],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Tunja",
@@ -56,13 +81,15 @@
       },
       "sameAs": [
         "https://linkedin.com/in/dianapinzonreyes",
-        "https://github.com/Diana020828"
+        "https://github.com/Diana020828",
+        "https://vulcanoservices.dev"
       ],
       "knowsAbout": [
         "Marketing Automation",
         "n8n",
         "Zapier",
         "GoHighLevel",
+        "HubSpot",
         "Lead Generation",
         "Cold Email Outreach",
         "CRM Systems",
@@ -79,7 +106,21 @@
       },
       "worksFor": {
         "@type": "Organization",
-        "name": "On My Way"
+        "@id": "https://vulcanoservices.dev/#organization",
+        "name": "Vulcano",
+        "url": "https://vulcanoservices.dev",
+        "logo": "https://vulcanoservices.dev/brand/logo-192.png",
+        "description": "Software, data and process-automation engineering studio. Custom software, data engineering, BI, RPA and systems integration.",
+        "sameAs": ["https://www.linkedin.com/company/vulcanoia"]
+      },
+      "affiliation": [
+        { "@id": "https://vulcanoservices.dev/#organization" },
+        { "@type": "Organization", "name": "On My Way" }
+      ],
+      "colleague": {
+        "@type": "Person",
+        "name": "Gabriel Castillo",
+        "url": "https://gabo8191.github.io/portfolio/"
       },
       "alumniOf": {
         "@type": "EducationalOrganization",
