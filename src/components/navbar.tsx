@@ -92,7 +92,7 @@ export function Navbar() {
                 variant="ghost"
                 size="sm"
                 onClick={toggleLanguage}
-                className="p-2 hover:bg-secondary/50 transition-colors"
+                className="p-2 min-w-[44px] min-h-[44px] hover:bg-secondary/50 transition-colors"
                 aria-label="Toggle language"
               >
                 <Globe className="h-4 w-4" />

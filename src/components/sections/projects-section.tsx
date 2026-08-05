@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useMotionValue, useTransform, animate, PanInfo, MotionValue } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import contentLinkedin from "@/assets/Content-linkedin-I.webp";
@@ -423,6 +423,9 @@ export function ProjectsSection() {
         {/* Carousel Container */}
         <div
           ref={containerRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label={t.projects.carouselLabel}
           className="relative w-full overflow-hidden"
         >
           <motion.div
@@ -457,16 +460,51 @@ export function ProjectsSection() {
           </motion.div>
         </div>
 
-        {/* Indicators */}
-        <div className="mt-6 flex items-center justify-center gap-2">
-          {projects.map((_, i) => (
-            <div
-              key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === currentIndex ? "w-8 bg-primary" : "w-2 bg-border"
-              }`}
-            />
+        {/* Controles: botones reales, no adornos. El área táctil es de 44px
+            aunque el indicador visible sea un punto. */}
+        <div className="mt-6 flex items-center justify-center gap-1">
+          <button
+            type="button"
+            onClick={() =>
+              setCurrentIndex((prev) =>
+                prev > 0 ? prev - 1 : projects.length - 1,
+              )
+            }
+            aria-label={t.projects.previous}
+            className="min-w-11 min-h-11 flex items-center justify-center rounded-full text-muted-foreground hover:text-primary hover:bg-secondary/50 transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {projects.map((project, i) => (
+            <button
+              key={project.title}
+              type="button"
+              onClick={() => setCurrentIndex(i)}
+              aria-label={`${t.projects.goToProject} ${i + 1}: ${project.title}`}
+              aria-current={i === currentIndex ? "true" : undefined}
+              className="min-w-11 min-h-11 flex items-center justify-center rounded-full hover:bg-secondary/50 transition-colors"
+            >
+              <span
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === currentIndex ? "w-8 bg-primary" : "w-2 bg-border"
+                }`}
+              />
+            </button>
           ))}
+
+          <button
+            type="button"
+            onClick={() =>
+              setCurrentIndex((prev) =>
+                prev < projects.length - 1 ? prev + 1 : 0,
+              )
+            }
+            aria-label={t.projects.next}
+            className="min-w-11 min-h-11 flex items-center justify-center rounded-full text-muted-foreground hover:text-primary hover:bg-secondary/50 transition-colors"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>

@@ -17,7 +17,9 @@
     --popover: 40 25% 98%; /* Soft cream */
     --popover-foreground: 25 15% 20%; /* Warm dark brown */
     
-    --primary: 20 60% 50%; /* Terracotta */
+    /* L bajada de 50% a 42%: sobre --background claro daba 3.45:1 y WCAG AA exige
+       4.5:1 para texto normal. A 42% da 4.64:1 conservando tono y saturación. */
+    --primary: 20 60% 42%; /* Terracotta */
     --primary-foreground: 45 20% 95%; /* Warm cream */
     --primary-glow: 20 60% 60%; /* Brighter terracotta */
     
