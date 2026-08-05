@@ -421,6 +421,15 @@ const replaceMeta = (html, selector, value) => {
   return html.replace(pattern, replacement);
 };
 
+// Cada ruta es una página independiente para un crawler: si la afiliación solo
+// aparece en la portada, quien lea /services o /projects no la ve.
+const affiliation =
+  '<hr><p>Diana Pinzon is a marketing automation specialist based in Tunja, ' +
+  'Boyacá, Colombia, working remotely worldwide, and co-founder of ' +
+  '<a href="https://vulcanoservices.dev">Vulcano</a>, a software, data and ' +
+  'process-automation engineering studio, together with Gabriel Castillo. ' +
+  'Contact: dianapinzon577@gmail.com.</p>';
+
 const buildPage = (baseHtml, route) => {
   const url = route.path === '/' ? `${siteUrl}/` : `${siteUrl}${route.path}`;
 
@@ -455,7 +464,7 @@ const buildPage = (baseHtml, route) => {
   const fallback =
     `<div id="prerendered-content" style="max-width:52rem;margin:0 auto;padding:2rem 1.25rem;` +
     `font-family:system-ui,sans-serif;line-height:1.6;` +
-    `color:hsl(var(--foreground));background:hsl(var(--background))">${route.content}</div>`;
+    `color:hsl(var(--foreground));background:hsl(var(--background))">${route.content}${affiliation}</div>`;
 
   if (!html.includes('<div id="root"></div>')) {
     throw new Error('No se encontró <div id="root"></div> en dist/index.html.');
