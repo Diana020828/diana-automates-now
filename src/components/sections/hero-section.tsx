@@ -9,19 +9,10 @@ export function HeroSection() {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
 
-  const downloadCV = () => {
-    const link = document.createElement('a');
-    if (language === 'es') {
-      link.href = '/cv-update-esp.pdf';
-      link.download = 'hoja de vida Diana Pinzon.pdf';
-    } else {
-      link.href = '/cv-update-eng.pdf';
-      link.download = 'Resume Diana Pinzon.pdf';
-    }
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const cv =
+    language === 'es'
+      ? { href: '/cv-update-esp.pdf', file: 'Hoja de vida Diana Pinzon.pdf' }
+      : { href: '/cv-update-eng.pdf', file: 'Resume Diana Pinzon.pdf' };
 
   return (
     <section id="home" className="hero-section min-h-screen flex items-center pt-16">
@@ -67,14 +58,17 @@ export function HeroSection() {
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
 
-              <Button
-                type="button"
-                onClick={downloadCV}
-                variant="outline"
-                className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
-              >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                {t.hero.downloadCV}
+              {/* Enlace real, no descarga por JavaScript: así el PDF es
+                  rastreable y aparece en los resultados de búsqueda. */}
+              <Button asChild variant="outline" className="h-auto border-2 p-0 hover:border-primary">
+                <a
+                  href={cv.href}
+                  download={cv.file}
+                  className="flex items-center justify-center text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:bg-primary hover:text-primary-foreground transition-all"
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  {t.hero.downloadCV}
+                </a>
               </Button>
             </motion.div>
 

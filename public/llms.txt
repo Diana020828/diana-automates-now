@@ -59,6 +59,11 @@ EvolutionAPI, OpenAI API, Docker, Redis, React, TypeScript, Astro, Vite, Tailwin
 - Languages: Spanish and English
 - Note: unrelated to the blockchain/tokenization company of a similar name
 
+## Resume
+
+- English: https://portfoliodiana.netlify.app/cv-update-eng.pdf
+- Spanish: https://portfoliodiana.netlify.app/cv-update-esp.pdf
+
 ## Hiring
 
 Available for marketing automation, lead generation, web development and content projects.

@@ -77,6 +77,12 @@ const routes = [
         ],
         null,
       ),
+      // Enlaces reales a los CV: sin esto los PDF quedan fuera del HTML que ve
+      // un crawler sin JavaScript y no se descubren.
+      '<h2>Resume</h2><ul>' +
+        '<li><a href="/cv-update-eng.pdf">Diana Pinzon — resume (English, PDF)</a></li>' +
+        '<li><a href="/cv-update-esp.pdf">Diana Pinzon — hoja de vida (español, PDF)</a></li>' +
+        '</ul>',
     ].join(''),
   },
   {
