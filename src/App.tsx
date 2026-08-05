@@ -1,9 +1,6 @@
 import { Suspense, lazy } from "react";
 import { MotionConfig } from "framer-motion";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -17,8 +14,6 @@ const ProjectsPage = lazy(() => import("./pages/Projects").then(module => ({ def
 const ToolsPage = lazy(() => import("./pages/Tools").then(module => ({ default: module.ToolsPage })));
 const ContactPage = lazy(() => import("./pages/Contact").then(module => ({ default: module.ContactPage })));
 
-const queryClient = new QueryClient();
-
 // Componente de carga mientras se cargan las páginas
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -27,13 +22,10 @@ const PageLoader = () => (
 );
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="diana-portfolio-theme">
-      <LanguageProvider>
-        <MotionConfig reducedMotion="user">
+  <ThemeProvider defaultTheme="dark" storageKey="diana-portfolio-theme">
+    <LanguageProvider>
+      <MotionConfig reducedMotion="user">
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
           <BrowserRouter>
             <ScrollToTop />
             <Suspense fallback={<PageLoader />}>
@@ -49,10 +41,9 @@ const App = () => (
             </Suspense>
           </BrowserRouter>
         </TooltipProvider>
-        </MotionConfig>
-      </LanguageProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+      </MotionConfig>
+    </LanguageProvider>
+  </ThemeProvider>
 );
 
 export default App;
