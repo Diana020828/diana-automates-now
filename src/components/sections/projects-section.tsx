@@ -44,20 +44,42 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
     >
-      <div
-        className={`overflow-hidden rounded-blob border border-line p-5 sm:p-8 ${TONES[index % TONES.length]} ${
-          reversed ? "lg:order-2" : ""
-        }`}
-      >
-        <m.img
-          style={{ y: drift }}
-          src={IMAGES[project.key]}
-          alt={project.title}
-          loading="lazy"
-          draggable={false}
-          className="mx-auto max-h-[22rem] w-full rounded-2xl object-contain"
-        />
-      </div>
+      {IMAGES[project.key] ? (
+        <div
+          className={`overflow-hidden rounded-blob border border-line p-5 sm:p-8 ${TONES[index % TONES.length]} ${
+            reversed ? "lg:order-2" : ""
+          }`}
+        >
+          <m.img
+            style={{ y: drift }}
+            src={IMAGES[project.key]}
+            alt={project.title}
+            loading="lazy"
+            draggable={false}
+            className="mx-auto max-h-[22rem] w-full rounded-2xl object-contain"
+          />
+        </div>
+      ) : (
+        // Client code without public screenshots: show the stack instead
+        <div
+          aria-hidden="true"
+          className={`grain flex min-h-[18rem] flex-wrap content-center gap-3 rounded-blob bg-plum p-8 sm:p-10 ${
+            reversed ? "lg:order-2" : ""
+          }`}
+        >
+          {project.tools.map((tool, toolIndex) => (
+            <m.span
+              key={tool}
+              style={{ y: drift }}
+              className={`rounded-full px-4 py-2 font-display text-xl sm:text-2xl ${
+                toolIndex % 3 === 0 ? "bg-lavender text-plum" : toolIndex % 3 === 1 ? "bg-sage text-plum" : "border border-cream/30 text-cream"
+              }`}
+            >
+              {tool}
+            </m.span>
+          ))}
+        </div>
+      )}
 
       <div>
         <span className="font-display text-6xl font-semibold leading-none text-terracotta">
