@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 #
-# Genera la OG-image del portafolio (1200x630) por idioma a partir de
-# assets/og/og-image.template.svg, en la paleta cálida del sitio.
+# Generates the portfolio Open Graph image (1200x630) per language from
+# assets/og/og-image.template.svg, in the "Nature distilled" system.
 #
 #   public/og-image-es.png   (es)
 #   public/og-image-en.png   (en)
-#   public/og-image.png      (copia del idioma por defecto / fallback)
+#   public/og-image.png      (copy of the default language / fallback)
 #
-# Uso:  npm run og:generate   ·   ./scripts/generate-og-image.sh
-# Para cambiar el diseño edita assets/og/og-image.template.svg.
+# Usage:  npm run og:generate   ·   ./scripts/generate-og-image.sh
+# Edit the design in assets/og/og-image.template.svg and the copy below.
+#
+# Brand fonts are downloaded once into assets/og/.fonts (git-ignored) and used
+# through an isolated fontconfig, so the render is identical on any machine
+# without touching the user's fonts.
 
 set -euo pipefail
 
@@ -16,55 +20,111 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 TEMPLATE="$ROOT_DIR/assets/og/og-image.template.svg"
 OUT_DIR="$ROOT_DIR/public"
+FONT_DIR="$ROOT_DIR/assets/og/.fonts"
 
 WIDTH=1200
 HEIGHT=630
 DEFAULT_LOCALE="es"
 LOCALES=("es" "en")
 
-# Textos por idioma. El "&" debe ir como "&amp;" (es XML).
-declare -A TECH TECH_SIZE TECH_SPACING SUBTITLE
-TECH[es]="// AUTOMATIZACIÓN DE MARKETING"
-TECH_SIZE[es]="26"
-TECH_SPACING[es]="3"
-SUBTITLE[es]="Especialista en Automatización de Marketing"
+# Copy per language. "&" must be written as "&amp;" (XML).
+declare -A KICKER LINE1 LINE2 LINE3 LINE3_WIDTH STAGE1 STAGE2 STAGE3 STAGE4
+KICKER[es]="Diana Pinzon · Automatización de marketing"
+LINE1[es]="Cada lead,"
+LINE2[es]="con seguimiento."
+LINE3[es]="En automático."
+LINE3_WIDTH[es]="560"
+STAGE1[es]="Lead nuevo"
+STAGE2[es]="Entra al CRM"
+STAGE3[es]="Respuesta por WhatsApp"
+STAGE4[es]="Llamada agendada"
 
-TECH[en]="// MARKETING AUTOMATION"
-TECH_SIZE[en]="28"
-TECH_SPACING[en]="4"
-SUBTITLE[en]="Marketing Automation Specialist"
+KICKER[en]="Diana Pinzon · Marketing automation"
+LINE1[en]="Every lead,"
+LINE2[en]="followed up."
+LINE3[en]="Automatically."
+LINE3_WIDTH[en]="580"
+STAGE1[en]="New lead"
+STAGE2[en]="Added to the CRM"
+STAGE3[en]="WhatsApp reply"
+STAGE4[en]="Call booked"
 
-[[ -f "$TEMPLATE" ]] || { echo "ERROR: falta la plantilla $TEMPLATE" >&2; exit 1; }
+FONTS=(
+  "Fraunces.ttf|https://github.com/google/fonts/raw/main/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf"
+  "Fraunces-Italic.ttf|https://github.com/google/fonts/raw/main/ofl/fraunces/Fraunces-Italic%5BSOFT,WONK,opsz,wght%5D.ttf"
+  "InstrumentSans.ttf|https://github.com/google/fonts/raw/main/ofl/instrumentsans/InstrumentSans%5Bwdth,wght%5D.ttf"
+)
 
-# Rasterizador disponible (rsvg preferido por calidad; magick/convert de fallback)
-if command -v rsvg-convert >/dev/null 2>&1; then RENDERER="rsvg"
-elif command -v magick >/dev/null 2>&1; then RENDERER="magick"
-elif command -v convert >/dev/null 2>&1; then RENDERER="convert"
-else echo "ERROR: necesitas rsvg-convert o ImageMagick (magick/convert)." >&2; exit 1; fi
+[[ -f "$TEMPLATE" ]] || {
+  echo "ERROR: missing template $TEMPLATE" >&2
+  exit 1
+}
+
+# Renderer: Inkscape honours the downloaded fonts best; rsvg and ImageMagick
+# are fallbacks.
+if command -v inkscape >/dev/null 2>&1; then
+  RENDERER="inkscape"
+elif command -v rsvg-convert >/dev/null 2>&1; then
+  RENDERER="rsvg"
+elif command -v magick >/dev/null 2>&1; then
+  RENDERER="magick"
+else
+  echo "ERROR: install inkscape, rsvg-convert or ImageMagick." >&2
+  exit 1
+fi
+
+mkdir -p "$FONT_DIR"
+for entry in "${FONTS[@]}"; do
+  name="${entry%%|*}"
+  url="${entry#*|}"
+  if [[ ! -f "$FONT_DIR/$name" ]]; then
+    echo "Downloading font $name ..."
+    curl -sfL -o "$FONT_DIR/$name" "$url" || {
+      echo "ERROR: could not download $name" >&2
+      rm -f "$FONT_DIR/$name"
+      exit 1
+    }
+  fi
+done
+
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+export XDG_DATA_HOME="$tmpdir/share"
+export XDG_CACHE_HOME="$tmpdir/cache"
+mkdir -p "$XDG_DATA_HOME/fonts" "$XDG_CACHE_HOME"
+cp "$FONT_DIR"/*.ttf "$XDG_DATA_HOME/fonts/"
+fc-cache -f "$XDG_DATA_HOME/fonts" >/dev/null 2>&1 || true
 
 render() {
   local svg="$1" png="$2"
   case "$RENDERER" in
-    rsvg)    rsvg-convert -w "$WIDTH" -h "$HEIGHT" -o "$png" "$svg" ;;
-    magick)  magick -background none -density 144 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
-    convert) convert -background none -density 144 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
+    inkscape) inkscape "$svg" --export-type=png --export-filename="$png" \
+      --export-width="$WIDTH" --export-height="$HEIGHT" >/dev/null 2>&1 ;;
+    rsvg) rsvg-convert -w "$WIDTH" -h "$HEIGHT" -o "$png" "$svg" ;;
+    magick) magick -background none -density 144 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
   esac
 }
 
-# Escapa "&" para el reemplazo de Bash (nuestras cadenas llevan "&amp;").
-esc() { local s="$1"; s="${s//\\/\\\\}"; s="${s//&/\\&}"; printf '%s' "$s"; }
+# Escapes "&" for Bash replacement (our strings use "&amp;")
+esc() {
+  local s="$1"
+  s="${s//\\/\\\\}"
+  s="${s//&/\\&}"
+  printf '%s' "$s"
+}
 
 template="$(cat "$TEMPLATE")"
-tmpdir="$(mktemp -d)"; trap 'rm -rf "$tmpdir"' EXIT
 
 for locale in "${LOCALES[@]}"; do
-  svg="${template//@@TECH@@/$(esc "${TECH[$locale]}")}"
-  svg="${svg//@@TECH_SIZE@@/${TECH_SIZE[$locale]}}"
-  svg="${svg//@@TECH_SPACING@@/${TECH_SPACING[$locale]}}"
-  svg="${svg//@@SUBTITLE@@/$(esc "${SUBTITLE[$locale]}")}"
-  printf '%s' "$svg" > "$tmpdir/og-$locale.svg"
+  svg="$template"
+  for key in KICKER LINE1 LINE2 LINE3 LINE3_WIDTH STAGE1 STAGE2 STAGE3 STAGE4; do
+    declare -n values="$key"
+    svg="${svg//@@${key}@@/$(esc "${values[$locale]}")}"
+    unset -n values
+  done
+  printf '%s' "$svg" >"$tmpdir/og-$locale.svg"
   out="$OUT_DIR/og-image-$locale.png"
-  echo "Generando og-image-$locale.png con $RENDERER ..."
+  echo "Generating og-image-$locale.png with $RENDERER ..."
   render "$tmpdir/og-$locale.svg" "$out"
   [[ "$locale" == "$DEFAULT_LOCALE" ]] && cp "$out" "$OUT_DIR/og-image.png"
 done

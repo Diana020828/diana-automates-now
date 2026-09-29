@@ -25,3 +25,6 @@ dist-ssr
 
 # Artefactos de build de TypeScript
 *.tsbuildinfo
+
+# Brand fonts cached by scripts/generate-og-image.sh
+assets/og/.fonts/
