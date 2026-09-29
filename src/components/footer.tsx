@@ -1,81 +1,61 @@
-import { motion } from "framer-motion";
-import { CalendarDays, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const LINKS = [
+  { label: "LinkedIn", href: "https://linkedin.com/in/dianapinzonreyes" },
+  { label: "GitHub", href: "https://github.com/Diana020828" },
+  { label: "Vulcano", href: "https://vulcanoservices.dev" },
+];
 
 export function Footer() {
   const { t } = useLanguage();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
-    <footer className="bg-background border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* First Row: Name and Copy */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-border/50"
-        >
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.02 }}
-            className="cursor-pointer text-center sm:text-left"
-            onClick={scrollToTop}
-            aria-label={t.footer.title}
-          >
-            <span className="block text-xl font-bold text-gradient mb-1">{t.footer.title}</span>
-            <span className="block text-sm text-muted-foreground">
-              {t.footer.subtitle}
-            </span>
-          </motion.button>
+    <footer className="defer-render bg-plum text-cream">
+      <div className="shell grid gap-10 py-14 md:grid-cols-[1.2fr_1fr]">
+        <div>
+          <Link to="/" className="font-display text-4xl font-medium text-cream sm:text-5xl">
+            Diana <span className="italic text-lavender">Pinzon</span>
+          </Link>
+          <p className="mt-3 text-cream/80">{t.footer.subtitle}</p>
+          <p className="mt-5 max-w-md text-sm text-cream/70">{t.footer.description}</p>
+        </div>
 
-          <p className="text-sm text-muted-foreground text-center sm:text-right max-w-md">
-            {t.footer.description}
-          </p>
-        </motion.div>
-
-        {/* Second Row: Contact Information */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6"
-        >
-          <div className="flex items-center gap-6">
-            {/* Email */}
-            <motion.a
+        <div className="flex flex-col justify-between gap-8 md:items-end">
+          <div className="flex flex-col gap-2 md:items-end">
+            <a
               href="mailto:dianapinzon577@gmail.com"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+              className="font-display text-xl text-cream underline decoration-lavender decoration-2 underline-offset-4 hover:text-lavender"
             >
-              <Mail className="w-4 h-4 text-primary" />
-              <span>dianapinzon577@gmail.com</span>
-            </motion.a>
-
-            {/* Enlace directo, sin widget: presente en todas las páginas
-                sin cargar scripts de terceros. */}
-            <motion.a
+              dianapinzon577@gmail.com
+            </a>
+            <a
               href="https://calendly.com/dianapinzon/30min"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="text-cream/85 hover:text-lavender"
             >
-              <CalendarDays className="w-4 h-4 text-primary" />
-              <span>{t.contact.bookCall}</span>
-            </motion.a>
+              {t.nav.book}
+            </a>
           </div>
-
-          <div className="text-sm text-muted-foreground">
-            <span>{t.footer.copyright}</span>
-          </div>
-        </motion.div>
+          <ul className="flex flex-wrap gap-2">
+            {LINKS.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-full border border-cream/25 px-4 py-2 text-sm hover:border-lavender hover:text-lavender"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-cream/15">
+        <p className="shell py-5 text-sm text-cream/60">{t.footer.copyright}</p>
       </div>
     </footer>
   );

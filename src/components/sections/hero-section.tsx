@@ -1,149 +1,90 @@
-import { motion } from "framer-motion";
-import { ArrowRight, Download, Eye, Code, Zap, PenTool } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight, Download } from "lucide-react";
 import dianaProfile from "@/assets/diana-profile.webp";
-import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { FunnelLive } from "./funnel-live";
+
+const CALENDLY_URL = "https://calendly.com/dianapinzon/30min";
+
+// Splits a heading line into words that rise with CSS from the first paint:
+// no opacity on the LCP and no JavaScript needed to show the headline.
+function RisingWords({ text, start, className }: { text: string; start: number; className?: string }) {
+  return (
+    <span className={`block ${className ?? ""}`}>
+      {text.split(" ").map((word, index) => (
+        <span key={`${word}-${index}`} className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+          <span
+            className="inline-block animate-word-rise"
+            style={{ animationDelay: `${(start + index) * 70}ms` }}
+          >
+            {word}
+          </span>
+          {" "}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export function HeroSection() {
-  const navigate = useNavigate();
-  const { t, language } = useLanguage();
-
+  const { language, t } = useLanguage();
+  const copy = t.hero;
   const cv =
-    language === 'es'
-      ? { href: '/cv-update-esp.pdf', file: 'Hoja de vida Diana Pinzon.pdf' }
-      : { href: '/cv-update-eng.pdf', file: 'Resume Diana Pinzon.pdf' };
+    language === "es"
+      ? { href: "/cv-update-esp.pdf", file: "Hoja de vida Diana Pinzon.pdf" }
+      : { href: "/cv-update-eng.pdf", file: "Resume Diana Pinzon.pdf" };
+  const leadWords = copy.titleLead.split(" ").length;
+  const midWords = copy.titleMid.split(" ").length;
 
   return (
-    <section id="home" className="hero-section min-h-screen flex items-center pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
-          {/* Content */}
-          {/* Sin animación de opacidad: este bloque contiene el h1 y el
-              párrafo que son candidatos a LCP; animarlos desde opacity:0
-              retrasaba el pintado ~1,5 s. */}
-          <div className="space-y-8">
-            <div className="space-y-4 sm:space-y-6">
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/15 text-primary rounded-full text-xs sm:text-sm font-medium border border-primary/30 shadow-soft"
-              >
-                {t.hero.badge}
-              </motion.span>
+    <section id="home" className="relative overflow-hidden pt-28 pb-16 sm:pt-32 lg:pb-24">
+      {/* Organic colour fields behind the funnel card */}
+      <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-16 size-[28rem] rounded-full bg-lavender-soft blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -left-32 bottom-0 size-[22rem] rounded-full bg-sage-soft blur-3xl" />
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                <span className="block">{t.hero.title}</span>
-              </h1>
-            </div>
-
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              {t.hero.description}
-            </p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-            >
-              <Button
-                type="button"
-                onClick={() => navigate("/projects")}
-                className="btn-primary group text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto"
-              >
-                <Eye className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                {t.hero.viewProjects}
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-
-              {/* Enlace real, no descarga por JavaScript: así el PDF es
-                  rastreable y aparece en los resultados de búsqueda. */}
-              <Button asChild variant="outline" className="h-auto border-2 p-0 hover:border-primary">
-                <a
-                  href={cv.href}
-                  download={cv.file}
-                  className="flex items-center justify-center text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:bg-primary hover:text-primary-foreground transition-all"
-                >
-                  <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  {t.hero.downloadCV}
-                </a>
-              </Button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 sm:pt-8 border-t border-border/50"
-            >
-              <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
-                <Code className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-primary" />
-                <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.frontend}</div>
-              </div>
-              <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
-                <Zap className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-accent" />
-                <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.automation}</div>
-              </div>
-              <div className="text-center p-3 rounded-lg bg-card/50 border border-card-border/50">
-                <PenTool className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-primary" />
-                <div className="text-xs sm:text-sm text-muted-foreground">{t.hero.stats.content}</div>
-              </div>
-            </motion.div>
+      <div className="shell relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <div className="mb-7 flex items-center gap-3">
+            <img
+              src={dianaProfile}
+              alt="Diana Pinzon"
+              width={52}
+              height={52}
+              className="size-[52px] rounded-full border-2 border-paper object-cover shadow-card"
+            />
+            <p className="text-sm font-medium text-plum-soft">{copy.eyebrow}</p>
           </div>
 
-          {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative mt-8 lg:mt-0"
+          <h1 className="text-[clamp(2.7rem,6vw,4.9rem)] font-medium leading-[0.98]">
+            <RisingWords text={copy.titleLead} start={0} />
+            <RisingWords text={copy.titleMid} start={leadWords} />
+            <RisingWords text={copy.titleEm} start={leadWords + midWords} className="ink-em w-fit" />
+          </h1>
+
+          <p className="mt-7 max-w-xl text-lg text-plum-soft sm:text-xl">{copy.intro}</p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-clay">
+              {copy.primaryCta}
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+            <Link to="/projects" className="btn-ghost">
+              {copy.secondaryCta}
+            </Link>
+          </div>
+
+          {/* Real link, not a JavaScript download: the PDF stays crawlable */}
+          <a
+            href={cv.href}
+            download={cv.file}
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-clay underline decoration-lavender decoration-2 underline-offset-4 hover:text-plum"
           >
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, 1, -1, 0]
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-primary rounded-2xl sm:rounded-3xl blur-2xl opacity-20 animate-glow-pulse"></div>
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                src={dianaProfile}
-                alt="Diana Pinzon — Especialista en Automatización de Marketing"
-                fetchPriority="high"
-                decoding="async"
-                className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto rounded-2xl sm:rounded-3xl shadow-large border-4 border-primary/20"
-              />
-            </motion.div>
-
-            {/* Floating elements */}
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-              className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-card glass-effect p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-primary/20"
-              aria-hidden="true"
-            >
-              <div className="text-lg sm:text-2xl">⚡</div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 5, repeat: Infinity, delay: 2 }}
-              className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 bg-card glass-effect p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-accent/20"
-              aria-hidden="true"
-            >
-              <div className="text-lg sm:text-2xl">🚀</div>
-            </motion.div>
-          </motion.div>
+            <Download className="size-4" aria-hidden="true" />
+            {copy.downloadCV}
+          </a>
         </div>
+
+        <FunnelLive />
       </div>
     </section>
   );

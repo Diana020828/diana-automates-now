@@ -1,458 +1,682 @@
-export type Language = 'en' | 'es';
+export type Language = "en" | "es";
 
-export const translations = {
-  en: {
-    // Document titles per route
-    pageTitles: {
-      home: "Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano",
-      services: "Services — Marketing Automation & Growth | Diana Pinzon",
-      projects: "Projects — Automation & Web | Diana Pinzon",
-      tools: "Tools & Tech Stack | Diana Pinzon",
-      contact: "Contact | Diana Pinzon"
-    },
-    // Meta description por ruta (canonical y OG se derivan de la ruta actual)
-    pageDescriptions: {
-      home: "Diana Pinzon is a marketing automation specialist from Colombia and co-founder of Vulcano. She builds automations with n8n, Zapier, GoHighLevel and HubSpot that connect CRM, prospecting and email, plus web development, automated campaigns and conversion-focused copywriting.",
-      services: "Marketing and sales automation with n8n, Zapier, GoHighLevel and HubSpot; lead generation and cold outreach; web development and landing pages; content, copywriting and personal branding.",
-      projects: "Featured projects: an operations dashboard fed from GoHighLevel with n8n, a WhatsApp customer-service bot, a LinkedIn content system, an AI-powered CV builder and a modern portfolio website.",
-      tools: "Automation, marketing and development platforms I work with: n8n, Zapier, GoHighLevel, HubSpot, Apollo, SalesHandy, Instantly, React, Astro, Vite, Webflow, Docker, Redis and the OpenAI API.",
-      contact: "Get in touch with Diana Pinzon for marketing automation, lead generation, web development or content strategy. Based in Colombia, working remotely worldwide in the EST/COT timezone."
-    },
-    // Bloque de cofundadora de Vulcano
-    vulcano: {
-      label: "Co-founder at",
-      title: "Co-founder & Automation and Growth Lead at Vulcano",
-      description: "Vulcano is a software, data and process-automation engineering studio I co-founded with Gabriel Castillo. We deliver custom software, data engineering and BI, process automation (RPA) and systems integration for companies across LATAM, Spain, the US and the UK — remote-first and bilingual.",
-      role: "I lead automation and growth: workflow design, lead generation, CRM operations and content strategy.",
-      cta: "Visit vulcanoservices.dev",
-      logoAlt: "Vulcano — software, data and automation engineering studio"
-    },
-    // Hero Section
-    hero: {
-      badge: "🤖 Marketing Automation • 🌐 Web Development • ✍️ Content & Copywriting",
-      title: "Marketing automation specialist",
-      description: "I design, build and maintain marketing and sales automations with n8n, Zapier and GoHighLevel that connect CRM, prospecting and email. I complement the operation with web development (React, Astro, Webflow), automated campaigns and conversion-focused copywriting. My background in psychology and quantitative data analysis lets me make evidence-based decisions that move real metrics.",
-      viewProjects: "View Projects",
-      downloadCV: "Download CV",
-      stats: {
-        frontend: "Web Development",
-        automation: "Marketing Automation",
-        content: "Content & Copywriting"
-      }
-    },
-    // Services
-    services: {
-      badge: "Services",
-      title: "Marketing Automation & Growth Services",
-      subtitle: "I build automation workflows, lead-generation systems, websites and content strategies that eliminate manual work, keep sales and marketing aligned, and turn attention into measurable conversions.",
-      automation: {
-        title: "Marketing & Sales Automation",
-        description: "I design and document end-to-end automations with n8n, Zapier, GoHighLevel and HubSpot—CRM pipelines, follow-ups, WhatsApp conversation flows and touchpoints—so sales and marketing stay aligned, consistent and reproducible at scale. At CFOPro LLC I ran marketing campaigns primarily on HubSpot, turning its CRM into a conversion engine with behavior-based nurturing and Zapier syncing the whole stack with zero manual work.",
-        items: [
-          "n8n, Zapier, GoHighLevel and HubSpot workflow design",
-          "HubSpot marketing campaigns and behavior-based nurturing",
-          "CRM pipelines, follow-ups and WhatsApp conversation flows",
-          "Manual process elimination and operational efficiency"
-        ]
-      },
-      ai: {
-        title: "Lead Generation & Cold Outreach",
-        description: "I build and run systematic prospecting: smart segmentation, personalized sequences and AI-assisted content across LinkedIn and cold email to generate qualified leads and improve response rates.",
-        items: [
-          "Prospecting with Apollo and LinkedIn Sales Navigator",
-          "Cold email with SalesHandy and Instantly",
-          "Smart segmentation and personalized sequences",
-          "AI-assisted content and copy optimization"
-        ]
-      },
-      integration: {
-        title: "Web Development & Landing Pages",
-        description: "I develop and tune marketing sites and internal apps with React, Astro, Vite and Webflow—structure, forms, tracking and dashboards—built for campaigns, funnels and conversion.",
-        items: [
-          "Marketing pages and funnels in Webflow",
-          "Internal apps and dashboards with React, Astro and Vite",
-          "Forms, lead capture and event tracking",
-          "Responsive, fast and conversion-oriented design"
-        ]
-      },
-      strategy: {
-        title: "Content, Copywriting & Personal Branding",
-        description: "I develop content and personal-branding strategies for tech professionals, with automated content flows, newsletters and consumer-psychology-driven messaging that increases engagement and conversion.",
-        items: [
-          "Personal branding and thought-leadership positioning",
-          "Automated newsletters and email marketing",
-          "Consumer-psychology-driven, data-informed messaging",
-          "Coherent brand voice across channels"
-        ]
-      },
-      cta: {
-        button: "Book a free consultation",
-        text: "Let's discuss how automation, lead generation and content can transform your marketing and sales operations."
-      }
-    },
-    // Projects
-    projects: {
-      title: "Projects that",
-      titleGradient: "transform businesses",
-      subtitle: "Use arrow keys or drag to navigate. Each project showcases real solutions.",
-      description: "Explore some of my featured projects, where I combine automation, technology and real results to solve problems and deliver value.",
-      more: "more results",
-      previous: "Previous project",
-      next: "Next project",
-      goToProject: "Go to project",
-      carouselLabel: "Featured projects carousel",
-      toolsLabel: "Tools used",
-      resultsLabel: "Results achieved",
-      viewWebsite: "View website",
-      viewCode: "View code",
-      linkedin: {
-        title: "LinkedIn Content Creation System",
-        subtitle: "AI-powered content strategy",
-        description: "Automated content creation system for LinkedIn that generates engaging posts, carousels, and visual content using AI. Includes content calendar automation, performance tracking, and A/B testing for optimal engagement rates.",
-        tools: ["OpenAI API", "Canva API", "LinkedIn API", "Content Strategy", "Automation"],
-        results: [
-          "300% increase in engagement rates",
-          "Automated content calendar",
-          "Consistent brand voice",
-          "Time savings of 15+ hours/week"
-        ]
-      },
-      portfolio: {
-        title: "Modern Portfolio Website",
-        subtitle: "React & TypeScript development",
-        description: "Fully responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features smooth animations, SEO optimization, and modern UI/UX design. Deployed with automated CI/CD pipeline.",
-        tools: ["React", "TypeScript", "Tailwind CSS", "Vite", "GitHub Pages"],
-        results: [
-          "100% responsive design",
-          "Perfect SEO score",
-          "Automated deployment",
-          "Fast load times (<2s)"
-        ],
-        link: "https://cfopro.github.io/portfoliocfopro/"
-      },
-      whatsapp: {
-        title: "WhatsApp Customer Service Bot",
-        subtitle: "Intelligent automation system",
-        description: "Complete automated customer service solution for WhatsApp using EvolutionAPI, self-hosted N8N, Redis, and OpenAI. Handles conversations 24/7, transcribes voice notes, and provides intelligent responses with seamless human handoff.",
-        tools: ["N8N", "Docker", "Redis", "EvolutionAPI", "OpenAI API"],
-        results: [
-          "24/7 automated customer service",
-          "Voice note transcription",
-          "Intelligent AI responses",
-          "Zero WhatsApp Business costs"
-        ]
-      },
-      cv: {
-        title: "AI-Powered CV Builder",
-        subtitle: "ATS-optimized resume generator",
-        description: "Web application that collects user information and generates ATS-compatible CVs with AI-powered text optimization. Automatically improves copy, optimizes keywords, and formats resumes to pass recruitment filters.",
-        tools: ["OpenAI API", "React", "TypeScript", "PDF Generation", "ATS Optimization"],
-        results: [
-          "ATS-compatible format",
-          "AI-powered copy improvement",
-          "Professional PDF generation",
-          "Keyword optimization for filters"
-        ],
-        link: "https://github.com/Diana020828/word-craft-pro"
-      },
-      dashboard: {
-        title: "OMW Operations Dashboard",
-        subtitle: "Cost & client visibility from GoHighLevel via n8n",
-        description: "Operations dashboard built for On My Way (OMW) that gives the company real visibility over costs, clients, appointments and the sales pipeline. n8n pulls and consolidates the GoHighLevel (GHL) CRM data, enabling end-to-end product traceability and decisions backed by real metrics. Screenshots use dummy data to protect the company's information.",
-        tools: ["n8n", "GoHighLevel", "React", "Data Visualization", "REST API"],
-        results: [
-          "Cost and client visibility in one place",
-          "End-to-end product traceability",
-          "Automated GHL data sync with n8n",
-          "Filters by period, vendor and ad tag"
-        ]
-      }
-    },
-    // Contact
-    contact: {
-      badge: "💬 Let's Talk",
-      bookCall: "Book a free 30-min call",
-      bookCallHint: "Pick a time that suits you — no commitment.",
+// Site copy ("Nature distilled" rebrand, September 2026). Structure: one long
+// home page that tells the story (hook → problem → process → services → case →
+// about → FAQ → contact) plus a case-studies page. Project results are
+// qualitative on purpose: no figure is published without a source.
 
-      title: "Contact me and let's see",
-      titleGradient: "how we can work together",
-      description: "Ready to scale your marketing and sales? Whether it's an automation workflow, a lead-generation system, a website or a content strategy, let's discuss how I can help transform your operations.",
-      email: {
-        title: "Email",
-        description: "Response within 24 hours"
-      },
-      phone: {
-        title: "Phone",
-        description: "WhatsApp available"
-      },
-      locationTitle: "Location",
-      location: "Colombia 🇨🇴 | Remote work globally",
-      timezone: "Available in EST/COT timezone",
-      social: "Follow me on social media"
-    },
-    // Footer
-    footer: {
-      title: "Diana Pinzon",
-      subtitle: "Marketing Automation Specialist • Web Developer • Content Strategist",
-      description: "I build marketing and sales automations with n8n, Zapier and GoHighLevel, develop websites with React, Astro and Webflow, and craft content strategies for LinkedIn, newsletters and cold email campaigns.",
-      copyright: "© 2026 Diana Pinzon. All rights reserved."
-    },
-    // Tools Section
-    toolsSection: {
-      badge: "🔧 Tech Stack",
-      title: "Tools I",
-      titleGradient: "Master Perfectly",
-      description: "I work with the best automation, marketing and development platforms to create robust, scalable and easy-to-maintain solutions.",
-      categories: {
-        all: "All",
-        automation: "Automation",
-        development: "Development",
-        integration: "Integration",
-        productivity: "Productivity"
-      },
-      stats: [
-        { label: "Tools Mastered", value: "12+", desc: "Specialized platforms" },
-        { label: "Years Experience", value: "2+", desc: "Professional expertise" }
-      ],
-      cta: {
-        text: "Don't see the tool you need? Don't worry, I'm always learning new technologies to offer the best solutions.",
-        button: "Let's talk about your tech stack"
-      }
-    },
-    // Navigation
-    nav: {
-      home: "Home",
-      services: "Services",
-      projects: "Projects",
-      tools: "Tools",
-      contact: "Contact"
-    }
+const es = {
+  pageTitles: {
+    home: "Diana Pinzon — Automatización de marketing y ventas · Cofundadora de Vulcano",
+    projects: "Casos — Automatizaciones y webs de Diana Pinzon",
   },
-  es: {
-    // Títulos del documento por ruta
-    pageTitles: {
-      home: "Diana Pinzon — Especialista en Automatización de Marketing y Cofundadora de Vulcano",
-      services: "Servicios — Automatización de Marketing y Crecimiento | Diana Pinzon",
-      projects: "Proyectos — Automatización y Web | Diana Pinzon",
-      tools: "Herramientas y Stack Tecnológico | Diana Pinzon",
-      contact: "Contacto | Diana Pinzon"
+  pageDescriptions: {
+    home: "Diana Pinzon diseña y opera automatizaciones de marketing y ventas con n8n, GoHighLevel, Zapier y HubSpot para que cada lead reciba respuesta en minutos. Prospección, webs que capturan leads y contenido. Cofundadora de Vulcano.",
+    projects: "Casos reales de Diana Pinzon: dashboard de operaciones con GoHighLevel y n8n, bot de WhatsApp con IA, sistema de contenido para LinkedIn, webs de conversión y generador de CV con IA.",
+  },
+  nav: {
+    home: "Inicio",
+    services: "Servicios",
+    cases: "Casos",
+    about: "Sobre mí",
+    contact: "Contacto",
+    book: "Agenda una llamada",
+    openMenu: "Abrir menú",
+    switchLanguage: "Cambiar a inglés",
+    label: "Navegación principal",
+  },
+  hero: {
+    eyebrow: "Diana Pinzon · Automatización de marketing y crecimiento",
+    titleLead: "Cada lead,",
+    titleMid: "con seguimiento.",
+    titleEm: "En automático.",
+    intro: "Diseño y opero automatizaciones de marketing y ventas con n8n, GoHighLevel, Zapier y HubSpot para que cada consulta reciba respuesta en minutos y tu equipo dedique su tiempo a conversar, no a copiar y pegar.",
+    primaryCta: "Agenda una llamada gratis de 30 min",
+    secondaryCta: "Ver casos",
+    downloadCV: "Descargar CV",
+  },
+  funnel: {
+    title: "Los primeros cinco minutos de un lead",
+    note: "Ejemplo simulado",
+    live: "En vivo",
+    stages: [
+      { title: "Lead nuevo", detail: "Formulario web · Meta Ads" },
+      { title: "Entra al CRM", detail: "GoHighLevel · etiquetado y asignado" },
+      { title: "Respuesta por WhatsApp", detail: "Bienvenida personal en menos de un minuto" },
+      { title: "Llamada agendada", detail: "Invitación en el calendario y recordatorios" },
+    ],
+    counters: {
+      captured: "leads captados",
+      replied: "respondidos en < 1 min",
+      booked: "llamadas agendadas",
     },
-    // Meta description por ruta (canonical y OG se derivan de la ruta actual)
-    pageDescriptions: {
-      home: "Diana Pinzon es especialista en automatización de marketing y cofundadora de Vulcano. Construye automatizaciones con n8n, Zapier, GoHighLevel y HubSpot que conectan CRM, prospección y correo, además de desarrollo web, campañas automatizadas y copywriting orientado a conversión.",
-      services: "Automatización de marketing y ventas con n8n, Zapier, GoHighLevel y HubSpot; generación de leads y prospección en frío; desarrollo web y landing pages; contenido, copywriting y marca personal.",
-      projects: "Proyectos destacados: dashboard de operaciones alimentado desde GoHighLevel con n8n, bot de atención por WhatsApp, sistema de contenido para LinkedIn, generador de CV con IA y sitio de portafolio moderno.",
-      tools: "Plataformas de automatización, marketing y desarrollo con las que trabajo: n8n, Zapier, GoHighLevel, HubSpot, Apollo, SalesHandy, Instantly, React, Astro, Vite, Webflow, Docker, Redis y la API de OpenAI.",
-      contact: "Contacta a Diana Pinzon para automatización de marketing, generación de leads, desarrollo web o estrategia de contenido. Desde Colombia, con trabajo remoto global en zona horaria EST/COT."
-    },
-    // Bloque de cofundadora de Vulcano
-    vulcano: {
-      label: "Cofundadora de",
-      title: "Cofundadora y líder de Automatización y Crecimiento en Vulcano",
-      description: "Vulcano es un estudio de ingeniería de software, datos y automatización de procesos que cofundé con Gabriel Castillo. Entregamos software a medida, ingeniería de datos y BI, automatización de procesos (RPA) e integración de sistemas para empresas de LATAM, España, Estados Unidos y Reino Unido — remoto y bilingüe.",
-      role: "Lidero automatización y crecimiento: diseño de flujos, generación de leads, operación del CRM y estrategia de contenido.",
-      cta: "Visitar vulcanoservices.dev",
-      logoAlt: "Vulcano — estudio de ingeniería de software, datos y automatización"
-    },
-    // Hero Section
-    hero: {
-      badge: "🤖 Automatización de Marketing • 🌐 Desarrollo Web • ✍️ Contenido y Copywriting",
-      title: "Especialista en automatización de marketing",
-      description: "Diseño, construyo y mantengo automatizaciones de marketing y ventas con n8n, Zapier y GoHighLevel que conectan CRM, prospección y correo. Complemento la operación con desarrollo web (React, Astro, Webflow), campañas automatizadas y copywriting orientado a conversión. Mi formación en psicología y análisis cuantitativo de datos me permite tomar decisiones basadas en evidencia que mueven métricas reales.",
-      viewProjects: "Ver Proyectos",
-      downloadCV: "Descargar CV",
-      stats: {
-        frontend: "Desarrollo Web",
-        automation: "Automatización de Marketing",
-        content: "Contenido y Copywriting"
-      }
-    },
-    // Services
-    services: {
-      badge: "Servicios",
-      title: "Servicios de Automatización de Marketing y Crecimiento",
-      subtitle: "Construyo flujos de automatización, sistemas de generación de leads, sitios web y estrategias de contenido que eliminan el trabajo manual, mantienen alineados a ventas y marketing, y convierten la atención en conversiones medibles.",
-      automation: {
-        title: "Automatización de Marketing y Ventas",
-        description: "Diseño y documento automatizaciones de extremo a extremo con n8n, Zapier, GoHighLevel y HubSpot—pipelines de CRM, seguimientos, flujos de conversación en WhatsApp y puntos de contacto—para que ventas y marketing permanezcan alineados, consistentes y reproducibles a escala. En CFOPro LLC ejecuté campañas de marketing principalmente con HubSpot, convirtiendo su CRM en un motor de conversión con nurturing según el comportamiento del lead y Zapier sincronizando todo el stack sin trabajo manual.",
-        items: [
-          "Diseño de flujos con n8n, Zapier, GoHighLevel y HubSpot",
-          "Campañas de marketing y nurturing por comportamiento en HubSpot",
-          "Pipelines de CRM, seguimientos y flujos de conversación en WhatsApp",
-          "Eliminación de procesos manuales y eficiencia operativa"
-        ]
+    leads: ["Laura M.", "Carlos R.", "Ana P.", "Julián T.", "Sofía G.", "Mateo L."],
+  },
+  toolsLabel: "Plataformas con las que trabajo",
+  problem: {
+    kicker: "¿Te suena?",
+    title: "Tres señales de que tu operación",
+    titleEm: "pide automatización",
+    items: [
+      {
+        title: "Los leads esperan horas para una respuesta",
+        body: "Llegan por el formulario, por Meta o por WhatsApp, y alguien los atiende cuando puede. Para entonces ya hablaron con otro.",
       },
-      ai: {
-        title: "Generación de Leads y Prospección en Frío",
-        description: "Construyo y opero prospección sistemática: segmentación inteligente, secuencias personalizadas y contenido con apoyo de IA en LinkedIn y correo en frío para generar leads calificados y mejorar las tasas de respuesta.",
-        items: [
-          "Prospección con Apollo y LinkedIn Sales Navigator",
-          "Correo en frío con SalesHandy e Instantly",
-          "Segmentación inteligente y secuencias personalizadas",
-          "Contenido y optimización de copy con apoyo de IA"
-        ]
+      {
+        title: "Tu equipo pasa datos a mano",
+        body: "Del formulario al CRM, del CRM a la hoja de cálculo, de la hoja al reporte. Cada copia es tiempo perdido y un error esperando a pasar.",
       },
-      integration: {
-        title: "Desarrollo Web y Landing Pages",
-        description: "Desarrollo y ajusto sitios de marketing y aplicaciones internas con React, Astro, Vite y Webflow—estructura, formularios, seguimiento y paneles—pensados para campañas, embudos y conversión.",
-        items: [
-          "Páginas de marketing y embudos en Webflow",
-          "Aplicaciones internas y paneles con React, Astro y Vite",
-          "Formularios, captura de leads y seguimiento de eventos",
-          "Diseño responsivo, rápido y orientado a conversión"
-        ]
+      {
+        title: "Inviertes en campañas sin saber qué vende",
+        body: "Hay clics y formularios, pero nadie puede decir con certeza qué anuncio o qué mensaje trajo al cliente que pagó.",
       },
-      strategy: {
-        title: "Contenido, Copywriting y Marca Personal",
-        description: "Desarrollo estrategias de contenido y marca personal para profesionales del sector tecnológico, con flujos de contenido automatizados, newsletters y mensajería basada en psicología del consumidor que aumenta la participación y la conversión.",
+    ],
+    closing: "Las tres tienen arreglo con automatizaciones bien diseñadas.",
+  },
+  journey: {
+    kicker: "Cómo funciona",
+    title: "De desconocido",
+    titleEm: "a cliente",
+    intro: "La automatización no es una herramienta. Es un recorrido en el que cada paso entrega el lead al siguiente sin que nadie copie datos a mano.",
+    steps: [
+      { title: "Atraer", body: "Contenido en LinkedIn, cold email y landing pages escritas para un tipo de cliente." },
+      { title: "Captar", body: "Formularios y seguimiento que envían cada consulta al CRM con su origen." },
+      { title: "Nutrir", body: "WhatsApp, correo y seguimientos que se disparan solos, con paso a una persona cuando importa." },
+      { title: "Convertir", body: "Llamadas agendadas directo en el calendario y tableros que muestran qué vende de verdad." },
+    ],
+  },
+  services: {
+    kicker: "Servicios",
+    title: "Lo que construyo",
+    titleEm: "para tu equipo",
+    intro: "Cuatro frentes que se conectan entre sí. Puedes empezar por uno; la llamada inicial sirve para elegir cuál mueve más la aguja primero.",
+    idealLabel: "Ideal si",
+    list: [
+      {
+        title: "Automatización de marketing y ventas",
+        outcome: "Ningún lead se queda sin respuesta.",
+        idealFor: "hoy respondes leads a mano, tarde o cuando alguien se acuerda.",
         items: [
-          "Marca personal y posicionamiento de liderazgo intelectual",
-          "Newsletters automatizados y email marketing",
-          "Mensajería basada en psicología del consumidor y datos",
-          "Voz de marca coherente en todos los canales"
-        ]
+          "Flujos en n8n, Zapier, GoHighLevel y HubSpot",
+          "Pipelines de CRM, seguimientos y recordatorios",
+          "Conversaciones por WhatsApp con paso a una persona",
+          "Campañas y nurturing por comportamiento en HubSpot",
+        ],
       },
-      cta: {
-        button: "Agendar consulta gratuita",
-        text: "Hablemos de cómo la automatización, la generación de leads y el contenido pueden transformar tus operaciones de marketing y ventas."
-      }
+      {
+        title: "Prospección y cold outreach",
+        outcome: "Conversaciones con prospectos que sí encajan contigo.",
+        idealFor: "tus ventas dependen de referidos y quieres un canal propio.",
+        items: [
+          "Listas con Apollo y LinkedIn Sales Navigator",
+          "Secuencias personalizadas con SalesHandy e Instantly",
+          "Segmentación por tipo de cliente",
+          "Copy de prospección con apoyo de IA",
+        ],
+      },
+      {
+        title: "Webs y landing pages que capturan",
+        outcome: "Cada visita que se interesa llega al CRM con su origen.",
+        idealFor: "tu web no trae consultas o no sabes de dónde vienen.",
+        items: [
+          "Landing pages y embudos en Webflow",
+          "Apps internas y tableros con React, Astro y Vite",
+          "Formularios, captura de leads y medición de eventos",
+          "Páginas rápidas, responsivas y pensadas para convertir",
+        ],
+      },
+      {
+        title: "Contenido, copy y marca personal",
+        outcome: "Mensajes que la gente lee y responde.",
+        idealFor: "publicas sin estrategia, o no publicas.",
+        items: [
+          "Marca personal y posicionamiento en LinkedIn",
+          "Newsletters y email marketing automatizados",
+          "Mensajes basados en psicología del consumidor",
+          "Una voz de marca coherente en todos los canales",
+        ],
+      },
+    ],
+  },
+  featured: {
+    kicker: "Caso destacado",
+    cta: "Ver todos los casos",
+  },
+  about: {
+    kicker: "Sobre mí",
+    title: "Psicología, datos",
+    titleEm: "y automatización",
+    paragraphs: [
+      "Soy Diana Pinzon, especialista en automatización de marketing y cofundadora de Vulcano. Vengo de la psicología y el análisis cuantitativo: entiendo por qué una persona responde un mensaje y sé medir si lo hizo.",
+      "Eso es lo que llevo a cada flujo: automatizaciones que se sienten humanas y decisiones basadas en datos, no en intuición. En CFOPro LLC llevé campañas de marketing principalmente en HubSpot, con nurturing por comportamiento y Zapier sincronizando todo el stack.",
+    ],
+    facts: [
+      "Formación en psicología y análisis cuantitativo",
+      "Campañas en HubSpot para CFOPro LLC",
+      "Español e inglés · remoto desde Colombia",
+    ],
+    vulcanoLabel: "Cofundadora de",
+    vulcanoTitle: "Vulcano",
+    vulcanoBody: "Estudio de ingeniería de software, datos y automatización de procesos que fundé con Gabriel Castillo. Allí lidero automatización y crecimiento: diseño de flujos, generación de leads, operación de CRM y estrategia de contenido.",
+    vulcanoCta: "Visitar vulcanoservices.dev",
+    logoAlt: "Vulcano, estudio de ingeniería de software, datos y automatización",
+    portraitAlt: "Retrato de Diana Pinzon",
+  },
+  faq: {
+    kicker: "Preguntas frecuentes",
+    title: "Antes de agendar",
+    items: [
+      {
+        q: "¿Tengo que cambiar de CRM o de herramientas?",
+        a: "No necesariamente. Trabajo con n8n, Zapier, GoHighLevel y HubSpot, y conecto lo que ya usas. Si una herramienta te está frenando, te lo digo con argumentos.",
+      },
+      {
+        q: "¿Cuánto tarda una automatización?",
+        a: "Depende del alcance. En la llamada inicial definimos qué automatizar primero y, antes de empezar, te entrego tiempos y costo por escrito.",
+      },
+      {
+        q: "¿Mi equipo podrá entender lo que construyas?",
+        a: "Sí. Cada flujo queda documentado: qué hace, cuándo se dispara y cómo ajustarlo. Si necesitas soporte después de la entrega, lo acordamos.",
+      },
+      {
+        q: "¿Trabajas con empresas fuera de Colombia?",
+        a: "Sí. Trabajo remoto, en español o en inglés, en el horario de Colombia y la costa este de EE. UU.",
+      },
+      {
+        q: "¿Qué necesito para empezar?",
+        a: "Una llamada de 30 minutos: me cuentas qué tareas se repiten, qué herramientas usan y qué te gustaría que pasara solo.",
+      },
+    ],
+  },
+  contact: {
+    kicker: "Contacto",
+    title: "Automaticemos",
+    titleEm: "lo repetitivo.",
+    body: "Cuéntame qué tarea repite tu equipo cada día. En una llamada de 30 minutos definimos qué automatizar primero.",
+    bookCall: "Agenda una llamada gratis de 30 min",
+    bookHint: "Elige el horario que te sirva, sin compromiso.",
+    emailLabel: "Correo",
+    emailHint: "Respondo en menos de 24 horas",
+    locationLabel: "Ubicación",
+    location: "Colombia · trabajo remoto",
+    timezone: "Horario de Colombia y costa este de EE. UU.",
+  },
+  projects: {
+    kicker: "Casos",
+    title: "Proyectos reales,",
+    titleEm: "explicados",
+    intro: "Qué problema había, qué construí y con qué herramientas. Las capturas de proyectos de clientes usan datos ficticios.",
+    featuredLabel: "Caso destacado",
+    listLabel: "Casos de estudio",
+    toolsLabel: "Herramientas",
+    resultsLabel: "Qué logra",
+    viewWebsite: "Ver sitio web",
+    viewCode: "Ver código",
+    postgres: {
+      title: "Automatización de flujo con PostgreSQL",
+      subtitle: "Integración de base de datos con n8n",
+      description: "Flujo que conecta PostgreSQL con distintos servicios para sincronizar datos en tiempo real, con triggers automáticos, transformación de datos y notificaciones.",
+      tools: ["n8n", "PostgreSQL", "Docker", "API REST", "Webhooks"],
+      results: [
+        "Datos sincronizados en tiempo real",
+        "Triggers de base de datos automatizados",
+        "Integración sin código a medida",
+      ],
     },
-    // Projects
-    projects: {
-      title: "Proyectos que",
-      titleGradient: "transforman negocios",
-      subtitle: "Usa las flechas del teclado o arrastra para navegar. Cada proyecto muestra soluciones reales.",
-      description: "Explora algunos de mis proyectos destacados, donde combino automatización, tecnología y resultados reales para resolver problemas y aportar valor.",
-      more: "resultados más",
-      previous: "Proyecto anterior",
-      next: "Proyecto siguiente",
-      goToProject: "Ir al proyecto",
-      carouselLabel: "Carrusel de proyectos destacados",
-      toolsLabel: "Herramientas utilizadas",
-      resultsLabel: "Resultados alcanzados",
-      viewWebsite: "Ver sitio web",
-      viewCode: "Ver código",
-      linkedin: {
-        title: "Sistema de Creación de Contenido para LinkedIn",
-        subtitle: "Estrategia de contenido con IA",
-        description: "Sistema automatizado de creación de contenido para LinkedIn que genera publicaciones atractivas, carruseles y contenido visual usando IA. Incluye automatización de calendario de contenido, seguimiento de rendimiento y pruebas A/B para tasas de engagement óptimas.",
-        tools: ["OpenAI API", "Canva API", "LinkedIn API", "Estrategia de Contenido", "Automatización"],
+    items: [
+      {
+        key: "dashboard",
+        title: "Dashboard de operaciones OMW",
+        subtitle: "Costos y clientes a la vista, desde GoHighLevel vía n8n",
+        description: "Dashboard para On My Way (OMW) que le da a la empresa visibilidad real sobre costos, clientes, citas y el pipeline de ventas. n8n extrae y consolida los datos del CRM GoHighLevel, con trazabilidad de extremo a extremo y decisiones respaldadas por datos.",
+        tools: ["n8n", "GoHighLevel", "React", "Visualización de datos", "API REST"],
         results: [
-          "300% de aumento en tasas de engagement",
+          "Costos y clientes en un solo lugar",
+          "Trazabilidad de extremo a extremo",
+          "Datos de GoHighLevel sincronizados con n8n",
+          "Filtros por periodo, vendedor y etiqueta de anuncio",
+        ],
+        link: "",
+        linkKind: "website",
+      },
+      {
+        key: "whatsapp",
+        title: "Bot de atención por WhatsApp",
+        subtitle: "Atención automatizada con IA y paso a una persona",
+        description: "Atención al cliente por WhatsApp con EvolutionAPI, n8n autoalojado, Redis y OpenAI. Responde a cualquier hora, transcribe notas de voz y pasa la conversación a una persona cuando hace falta.",
+        tools: ["n8n", "Docker", "Redis", "EvolutionAPI", "OpenAI API"],
+        results: [
+          "Atención a cualquier hora del día",
+          "Notas de voz transcritas",
+          "Respuestas con IA y paso a una persona",
+          "Sin tarifas de la API de WhatsApp Business",
+        ],
+        link: "",
+        linkKind: "website",
+      },
+      {
+        key: "linkedin",
+        title: "Sistema de contenido para LinkedIn",
+        subtitle: "Estrategia de contenido con apoyo de IA",
+        description: "Sistema que genera publicaciones, carruseles y piezas visuales para LinkedIn con IA, con calendario automatizado, seguimiento de rendimiento y pruebas A/B.",
+        tools: ["OpenAI API", "Canva API", "LinkedIn API", "Estrategia de contenido", "Automatización"],
+        results: [
+          "Publicación constante sin empezar de cero cada semana",
           "Calendario de contenido automatizado",
           "Voz de marca consistente",
-          "Ahorro de tiempo de 15+ horas/semana"
-        ]
+          "Menos horas de redacción manual",
+        ],
+        link: "",
+        linkKind: "website",
       },
-      portfolio: {
-        title: "Sitio Web Portfolio Moderno",
+      {
+        key: "portfolio",
+        title: "Sitio web para CFOPro",
         subtitle: "Desarrollo con React y TypeScript",
-        description: "Sitio web portfolio completamente responsivo construido con React, TypeScript y Tailwind CSS. Incluye animaciones suaves, optimización SEO y diseño UI/UX moderno. Desplegado con pipeline CI/CD automatizado.",
+        description: "Sitio responsivo construido con React, TypeScript y Tailwind CSS, con animaciones suaves, SEO técnico y despliegue automatizado.",
         tools: ["React", "TypeScript", "Tailwind CSS", "Vite", "GitHub Pages"],
         results: [
-          "Diseño 100% responsivo",
-          "Puntuación SEO perfecta",
+          "Se adapta a cualquier pantalla",
+          "Metadatos y estructura SEO en su lugar",
           "Despliegue automatizado",
-          "Tiempos de carga rápidos (<2s)"
+          "Páginas livianas y rápidas",
         ],
-        link: "https://cfopro.github.io/portfoliocfopro/"
+        link: "https://cfopro.github.io/portfoliocfopro/",
+        linkKind: "website",
       },
-      whatsapp: {
-        title: "Bot de Atención al Cliente para WhatsApp",
-        subtitle: "Sistema de automatización inteligente",
-        description: "Solución completa automatizada de atención al cliente para WhatsApp usando EvolutionAPI, N8N auto-hospedado, Redis y OpenAI. Maneja conversaciones 24/7, transcribe notas de voz y proporciona respuestas inteligentes con transferencia fluida a humanos.",
-        tools: ["N8N", "Docker", "Redis", "EvolutionAPI", "OpenAI API"],
+      {
+        key: "adesu",
+        title: "ADESU: la contabilidad como ventaja",
+        subtitle: "Web de conversión construida con Lovable",
+        description: "Plataforma web para ADESU que presenta la contabilidad como una ventaja competitiva para empresas colombianas, con diseño moderno y enfoque en conversión.",
+        tools: ["Lovable", "React", "TypeScript", "Tailwind CSS", "Netlify"],
         results: [
-          "Atención al cliente automatizada 24/7",
-          "Transcripción de notas de voz",
-          "Respuestas inteligentes con IA",
-          "Cero costos de WhatsApp Business"
-        ]
+          "Mensaje centrado en el cliente",
+          "Diseño enfocado en conversión",
+          "Contacto y servicios integrados",
+        ],
+        link: "https://adesu.netlify.app/",
+        linkKind: "website",
       },
-      cv: {
+      {
+        key: "awards",
+        title: "Awards CFOPro",
+        subtitle: "Premios empresariales de Central Florida",
+        description: "Landing page para el programa de premios empresariales de Central Florida: postulación digital, networking y posicionamiento para empresas innovadoras.",
+        tools: ["React", "TypeScript", "Tailwind CSS", "Netlify"],
+        results: [
+          "Postulación digital y gratuita",
+          "Comunidad de networking",
+          "Reconocimiento y posicionamiento local",
+        ],
+        link: "https://centralflorida.netlify.app/",
+        linkKind: "website",
+      },
+      {
+        key: "cv",
         title: "Generador de CV con IA",
-        subtitle: "Generador de CVs optimizados para ATS",
-        description: "Aplicación web que recopila información del usuario y genera CVs compatibles con ATS con optimización de texto impulsada por IA. Mejora automáticamente el copy, optimiza palabras clave y formatea CVs para pasar filtros de reclutamiento.",
+        subtitle: "CVs compatibles con ATS",
+        description: "Aplicación web que recoge la información de la persona y genera CVs compatibles con ATS, con mejora de redacción y palabras clave asistida por IA.",
         tools: ["OpenAI API", "React", "TypeScript", "Generación de PDF", "Optimización ATS"],
         results: [
           "Formato compatible con ATS",
-          "Mejora de copy impulsada por IA",
-          "Generación profesional de PDF",
-          "Optimización de palabras clave para filtros"
+          "Redacción mejorada con IA",
+          "PDF profesional",
+          "Palabras clave para los filtros de reclutamiento",
         ],
-        link: "https://github.com/Diana020828/word-craft-pro"
+        link: "https://github.com/Diana020828/word-craft-pro",
+        linkKind: "code",
       },
-      dashboard: {
-        title: "Dashboard de Operaciones OMW",
-        subtitle: "Visibilidad de costes y clientes desde GoHighLevel vía n8n",
-        description: "Dashboard de operaciones construido para On My Way (OMW) que le da a la empresa visibilidad real sobre costes, clientes, citas y el pipeline de ventas. n8n extrae y consolida los datos del CRM GoHighLevel (GHL), habilitando trazabilidad de productos de extremo a extremo y decisiones respaldadas por métricas reales. Los pantallazos usan datos dummy para proteger la información de la empresa.",
-        tools: ["n8n", "GoHighLevel", "React", "Visualización de datos", "API REST"],
-        results: [
-          "Visibilidad de costes y clientes en un solo lugar",
-          "Trazabilidad de productos de extremo a extremo",
-          "Sincronización automática de datos de GHL con n8n",
-          "Filtros por periodo, vendedor y tag de anuncio"
-        ]
-      }
-    },
-    // Contact
-    contact: {
-      badge: "💬 Hablemos",
-      bookCall: "Agenda una llamada de 30 min",
-      bookCallHint: "Elige el horario que te sirva, sin compromiso.",
-
-      title: "Contáctame y veamos",
-      titleGradient: "cómo podemos trabajar juntos",
-      description: "¿Listo para escalar tu marketing y tus ventas? Ya sea un flujo de automatización, un sistema de generación de leads, un sitio web o una estrategia de contenido, hablemos de cómo puedo ayudar a transformar tus operaciones.",
-      email: {
-        title: "Email",
-        description: "Respuesta en 24 horas"
-      },
-      phone: {
-        title: "Teléfono",
-        description: "WhatsApp disponible"
-      },
-      locationTitle: "Ubicación",
-      location: "Colombia 🇨🇴 | Trabajo remoto globalmente",
-      timezone: "Disponible en zona horaria EST/COT",
-      social: "Sígueme en redes sociales"
-    },
-    // Footer
-    footer: {
-      title: "Diana Pinzon",
-      subtitle: "Especialista en Automatización de Marketing • Desarrolladora Web • Estratega de Contenido",
-      description: "Construyo automatizaciones de marketing y ventas con n8n, Zapier y GoHighLevel, desarrollo sitios web con React, Astro y Webflow, y creo estrategias de contenido para LinkedIn, newsletters y campañas de correo en frío.",
-      copyright: "© 2026 Diana Pinzon. Todos los derechos reservados."
-    },
-    // Tools Section
-    toolsSection: {
-      badge: "🔧 Stack Tecnológico",
-      title: "Herramientas que",
-      titleGradient: "domino a la perfección",
-      description: "Trabajo con las mejores plataformas de automatización, marketing y desarrollo para crear soluciones robustas, escalables y fáciles de mantener.",
-      categories: {
-        all: "Todas",
-        automation: "Automatización",
-        development: "Desarrollo",
-        integration: "Integración",
-        productivity: "Productividad"
-      },
-      stats: [
-        { label: "Herramientas dominadas", value: "12+", desc: "Plataformas especializadas" },
-        { label: "Años de experiencia", value: "2+", desc: "Experiencia profesional" }
-      ],
-      cta: {
-        text: "¿No ves la herramienta que necesitas? No te preocupes, siempre estoy aprendiendo nuevas tecnologías para ofrecer las mejores soluciones.",
-        button: "Hablemos de tu stack tecnológico"
-      }
-    },
-    // Navigation
-    nav: {
-      home: "Inicio",
-      services: "Servicios",
-      projects: "Proyectos",
-      tools: "Herramientas",
-      contact: "Contacto"
-    }
-  }
+    ],
+  },
+  footer: {
+    subtitle: "Automatización de marketing · Webs que capturan · Contenido",
+    description: "Construyo automatizaciones de marketing y ventas con n8n, Zapier y GoHighLevel, webs con React, Astro y Webflow, y estrategias de contenido para LinkedIn, newsletters y cold email.",
+    copyright: "© 2026 Diana Pinzon.",
+  },
+  notFound: {
+    title: "Este lead se perdió",
+    titleEm: "en el camino.",
+    body: "La página que buscas no existe o cambió de dirección.",
+    cta: "Volver al inicio",
+  },
 };
+
+const en: typeof es = {
+  pageTitles: {
+    home: "Diana Pinzon — Marketing & sales automation · Co-founder of Vulcano",
+    projects: "Case studies — Automations and websites by Diana Pinzon",
+  },
+  pageDescriptions: {
+    home: "Diana Pinzon designs and runs marketing and sales automations with n8n, GoHighLevel, Zapier and HubSpot so every lead gets an answer in minutes. Prospecting, websites that capture leads and content. Co-founder of Vulcano.",
+    projects: "Real cases by Diana Pinzon: an operations dashboard with GoHighLevel and n8n, an AI WhatsApp bot, a LinkedIn content system, conversion websites and an AI CV builder.",
+  },
+  nav: {
+    home: "Home",
+    services: "Services",
+    cases: "Cases",
+    about: "About",
+    contact: "Contact",
+    book: "Book a call",
+    openMenu: "Open menu",
+    switchLanguage: "Switch to Spanish",
+    label: "Main navigation",
+  },
+  hero: {
+    eyebrow: "Diana Pinzon · Marketing automation & growth",
+    titleLead: "Every lead,",
+    titleMid: "followed up.",
+    titleEm: "Automatically.",
+    intro: "I design and run marketing and sales automations with n8n, GoHighLevel, Zapier and HubSpot, so every inquiry gets an answer in minutes and your team spends its time on conversations, not copy-paste.",
+    primaryCta: "Book a free 30-min call",
+    secondaryCta: "See cases",
+    downloadCV: "Download CV",
+  },
+  funnel: {
+    title: "A lead's first five minutes",
+    note: "Simulated example",
+    live: "Live",
+    stages: [
+      { title: "New lead", detail: "Web form · Meta Ads" },
+      { title: "Added to the CRM", detail: "GoHighLevel · tagged and assigned" },
+      { title: "WhatsApp reply", detail: "Personal welcome in under a minute" },
+      { title: "Call booked", detail: "Calendar invite and reminders" },
+    ],
+    counters: {
+      captured: "leads captured",
+      replied: "answered in < 1 min",
+      booked: "calls booked",
+    },
+    leads: ["Laura M.", "Carlos R.", "Ana P.", "Julián T.", "Sofía G.", "Mateo L."],
+  },
+  toolsLabel: "Platforms I work with",
+  problem: {
+    kicker: "Sound familiar?",
+    title: "Three signs your operation",
+    titleEm: "needs automation",
+    items: [
+      {
+        title: "Leads wait hours for an answer",
+        body: "They arrive through the form, Meta or WhatsApp, and someone replies when they can. By then they have talked to someone else.",
+      },
+      {
+        title: "Your team moves data by hand",
+        body: "From the form to the CRM, from the CRM to the spreadsheet, from the spreadsheet to the report. Every copy is lost time and a mistake waiting to happen.",
+      },
+      {
+        title: "You fund campaigns without knowing what sells",
+        body: "There are clicks and forms, but nobody can say for sure which ad or message brought the customer who paid.",
+      },
+    ],
+    closing: "All three can be fixed with well-designed automation.",
+  },
+  journey: {
+    kicker: "How it works",
+    title: "From stranger",
+    titleEm: "to client",
+    intro: "Automation is not one tool. It is a path where each step hands the lead to the next one without anyone copying data by hand.",
+    steps: [
+      { title: "Attract", body: "LinkedIn content, cold email and landing pages written for one kind of client." },
+      { title: "Capture", body: "Forms and tracking that send every inquiry to the CRM with its source." },
+      { title: "Nurture", body: "WhatsApp, email and follow-ups that fire on their own, with a human hand-off when it matters." },
+      { title: "Convert", body: "Calls booked straight into the calendar, and dashboards that show what actually sells." },
+    ],
+  },
+  services: {
+    kicker: "Services",
+    title: "What I build",
+    titleEm: "for your team",
+    intro: "Four fronts that connect to each other. You can start with one; the first call is for choosing which one moves the needle first.",
+    idealLabel: "Ideal if",
+    list: [
+      {
+        title: "Marketing & sales automation",
+        outcome: "No lead goes unanswered.",
+        idealFor: "you answer leads by hand, late, or whenever someone remembers.",
+        items: [
+          "Workflows in n8n, Zapier, GoHighLevel and HubSpot",
+          "CRM pipelines, follow-ups and reminders",
+          "WhatsApp conversations with a human hand-off",
+          "Behavior-based campaigns and nurturing in HubSpot",
+        ],
+      },
+      {
+        title: "Prospecting & cold outreach",
+        outcome: "Conversations with prospects who actually fit you.",
+        idealFor: "your sales depend on referrals and you want a channel of your own.",
+        items: [
+          "Lists built with Apollo and LinkedIn Sales Navigator",
+          "Personalized sequences with SalesHandy and Instantly",
+          "Segmentation by type of client",
+          "AI-assisted prospecting copy",
+        ],
+      },
+      {
+        title: "Websites & landing pages that capture",
+        outcome: "Every interested visitor reaches the CRM with their source.",
+        idealFor: "your website brings no inquiries, or you don't know where they come from.",
+        items: [
+          "Landing pages and funnels in Webflow",
+          "Internal apps and dashboards with React, Astro and Vite",
+          "Forms, lead capture and event tracking",
+          "Fast, responsive pages built to convert",
+        ],
+      },
+      {
+        title: "Content, copy & personal branding",
+        outcome: "Messages people read and answer.",
+        idealFor: "you post without a strategy, or don't post at all.",
+        items: [
+          "Personal branding and positioning on LinkedIn",
+          "Automated newsletters and email marketing",
+          "Consumer-psychology-driven messaging",
+          "A consistent brand voice across channels",
+        ],
+      },
+    ],
+  },
+  featured: {
+    kicker: "Featured case",
+    cta: "See all cases",
+  },
+  about: {
+    kicker: "About me",
+    title: "Psychology, data",
+    titleEm: "and automation",
+    paragraphs: [
+      "I'm Diana Pinzon, a marketing automation specialist and co-founder of Vulcano. I come from psychology and quantitative analysis: I understand why a person answers a message, and I know how to measure whether they did.",
+      "That is what I bring to every workflow: automations that feel human and decisions based on data, not hunches. At CFOPro LLC I ran marketing campaigns mainly on HubSpot, with behavior-based nurturing and Zapier syncing the whole stack.",
+    ],
+    facts: [
+      "Background in psychology and quantitative analysis",
+      "HubSpot campaigns for CFOPro LLC",
+      "Spanish and English · remote from Colombia",
+    ],
+    vulcanoLabel: "Co-founder of",
+    vulcanoTitle: "Vulcano",
+    vulcanoBody: "A software, data and process-automation engineering studio I co-founded with Gabriel Castillo. There I lead automation and growth: workflow design, lead generation, CRM operations and content strategy.",
+    vulcanoCta: "Visit vulcanoservices.dev",
+    logoAlt: "Vulcano, software, data and automation engineering studio",
+    portraitAlt: "Portrait of Diana Pinzon",
+  },
+  faq: {
+    kicker: "FAQ",
+    title: "Before you book",
+    items: [
+      {
+        q: "Do I need to change my CRM or tools?",
+        a: "Not necessarily. I work with n8n, Zapier, GoHighLevel and HubSpot and connect what you already use. If a tool is holding you back, I'll tell you why.",
+      },
+      {
+        q: "How long does an automation take?",
+        a: "It depends on the scope. In the first call we define what to automate first and, before starting, I send you timelines and cost in writing.",
+      },
+      {
+        q: "Will my team understand what you build?",
+        a: "Yes. Every workflow is documented: what it does, when it fires and how to adjust it. If you need support after delivery, we agree on it.",
+      },
+      {
+        q: "Do you work with companies outside Colombia?",
+        a: "Yes. I work remotely, in Spanish or English, on Colombia and US East Coast hours.",
+      },
+      {
+        q: "What do I need to get started?",
+        a: "A 30-minute call: tell me which tasks repeat, which tools you use and what you would like to happen on its own.",
+      },
+    ],
+  },
+  contact: {
+    kicker: "Contact",
+    title: "Let's automate",
+    titleEm: "the busywork.",
+    body: "Tell me which task your team repeats every day. In a 30-minute call we map what to automate first.",
+    bookCall: "Book a free 30-min call",
+    bookHint: "Pick a time that suits you, no commitment.",
+    emailLabel: "Email",
+    emailHint: "I reply within 24 hours",
+    locationLabel: "Location",
+    location: "Colombia · remote work",
+    timezone: "Colombia and US East Coast hours",
+  },
+  projects: {
+    kicker: "Cases",
+    title: "Real projects,",
+    titleEm: "explained",
+    intro: "What the problem was, what I built and with which tools. Screenshots from client projects use dummy data.",
+    featuredLabel: "Featured case",
+    listLabel: "Case studies",
+    toolsLabel: "Tools",
+    resultsLabel: "What it achieves",
+    viewWebsite: "View website",
+    viewCode: "View code",
+    postgres: {
+      title: "PostgreSQL flow automation",
+      subtitle: "Database integration with n8n",
+      description: "A workflow connecting PostgreSQL with different services to sync data in real time, with automatic triggers, data transformation and notifications.",
+      tools: ["n8n", "PostgreSQL", "Docker", "REST API", "Webhooks"],
+      results: [
+        "Data synced in real time",
+        "Automated database triggers",
+        "Custom no-code integration",
+      ],
+    },
+    items: [
+      {
+        key: "dashboard",
+        title: "OMW operations dashboard",
+        subtitle: "Costs and clients in view, from GoHighLevel via n8n",
+        description: "A dashboard for On My Way (OMW) that gives the company real visibility over costs, clients, appointments and the sales pipeline. n8n pulls and consolidates the GoHighLevel CRM data, with end-to-end traceability and decisions backed by data.",
+        tools: ["n8n", "GoHighLevel", "React", "Data visualization", "REST API"],
+        results: [
+          "Costs and clients in one place",
+          "End-to-end traceability",
+          "GoHighLevel data synced with n8n",
+          "Filters by period, vendor and ad tag",
+        ],
+        link: "",
+        linkKind: "website",
+      },
+      {
+        key: "whatsapp",
+        title: "WhatsApp customer-service bot",
+        subtitle: "AI-assisted service with a human hand-off",
+        description: "WhatsApp customer service built with EvolutionAPI, self-hosted n8n, Redis and OpenAI. It answers at any hour, transcribes voice notes and hands the conversation to a person when needed.",
+        tools: ["n8n", "Docker", "Redis", "EvolutionAPI", "OpenAI API"],
+        results: [
+          "Service at any hour of the day",
+          "Voice notes transcribed",
+          "AI answers with a human hand-off",
+          "No WhatsApp Business API fees",
+        ],
+        link: "",
+        linkKind: "website",
+      },
+      {
+        key: "linkedin",
+        title: "LinkedIn content system",
+        subtitle: "AI-assisted content strategy",
+        description: "A system that generates LinkedIn posts, carousels and visuals with AI, with an automated calendar, performance tracking and A/B testing.",
+        tools: ["OpenAI API", "Canva API", "LinkedIn API", "Content strategy", "Automation"],
+        results: [
+          "Steady posting without starting from scratch every week",
+          "Automated content calendar",
+          "Consistent brand voice",
+          "Fewer hours of manual writing",
+        ],
+        link: "",
+        linkKind: "website",
+      },
+      {
+        key: "portfolio",
+        title: "CFOPro website",
+        subtitle: "Built with React and TypeScript",
+        description: "A responsive site built with React, TypeScript and Tailwind CSS, with smooth animations, technical SEO and automated deployment.",
+        tools: ["React", "TypeScript", "Tailwind CSS", "Vite", "GitHub Pages"],
+        results: [
+          "Adapts to any screen",
+          "SEO metadata and structure in place",
+          "Automated deployment",
+          "Light, fast pages",
+        ],
+        link: "https://cfopro.github.io/portfoliocfopro/",
+        linkKind: "website",
+      },
+      {
+        key: "adesu",
+        title: "ADESU: accounting as an advantage",
+        subtitle: "Conversion website built with Lovable",
+        description: "A web platform for ADESU that presents accounting as a competitive advantage for Colombian companies, with a modern, conversion-focused design.",
+        tools: ["Lovable", "React", "TypeScript", "Tailwind CSS", "Netlify"],
+        results: [
+          "Client-centred message",
+          "Conversion-focused design",
+          "Contact and services built in",
+        ],
+        link: "https://adesu.netlify.app/",
+        linkKind: "website",
+      },
+      {
+        key: "awards",
+        title: "Awards CFOPro",
+        subtitle: "Central Florida business awards",
+        description: "A landing page for Central Florida's business awards program: digital application, networking and positioning for innovative companies.",
+        tools: ["React", "TypeScript", "Tailwind CSS", "Netlify"],
+        results: [
+          "Free digital application",
+          "Networking community",
+          "Local recognition and positioning",
+        ],
+        link: "https://centralflorida.netlify.app/",
+        linkKind: "website",
+      },
+      {
+        key: "cv",
+        title: "AI CV builder",
+        subtitle: "ATS-compatible resumes",
+        description: "A web app that collects a person's information and generates ATS-compatible resumes, with AI-assisted wording and keywords.",
+        tools: ["OpenAI API", "React", "TypeScript", "PDF generation", "ATS optimization"],
+        results: [
+          "ATS-compatible format",
+          "Wording improved with AI",
+          "Professional PDF",
+          "Keywords for recruiting filters",
+        ],
+        link: "https://github.com/Diana020828/word-craft-pro",
+        linkKind: "code",
+      },
+    ],
+  },
+  footer: {
+    subtitle: "Marketing automation · Websites that capture · Content",
+    description: "I build marketing and sales automations with n8n, Zapier and GoHighLevel, websites with React, Astro and Webflow, and content strategies for LinkedIn, newsletters and cold email.",
+    copyright: "© 2026 Diana Pinzon.",
+  },
+  notFound: {
+    title: "This lead got lost",
+    titleEm: "on the way.",
+    body: "The page you are looking for does not exist or has moved.",
+    cta: "Back to home",
+  },
+};
+
+export const translations = { es, en };

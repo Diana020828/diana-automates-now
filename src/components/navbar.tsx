@@ -1,162 +1,124 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Language } from "@/lib/translations";
 
+const CALENDLY_URL = "https://calendly.com/dianapinzon/30min";
+
+// Floating pill navigation. Home sections are reached through hash links
+// (ScrollToTop resolves them after a route change); Cases is its own page.
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navigation = [
     { name: t.nav.home, to: "/" },
-    { name: t.nav.services, to: "/services" },
-    { name: t.nav.projects, to: "/projects" },
-    { name: t.nav.tools, to: "/tools" },
-    { name: t.nav.contact, to: "/contact" },
+    { name: t.nav.services, to: "/#servicios" },
+    { name: t.nav.cases, to: "/projects" },
+    { name: t.nav.about, to: "/#sobre-mi" },
+    { name: t.nav.contact, to: "/#contacto" },
   ];
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'es' : 'en');
-  };
+  const isCurrent = (to: string) => to === pathname;
+  const otherLanguage = language === "en" ? "es" : "en";
 
   return (
-    <motion.nav
-      aria-label={language === 'es' ? 'Navegación principal' : 'Main navigation'}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border/50 shadow-medium"
-          : "bg-background/80 backdrop-blur-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <motion.div whileHover={{ scale: 1.02 }} className="flex-shrink-0 cursor-pointer">
-            <Link to="/">
-              <span className="text-xl font-semibold text-foreground hover:text-primary transition-colors">
-                Diana Pinzon
-              </span>
-            </Link>
-          </motion.div>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <nav
+        aria-label={t.nav.label}
+        className={`mx-auto flex max-w-[1240px] items-center justify-between gap-3 rounded-full border py-2 pl-5 pr-2 transition-[background-color,border-color,box-shadow] duration-300 ${
+          scrolled || open ? "border-line bg-paper/95 shadow-card backdrop-blur" : "border-transparent bg-transparent"
+        }`}
+      >
+        <Link to="/" className="font-display text-xl font-semibold text-plum">
+          Diana <span className="italic text-clay">Pinzon</span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              {navigation.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className={({ isActive }) =>
-                    `px-3 py-2 text-sm font-medium transition-all duration-200 relative group ${
-                      isActive ? "text-foreground" : "text-foreground/80 hover:text-foreground"
-                    }`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      {item.name}
-                      <motion.div
-                        className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                          isActive ? "w-full" : "w-0 group-hover:w-full"
-                        }`}
-                      />
-                    </>
-                  )}
-                </NavLink>
-              ))}
-            </div>
-          </div>
-
-          {/* Theme Toggle, Language & Mobile Menu */}
-          <div className="flex items-center space-x-3">
-            {/* Language Toggle */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleLanguage}
-                className="p-2 min-w-[44px] min-h-[44px] hover:bg-secondary/50 transition-colors"
-                aria-label="Toggle language"
+        <ul className="hidden items-center gap-1 lg:flex">
+          {navigation.map((item) => (
+            <li key={item.to}>
+              <Link
+                to={item.to}
+                aria-current={isCurrent(item.to) ? "page" : undefined}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  isCurrent(item.to) ? "bg-plum text-cream" : "text-plum hover:bg-sand"
+                }`}
               >
-                <Globe className="h-4 w-4" />
-                <span className="ml-1 text-xs font-medium">{language.toUpperCase()}</span>
-              </Button>
-            </div>
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-            <ThemeToggle />
-            
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 min-w-[44px] min-h-[44px] hover:bg-secondary/50 transition-colors"
-                aria-label={language === 'es' ? 'Abrir menú' : 'Toggle menu'}
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="mobile-menu"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </Button>
-            </div>
-          </div>
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => setLanguage(otherLanguage)}
+            className="grid min-h-11 min-w-11 place-items-center rounded-full border border-line text-xs font-semibold uppercase text-plum hover:border-plum"
+            // The accessible name starts with the visible text ("en"/"es")
+            aria-label={`${otherLanguage} — ${t.nav.switchLanguage}`}
+          >
+            {otherLanguage}
+          </button>
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden min-h-11 items-center rounded-full bg-clay px-5 text-sm font-semibold text-cream transition-colors hover:bg-plum sm:inline-flex"
+          >
+            {t.nav.book}
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen((current) => !current)}
+            className="grid min-h-11 min-w-11 place-items-center rounded-full text-plum hover:bg-sand lg:hidden"
+            aria-label={t.nav.openMenu}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
+      </nav>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden"
-              id="mobile-menu"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur-md rounded-lg mt-2 border border-border/50 shadow-medium">
-                {navigation.map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    end={item.to === "/"}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      `block w-full text-left px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                        isActive
-                          ? "text-foreground bg-secondary/40"
-                          : "text-foreground/80 hover:text-foreground hover:bg-secondary/30"
-                      }`
-                    }
-                  >
-                    {item.name}
-                  </NavLink>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.nav>
+      <AnimatePresence>
+        {open && (
+          <m.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="surface mx-auto mt-2 max-w-[1240px] p-2 lg:hidden"
+          >
+            {navigation.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                aria-current={isCurrent(item.to) ? "page" : undefined}
+                className={`block rounded-2xl px-4 py-3 font-display text-xl ${
+                  isCurrent(item.to) ? "bg-lavender-soft text-plum" : "text-plum hover:bg-sand"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-clay mt-2 w-full">
+              {t.nav.book}
+            </a>
+          </m.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

@@ -1,177 +1,81 @@
-import { motion } from "framer-motion";
-import {
-  Mail,
-  MapPin,
-  Linkedin,
-  Github,
-  CalendarDays
-} from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const contactMethods = [
-  {
-    icon: Mail,
-    titleKey: "email" as const,
-    value: "dianapinzon577@gmail.com",
-    href: "mailto:dianapinzon577@gmail.com",
-  },
-  // Teléfono eliminado por privacidad
+const CALENDLY_URL = "https://calendly.com/dianapinzon/30min";
+
+const SOCIAL = [
+  { icon: Linkedin, name: "LinkedIn", href: "https://linkedin.com/in/dianapinzonreyes", handle: "@dianapinzonreyes" },
+  { icon: Github, name: "GitHub", href: "https://github.com/Diana020828", handle: "@Diana020828" },
 ];
 
-const socialLinks = [
-  {
-    icon: Linkedin,
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/dianapinzonreyes",
-    username: "@dianapinzonreyes",
-    color: "from-blue-500 to-blue-700"
-  },
-  {
-    icon: Github,
-    name: "GitHub",
-    href: "https://github.com/Diana020828",
-    username: "@Diana020828",
-    color: "from-gray-700 to-gray-900"
-  }
-];
-
+// Closing section of the home page. Booking is a plain link (no Calendly
+// widget script), with email and social channels beside it.
 export function ContactSection() {
   const { t } = useLanguage();
+  const copy = t.contact;
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center space-y-4 mb-12 sm:mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-accent/15 text-accent rounded-full text-xs sm:text-sm font-medium border border-accent/30 shadow-soft"
+    <section id="contacto" className="defer-render pb-20 sm:pb-28" aria-labelledby="contact-title">
+      <div className="shell grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+        <div className="grain relative overflow-hidden rounded-[2.75rem] bg-lavender px-7 py-12 sm:px-12 sm:py-16">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-terracotta/30 blur-2xl" />
+          <p className="kicker relative">{copy.kicker}</p>
+          <h2 id="contact-title" className="relative mt-4 text-[clamp(2.6rem,6vw,4.8rem)] font-medium leading-[1]">
+            {copy.title} <span className="italic text-clay">{copy.titleEm}</span>
+          </h2>
+          <p className="relative mt-6 max-w-xl text-lg text-plum">{copy.body}</p>
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-clay relative mt-9">
+            {copy.bookCall}
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </a>
+          <p className="relative mt-3 text-sm text-plum">{copy.bookHint}</p>
+        </div>
+
+        <div className="grid content-start gap-5">
+          <a
+            href="mailto:dianapinzon577@gmail.com"
+            className="surface flex items-center gap-4 p-6 transition-shadow hover:shadow-lift"
           >
-            {t.contact.badge}
-          </motion.span>
+            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-sage-soft">
+              <Mail className="size-5 text-plum" aria-hidden="true" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-sm text-plum-soft">
+                {copy.emailLabel} · {copy.emailHint}
+              </span>
+              <span className="block break-all font-display text-xl text-plum">dianapinzon577@gmail.com</span>
+            </span>
+          </a>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            <span className="block">{t.contact.title}</span>
-            <span className="block text-gradient">{t.contact.titleGradient}</span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            {t.contact.description}
-          </p>
-
-          {/* Agendamiento como enlace normal: no carga el widget de Calendly ni
-              su script de terceros, así que no interfiere con la página. */}
-          <div className="flex flex-col items-center gap-2 pt-2">
-            <a
-              href="https://calendly.com/dianapinzon/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium"
-            >
-              <CalendarDays className="w-5 h-5" />
-              {t.contact.bookCall}
-            </a>
-            <span className="text-sm text-muted-foreground">
-              {t.contact.bookCallHint}
+          <div className="surface flex items-center gap-4 p-6">
+            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-sand">
+              <MapPin className="size-5 text-plum" aria-hidden="true" />
+            </span>
+            <span>
+              <span className="block text-sm text-plum-soft">{copy.locationLabel}</span>
+              <span className="block font-display text-xl text-plum">{copy.location}</span>
+              <span className="block text-sm text-plum-soft">{copy.timezone}</span>
             </span>
           </div>
-        </motion.div>
 
-        {/* Contact Information */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-            {/* Contact Methods */}
-            {contactMethods.map((method, index) => (
-              <motion.a
-                key={method.titleKey}
-                href={method.href}
-                aria-label={`${t.contact[method.titleKey].title}: ${method.value}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -2 }}
-                className="flex flex-col justify-between items-center glass-effect rounded-2xl p-6 border border-card-border hover:border-primary/50 transition-all duration-300 group shadow-soft hover:shadow-medium min-h-[220px]"
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            {SOCIAL.map(({ icon: Icon, name, href, handle }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="surface flex items-center gap-3 p-5 transition-shadow hover:shadow-lift"
               >
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <method.icon className="w-7 h-7 text-primary" />
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col items-center justify-center text-center">
-                  <h4 className="font-semibold text-foreground text-lg mb-1">{t.contact[method.titleKey].title}</h4>
-                  <p className="text-primary hover:text-primary-glow font-medium text-base mb-1">{method.value}</p>
-                  <p className="text-muted-foreground text-sm">{t.contact[method.titleKey].description}</p>
-                </div>
-              </motion.a>
+                <Icon className="size-5 text-clay" aria-hidden="true" />
+                <span>
+                  <span className="block font-semibold text-plum">{name}</span>
+                  <span className="block text-sm text-plum-soft">{handle}</span>
+                </span>
+              </a>
             ))}
-
-            {/* Location */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col justify-between items-center glass-effect rounded-2xl p-6 border border-card-border shadow-soft min-h-[220px]"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
-                  <MapPin className="w-7 h-7 text-primary" />
-                </div>
-              </div>
-              <div className="flex-1 flex flex-col items-center justify-center text-center">
-                <h4 className="font-semibold text-foreground text-lg mb-1">{t.contact.locationTitle}</h4>
-                <p className="text-muted-foreground text-base mb-1">{t.contact.location}</p>
-                <p className="text-sm text-muted-foreground">{t.contact.timezone}</p>
-              </div>
-            </motion.div>
-
-            {/* Social Links */}
-            <div className="flex flex-col gap-6">
-              <h4 className="font-semibold text-foreground text-lg text-center mb-2">{t.contact.social}</h4>
-              <div className="flex flex-col gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${social.name} ${social.username} (${t.contact.social})`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center glass-effect rounded-2xl p-4 border border-card-border hover:border-primary/50 transition-all duration-300 group shadow-soft hover:shadow-medium"
-                  >
-                    <div className={`w-12 h-12 bg-gradient-to-br ${social.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform mr-4`}>
-                      <social.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-medium text-foreground text-base">{social.name}</p>
-                      <p className="text-muted-foreground text-sm">{social.username}</p>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
