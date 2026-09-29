@@ -148,11 +148,11 @@ const es = {
     titleEm: "y automatización",
     paragraphs: [
       "Soy Diana Pinzon, especialista en automatización de marketing y cofundadora de Vulcano. Vengo de la psicología y el análisis cuantitativo: entiendo por qué una persona responde un mensaje y sé medir si lo hizo.",
-      "Eso es lo que llevo a cada flujo: automatizaciones que se sienten humanas y decisiones basadas en datos, no en intuición. En CFOPro LLC llevé campañas de marketing principalmente en HubSpot, con nurturing por comportamiento y Zapier sincronizando todo el stack.",
+      "Eso es lo que llevo a cada flujo: automatizaciones que se sienten humanas y decisiones basadas en datos, no en intuición. Hoy diseño flujos de WhatsApp y automatizaciones en GoHighLevel en On My Way; antes, en CFOPro LLC, conecté con n8n el CRM, Apollo, LinkedIn Sales Navigator y SalesHandy para eliminar trabajo manual.",
     ],
     facts: [
-      "Formación en psicología y análisis cuantitativo",
-      "Campañas en HubSpot para CFOPro LLC",
+      "Psicología (en curso) y análisis cuantitativo",
+      "Automatización en On My Way y CFOPro LLC",
       "Español e inglés · remoto desde Colombia",
     ],
     vulcanoLabel: "Cofundadora de",
@@ -485,11 +485,11 @@ const en: typeof es = {
     titleEm: "and automation",
     paragraphs: [
       "I'm Diana Pinzon, a marketing automation specialist and co-founder of Vulcano. I come from psychology and quantitative analysis: I understand why a person answers a message, and I know how to measure whether they did.",
-      "That is what I bring to every workflow: automations that feel human and decisions based on data, not hunches. At CFOPro LLC I ran marketing campaigns mainly on HubSpot, with behavior-based nurturing and Zapier syncing the whole stack.",
+      "That is what I bring to every workflow: automations that feel human and decisions based on data, not hunches. Today I design WhatsApp flows and GoHighLevel automations at On My Way; before that, at CFOPro LLC, I connected the CRM, Apollo, LinkedIn Sales Navigator and SalesHandy with n8n to remove manual work.",
     ],
     facts: [
-      "Background in psychology and quantitative analysis",
-      "HubSpot campaigns for CFOPro LLC",
+      "Psychology (in progress) and quantitative analysis",
+      "Automation at On My Way and CFOPro LLC",
       "Spanish and English · remote from Colombia",
     ],
     vulcanoLabel: "Co-founder of",
