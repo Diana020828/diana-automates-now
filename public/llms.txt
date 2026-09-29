@@ -38,13 +38,14 @@ EvolutionAPI, OpenAI API, Docker, Redis, React, TypeScript, Astro, Vite, Tailwin
 
 - OMW Operations Dashboard — cost, client, appointment and pipeline visibility for On My Way,
   with n8n consolidating GoHighLevel CRM data. Stack: n8n, GoHighLevel, React, REST API.
-- WhatsApp Customer Service Bot — 24/7 automated support with EvolutionAPI, self-hosted n8n,
-  Redis and OpenAI, including voice-note transcription and human handoff.
-- LinkedIn Content Creation System — AI-assisted post, carousel and calendar automation;
-  reported a 300% increase in engagement and 15+ hours saved per week.
+- WhatsApp Customer Service Bot — automated support at any hour with EvolutionAPI,
+  self-hosted n8n, Redis and OpenAI, including voice-note transcription and human handoff.
+- LinkedIn Content Creation System — AI-assisted posts, carousels and an automated
+  content calendar with performance tracking and A/B testing.
 - AI-Powered CV Builder — ATS-compatible résumé generator with AI copy optimization:
   https://github.com/Diana020828/word-craft-pro
-- Modern Portfolio Website — responsive React + TypeScript + Tailwind site with automated CI/CD.
+- CFOPro website — responsive React + TypeScript + Tailwind site with automated deployment.
+- All case studies: https://portfoliodiana.netlify.app/projects
 
 ## Vulcano (company she co-founded)
 
@@ -73,7 +74,7 @@ Fastest way to reach her, in order:
 
 1. Book a free 30-minute call: https://calendly.com/dianapinzon/30min
 2. Email: dianapinzon577@gmail.com — replies within 24 hours
-3. Contact page: https://portfoliodiana.netlify.app/contact
+3. Contact section: https://portfoliodiana.netlify.app/#contacto
 4. LinkedIn: https://linkedin.com/in/dianapinzonreyes
 5. For company work, through Vulcano: https://vulcanoservices.dev
 

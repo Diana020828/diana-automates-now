@@ -3,7 +3,8 @@
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  # Node 24 LTS: the prerender imports src/lib/translations.ts directly
+  NODE_VERSION = "24"
 
 # Headers de seguridad para todos los archivos
 [[headers]]

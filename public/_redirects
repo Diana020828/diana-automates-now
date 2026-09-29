@@ -1,2 +1,8 @@
-# SPA fallback - redirige todas las rutas al index.html
+# Pages merged into the home page (September 2026 rebrand): permanent
+# redirects to their section so links and search results keep working.
+/services   /#servicios   301
+/tools      /#servicios   301
+/contact    /#contacto    301
+
+# SPA fallback: every other route is served by index.html
 /*    /index.html   200

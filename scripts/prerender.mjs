@@ -44,231 +44,65 @@ const section = (heading, paragraphs, items) =>
     items ? list(items) : '',
   ].join('');
 
+// Content comes from the same copy the SPA renders (src/lib/translations.ts,
+// Spanish by default), so crawlers and visitors always read the same text.
+// Node 24 imports the TypeScript file directly (type stripping).
+const { translations } = await import('../src/lib/translations.ts');
+const t = translations.es;
+
 const routes = [
   {
     path: '/',
-    title: 'Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano',
-    description:
-      'Diana Pinzon is a marketing automation specialist from Colombia and co-founder of Vulcano. She builds automations with n8n, Zapier, GoHighLevel and HubSpot that connect CRM, prospecting and email, plus web development (React, Astro, Webflow), automated campaigns and conversion-focused copywriting.',
+    title: t.pageTitles.home,
+    description: t.pageDescriptions.home,
     schemaType: 'ProfilePage',
     content: [
-      '<h1>Diana Pinzon — Marketing Automation Specialist</h1>',
-      '<p>I design, build and maintain marketing and sales automations with n8n, Zapier and GoHighLevel that connect CRM, prospecting and email. I complement the operation with web development (React, Astro, Webflow), automated campaigns and conversion-focused copywriting. My background in psychology and quantitative data analysis lets me make evidence-based decisions that move real metrics.</p>',
+      `<h1>${escape(`${t.hero.titleLead} ${t.hero.titleMid} ${t.hero.titleEm}`)}</h1>`,
+      `<p>${escape(t.hero.intro)}</p>`,
+      section(`${t.problem.title} ${t.problem.titleEm}`, t.problem.items.map((item) => `${item.title}. ${item.body}`), null),
       section(
-        'Co-founder at Vulcano',
-        [
-          'I co-founded Vulcano (https://vulcanoservices.dev) with Gabriel Castillo, a software, data and process-automation engineering studio. I lead automation and growth: workflow design, lead generation, CRM operations and content strategy. Vulcano serves companies across LATAM, Spain, the United States and the United Kingdom, in Spanish and English.',
-        ],
-        null,
+        `${t.journey.title} ${t.journey.titleEm}`,
+        [t.journey.intro],
+        t.journey.steps.map((step) => `${step.title}: ${step.body}`),
       ),
+      ...t.services.list.map((service) =>
+        section(service.title, [service.outcome, `${t.services.idealLabel} ${service.idealFor}`], service.items),
+      ),
+      section(`${t.about.title} ${t.about.titleEm}`, [...t.about.paragraphs, t.about.vulcanoBody], t.about.facts),
+      section(t.faq.title, t.faq.items.map((item) => `${item.q} ${item.a}`), null),
       section(
-        'What I do',
-        [],
+        t.contact.kicker,
+        [t.contact.body],
         [
-          'Marketing and sales automation with n8n, Zapier, GoHighLevel and HubSpot',
-          'Lead generation and cold outreach with Apollo, LinkedIn Sales Navigator, SalesHandy and Instantly',
-          'Web development and landing pages with React, Astro, Vite and Webflow',
-          'Content, copywriting and personal branding for tech professionals',
+          'Correo: dianapinzon577@gmail.com',
+          `Agenda una llamada de 30 minutos: ${calendlyUrl}`,
+          'LinkedIn: https://linkedin.com/in/dianapinzonreyes',
+          'GitHub: https://github.com/Diana020828',
+          'Vulcano: https://vulcanoservices.dev',
         ],
       ),
-      section(
-        'Contact',
-        [
-          'Based in Tunja, Boyacá, Colombia. Remote work globally, EST/COT timezone. Email: dianapinzon577@gmail.com.',
-        ],
-        null,
-      ),
-      // Enlaces reales a los CV: sin esto los PDF quedan fuera del HTML que ve
-      // un crawler sin JavaScript y no se descubren.
-      '<h2>Resume</h2><ul>' +
-        '<li><a href="/cv-update-eng.pdf">Diana Pinzon — resume (English, PDF)</a></li>' +
+      // Real links to both CVs: without them a crawler without JavaScript
+      // never discovers the PDFs.
+      '<h2>Hoja de vida</h2><ul>' +
         '<li><a href="/cv-update-esp.pdf">Diana Pinzon — hoja de vida (español, PDF)</a></li>' +
+        '<li><a href="/cv-update-eng.pdf">Diana Pinzon — resume (English, PDF)</a></li>' +
         '</ul>',
     ].join(''),
   },
   {
-    path: '/services',
-    title: 'Services — Marketing Automation & Growth | Diana Pinzon',
-    description:
-      'Marketing and sales automation with n8n, Zapier, GoHighLevel and HubSpot; lead generation and cold outreach; web development and landing pages; content, copywriting and personal branding.',
-    schemaType: 'CollectionPage',
-    content: [
-      '<h1>Marketing Automation &amp; Growth Services</h1>',
-      '<p>I build automation workflows, lead-generation systems, websites and content strategies that eliminate manual work, keep sales and marketing aligned, and turn attention into measurable conversions.</p>',
-      section(
-        'Marketing & Sales Automation',
-        [
-          'I design and document end-to-end automations with n8n, Zapier, GoHighLevel and HubSpot — CRM pipelines, follow-ups, WhatsApp conversation flows and touchpoints — so sales and marketing stay aligned, consistent and reproducible at scale.',
-        ],
-        [
-          'n8n, Zapier, GoHighLevel and HubSpot workflow design',
-          'HubSpot marketing campaigns and behavior-based nurturing',
-          'CRM pipelines, follow-ups and WhatsApp conversation flows',
-          'Manual process elimination and operational efficiency',
-        ],
-      ),
-      section(
-        'Lead Generation & Cold Outreach',
-        [
-          'I build and run systematic prospecting: smart segmentation, personalized sequences and AI-assisted content across LinkedIn and cold email to generate qualified leads and improve response rates.',
-        ],
-        [
-          'Prospecting with Apollo and LinkedIn Sales Navigator',
-          'Cold email with SalesHandy and Instantly',
-          'Smart segmentation and personalized sequences',
-          'AI-assisted content and copy optimization',
-        ],
-      ),
-      section(
-        'Web Development & Landing Pages',
-        [
-          'I develop and tune marketing sites and internal apps with React, Astro, Vite and Webflow — structure, forms, tracking and dashboards — built for campaigns, funnels and conversion.',
-        ],
-        [
-          'Marketing pages and funnels in Webflow',
-          'Internal apps and dashboards with React, Astro and Vite',
-          'Forms, lead capture and event tracking',
-          'Responsive, fast and conversion-oriented design',
-        ],
-      ),
-      section(
-        'Content, Copywriting & Personal Branding',
-        [
-          'I develop content and personal-branding strategies for tech professionals, with automated content flows, newsletters and consumer-psychology-driven messaging that increases engagement and conversion.',
-        ],
-        [
-          'Personal branding and thought-leadership positioning',
-          'Automated newsletters and email marketing',
-          'Consumer-psychology-driven, data-informed messaging',
-          'Coherent brand voice across channels',
-        ],
-      ),
-    ].join(''),
-  },
-  {
     path: '/projects',
-    title: 'Projects — Automation & Web | Diana Pinzon',
-    description:
-      'Featured projects: an operations dashboard fed from GoHighLevel with n8n, a WhatsApp customer-service bot, a LinkedIn content system, an AI-powered CV builder and a modern portfolio website.',
+    title: t.pageTitles.projects,
+    description: t.pageDescriptions.projects,
     schemaType: 'CollectionPage',
     content: [
-      '<h1>Projects that transform businesses</h1>',
-      '<p>Explore some of my featured projects, where I combine automation, technology and real results to solve problems and deliver value.</p>',
-      section(
-        'OMW Operations Dashboard',
-        [
-          'Operations dashboard built for On My Way (OMW) that gives the company real visibility over costs, clients, appointments and the sales pipeline. n8n pulls and consolidates the GoHighLevel (GHL) CRM data, enabling end-to-end product traceability and decisions backed by real metrics.',
-          'Tools: n8n, GoHighLevel, React, data visualization, REST API.',
-        ],
-        [
-          'Cost and client visibility in one place',
-          'End-to-end product traceability',
-          'Automated GHL data sync with n8n',
-          'Filters by period, vendor and ad tag',
-        ],
-      ),
-      section(
-        'WhatsApp Customer Service Bot',
-        [
-          'Complete automated customer service solution for WhatsApp using EvolutionAPI, self-hosted n8n, Redis and OpenAI. Handles conversations 24/7, transcribes voice notes and provides intelligent responses with seamless human handoff.',
-          'Tools: n8n, Docker, Redis, EvolutionAPI, OpenAI API.',
-        ],
-        [
-          '24/7 automated customer service',
-          'Voice note transcription',
-          'Intelligent AI responses',
-          'Zero WhatsApp Business costs',
-        ],
-      ),
-      section(
-        'LinkedIn Content Creation System',
-        [
-          'Automated content creation system for LinkedIn that generates posts, carousels and visual content using AI. Includes content calendar automation, performance tracking and A/B testing for optimal engagement rates.',
-          'Tools: OpenAI API, Canva API, LinkedIn API, content strategy, automation.',
-        ],
-        [
-          '300% increase in engagement rates',
-          'Automated content calendar',
-          'Consistent brand voice',
-          'Time savings of 15+ hours per week',
-        ],
-      ),
-      section(
-        'AI-Powered CV Builder',
-        [
-          'Web application that collects user information and generates ATS-compatible CVs with AI-powered text optimization. Automatically improves copy, optimizes keywords and formats resumes to pass recruitment filters.',
-          'Tools: OpenAI API, React, TypeScript, PDF generation, ATS optimization. Code: https://github.com/Diana020828/word-craft-pro',
-        ],
-        null,
-      ),
-      section(
-        'Modern Portfolio Website',
-        [
-          'Fully responsive portfolio website built with React, TypeScript and Tailwind CSS. Features smooth animations, SEO optimization and modern UI/UX design, deployed with an automated CI/CD pipeline.',
-          'Tools: React, TypeScript, Tailwind CSS, Vite, GitHub Pages.',
-        ],
-        null,
-      ),
-    ].join(''),
-  },
-  {
-    path: '/tools',
-    title: 'Tools & Tech Stack | Diana Pinzon',
-    description:
-      'Automation, marketing and development platforms I work with: n8n, Zapier, GoHighLevel, HubSpot, Apollo, SalesHandy, Instantly, React, Astro, Vite, Webflow, Docker, Redis and the OpenAI API.',
-    schemaType: 'CollectionPage',
-    content: [
-      '<h1>Tools I master</h1>',
-      '<p>I work with the best automation, marketing and development platforms to create robust, scalable and easy-to-maintain solutions.</p>',
-      section(
-        'Automation and CRM',
-        [],
-        ['n8n', 'Zapier', 'GoHighLevel', 'HubSpot', 'EvolutionAPI', 'Redis', 'Docker'],
-      ),
-      section(
-        'Lead generation and outreach',
-        [],
-        [
-          'Apollo',
-          'LinkedIn Sales Navigator',
-          'SalesHandy',
-          'Instantly',
-          'OpenAI API',
-        ],
-      ),
-      section(
-        'Development and web',
-        [],
-        ['React', 'TypeScript', 'Astro', 'Vite', 'Tailwind CSS', 'Webflow'],
-      ),
-    ].join(''),
-  },
-  {
-    path: '/contact',
-    title: 'Contact | Diana Pinzon',
-    description:
-      'Get in touch with Diana Pinzon for marketing automation, lead generation, web development or content strategy. Based in Colombia, working remotely worldwide in the EST/COT timezone.',
-    schemaType: 'ContactPage',
-    content: [
-      '<h1>Contact</h1>',
-      '<p>Ready to scale your marketing and sales? Whether it is an automation workflow, a lead-generation system, a website or a content strategy, let us discuss how I can help transform your operations.</p>',
-      section(
-        'How to reach me',
-        [],
-        [
-          'Email: dianapinzon577@gmail.com — response within 24 hours',
-          `Book a free 30-minute call: ${calendlyUrl}`,
-          'LinkedIn: https://linkedin.com/in/dianapinzonreyes',
-          'GitHub: https://github.com/Diana020828',
-          'Vulcano (studio I co-founded): https://vulcanoservices.dev',
-        ],
-      ),
-      section(
-        'Location and availability',
-        [
-          'Colombia. Remote work globally, available in the EST/COT timezone, in Spanish and English.',
-        ],
-        null,
+      `<h1>${escape(`${t.projects.title} ${t.projects.titleEm}`)}</h1>`,
+      `<p>${escape(t.projects.intro)}</p>`,
+      ...[t.projects.postgres, ...t.projects.items].map((project) =>
+        section(
+          project.title,
+          [project.subtitle, project.description, `${t.projects.toolsLabel}: ${project.tools.join(', ')}.`],
+          project.results,
+        ),
       ),
     ].join(''),
   },
@@ -302,7 +136,7 @@ const buildJsonLd = (route) => {
         '@type': 'ContactPoint',
         contactType: 'sales',
         email: 'dianapinzon577@gmail.com',
-        url: `${siteUrl}/contact`,
+        url: `${siteUrl}/#contacto`,
         availableLanguage: ['Spanish', 'English'],
         areaServed: 'Worldwide (remote)',
       },
@@ -313,7 +147,7 @@ const buildJsonLd = (route) => {
         name: 'Contact Diana Pinzon',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: `${siteUrl}/contact`,
+          urlTemplate: `${siteUrl}/#contacto`,
           actionPlatform: [
             'http://schema.org/DesktopWebPlatform',
             'http://schema.org/MobileWebPlatform',
@@ -384,7 +218,7 @@ const buildJsonLd = (route) => {
     url,
     name: route.title,
     description: route.description,
-    inLanguage: 'en-US',
+    inLanguage: 'es-CO',
     isPartOf: { '@type': 'WebSite', name: 'Diana Pinzon Portfolio', url: `${siteUrl}/` },
     about: { '@id': personId },
     ...(route.schemaType === 'ProfilePage' ? { mainEntity: { '@id': personId } } : {}),
@@ -397,7 +231,7 @@ const buildJsonLd = (route) => {
       : {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${siteUrl}/` },
             { '@type': 'ListItem', position: 2, name: route.title.split(' —')[0].split(' |')[0], item: url },
           ],
         };
