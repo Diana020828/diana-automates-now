@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { PageHeader } from "@/components/page-header";
 import { FeaturedProjectHero } from "@/components/sections/featured-project-hero";
 import { ProjectsSection } from "@/components/sections/projects-section";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -10,14 +11,17 @@ export function ProjectsPage() {
   useSeo({ title: t.pageTitles.projects, description: t.pageDescriptions.projects });
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen">
       <Navbar />
 
-      <main className="pt-20 pb-12">
-        {/* Hero del proyecto destacado */}
+      <main>
+        <PageHeader
+          kicker={t.projects.kicker}
+          title={t.projects.title}
+          titleEm={t.projects.titleEm}
+          intro={t.projects.intro}
+        />
         <FeaturedProjectHero />
-
-        {/* Carrusel con el resto de proyectos */}
         <ProjectsSection />
       </main>
 
