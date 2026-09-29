@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Download } from "lucide-react";
-import dianaProfile from "@/assets/diana-profile.webp";
+import dianaAvatar from "@/assets/diana-avatar.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { FunnelLive } from "./funnel-live";
 
@@ -46,7 +46,7 @@ export function HeroSection() {
         <div>
           <div className="mb-7 flex items-center gap-3">
             <img
-              src={dianaProfile}
+              src={dianaAvatar}
               alt="Diana Pinzon"
               width={52}
               height={52}
