@@ -4,13 +4,14 @@ import { Language, translations } from '@/lib/translations';
 type LanguageContextType = {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: typeof translations.en;
+  t: typeof translations.es;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  // Spanish by default: most of Diana's clients and her brand are in LATAM
+  const [language, setLanguage] = useState<Language>('es');
 
   // Mantiene el atributo lang del documento sincronizado con el idioma (a11y + SEO)
   useEffect(() => {

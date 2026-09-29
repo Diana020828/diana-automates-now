@@ -1,29 +1,28 @@
 import { Suspense, lazy } from "react";
-import { MotionConfig } from "framer-motion";
+import { LazyMotion, MotionConfig } from "framer-motion";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 // Lazy load de páginas para mejor rendimiento
-const ServicesPage = lazy(() => import("./pages/Services").then(module => ({ default: module.ServicesPage })));
 const ProjectsPage = lazy(() => import("./pages/Projects").then(module => ({ default: module.ProjectsPage })));
-const ToolsPage = lazy(() => import("./pages/Tools").then(module => ({ default: module.ToolsPage })));
-const ContactPage = lazy(() => import("./pages/Contact").then(module => ({ default: module.ContactPage })));
 
 // Componente de carga mientras se cargan las páginas
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+    <div className="size-10 animate-spin rounded-full border-2 border-line border-t-clay"></div>
   </div>
 );
 
+// Animation features download after the first render (see lib/motion-features)
+const loadMotionFeatures = () => import("./lib/motion-features").then((module) => module.default);
+
 const App = () => (
-  <ThemeProvider defaultTheme="dark" storageKey="diana-portfolio-theme">
-    <LanguageProvider>
+  <LanguageProvider>
+    <LazyMotion features={loadMotionFeatures} strict>
       <MotionConfig reducedMotion="user">
         <TooltipProvider>
           <BrowserRouter>
@@ -31,10 +30,7 @@ const App = () => (
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/services" element={<ServicesPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/tools" element={<ToolsPage />} />
-                <Route path="/contact" element={<ContactPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -42,8 +38,8 @@ const App = () => (
           </BrowserRouter>
         </TooltipProvider>
       </MotionConfig>
-    </LanguageProvider>
-  </ThemeProvider>
+    </LazyMotion>
+  </LanguageProvider>
 );
 
 export default App;

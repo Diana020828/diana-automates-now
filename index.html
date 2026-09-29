@@ -1,62 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Tema aplicado antes del primer pintado. El ThemeProvider lo hace en un
-         useEffect, es decir después de pintar: sin esto se ve un parpadeo entre el
-         HTML servido y el tema real guardado por el usuario. -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem('diana-portfolio-theme') || 'dark';
-          var theme =
-            stored === 'system'
-              ? window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light'
-              : stored;
-          document.documentElement.classList.add(theme);
-        } catch (error) {
-          // localStorage bloqueado (modo privado, cookies deshabilitadas):
-          // se cae al tema por defecto del provider.
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
+    <!-- Typography of the "Nature distilled" system: Fraunces (display, SOFT
+         axis) and Instrument Sans (text). display=swap keeps text visible. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Loaded without blocking the first render: preload, then switch to a
+         stylesheet on load. The fallback fonts paint the text meanwhile. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..600,0..100,0..1&family=Instrument+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..600,0..100,0..1&family=Instrument+Sans:wght@400;500;600&display=swap" /></noscript>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     
     <!-- Primary Meta Tags -->
-    <title>Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano</title>
-    <meta name="title" content="Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano" />
-    <meta name="description" content="Diana Pinzon is a marketing automation specialist from Colombia and co-founder of Vulcano. She builds automations with n8n, Zapier, GoHighLevel and HubSpot that connect CRM, prospecting and email, plus web development (React, Astro, Webflow), automated campaigns and conversion-focused copywriting." />
+    <title>Diana Pinzon — Automatización de marketing y ventas · Cofundadora de Vulcano</title>
+    <meta name="title" content="Diana Pinzon — Automatización de marketing y ventas · Cofundadora de Vulcano" />
+    <meta name="description" content="Diana Pinzon diseña y opera automatizaciones de marketing y ventas con n8n, GoHighLevel, Zapier y HubSpot para que cada lead reciba respuesta en minutos. Prospección, webs que capturan leads y contenido. Cofundadora de Vulcano." />
     <meta name="author" content="Diana Pinzon" />
     <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
+    <meta name="language" content="Spanish" />
     <link rel="canonical" href="https://portfoliodiana.netlify.app/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://portfoliodiana.netlify.app/" />
-    <meta property="og:title" content="Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano" />
-    <meta property="og:description" content="Marketing automation specialist. I build automations with n8n, Zapier and GoHighLevel that connect CRM, prospecting and email, plus web development, automated campaigns and conversion-focused copywriting." />
+    <meta property="og:title" content="Diana Pinzon — Automatización de marketing y ventas · Cofundadora de Vulcano" />
+    <meta property="og:description" content="Automatizaciones de marketing y ventas con n8n, GoHighLevel, Zapier y HubSpot para que cada lead reciba respuesta en minutos." />
     <meta property="og:image" content="https://portfoliodiana.netlify.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Diana Pinzon — Marketing Automation Specialist" />
     <meta property="og:site_name" content="Diana Pinzon Portfolio" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="es_CO" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:locale:alternate" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://portfoliodiana.netlify.app/" />
-    <meta name="twitter:title" content="Diana Pinzon — Marketing Automation Specialist & Co-founder of Vulcano" />
-    <meta name="twitter:description" content="Marketing automation specialist building automations with n8n, Zapier and GoHighLevel, web development and conversion-focused content." />
+    <meta name="twitter:title" content="Diana Pinzon — Automatización de marketing y ventas · Cofundadora de Vulcano" />
+    <meta name="twitter:description" content="Automatizaciones de marketing y ventas con n8n, GoHighLevel, Zapier y HubSpot para que cada lead reciba respuesta en minutos." />
     <meta name="twitter:image" content="https://portfoliodiana.netlify.app/og-image.png" />
     <meta name="twitter:image:alt" content="Diana Pinzon — Marketing Automation Specialist" />
 
@@ -78,7 +66,7 @@
           "@type": "ContactPoint",
           "contactType": "sales",
           "email": "dianapinzon577@gmail.com",
-          "url": "https://portfoliodiana.netlify.app/contact",
+          "url": "https://portfoliodiana.netlify.app/#contacto",
           "availableLanguage": ["Spanish", "English"],
           "areaServed": "Worldwide (remote)"
         }
@@ -89,7 +77,7 @@
           "name": "Contact Diana Pinzon",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://portfoliodiana.netlify.app/contact",
+            "urlTemplate": "https://portfoliodiana.netlify.app/#contacto",
             "actionPlatform": [
               "http://schema.org/DesktopWebPlatform",
               "http://schema.org/MobileWebPlatform"
@@ -170,7 +158,7 @@
     </script>
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#D4A574" />
+    <meta name="theme-color" content="#F6F1E7" />
     <meta name="msapplication-TileColor" content="#D4A574" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />

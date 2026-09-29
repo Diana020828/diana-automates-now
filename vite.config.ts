@@ -21,8 +21,9 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
+          // framer-motion is not forced into one chunk: LazyMotion loads its
+          // animation features asynchronously after the first render
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          motion: ['framer-motion']
         }
       }
     }
